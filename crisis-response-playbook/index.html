@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Technology Crisis Response Playbook — Jared Peno</title>
+  <meta name="description" content="When something breaks — breach, outage, failure — this is exactly what you do in the first 48 hours." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #111; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    nav { background: #0D2B4C; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    nav a.back { color: #64748b; text-decoration: none; font-size: 0.82rem; display: flex; align-items: center; gap: 6px; }
+    nav a.back:hover { color: #94a3b8; }
+    nav a.cta-nav { background: #dc2626; color: #fff; padding: 9px 18px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; text-decoration: none; white-space: nowrap; }
+    nav a.cta-nav:hover { background: #b91c1c; }
+    .hero { background: linear-gradient(150deg, #0c0a0a 0%, #1c0a0a 40%, #1e1010 100%); color: #fff; padding: 72px 24px 80px; text-align: center; }
+    .eyebrow { display: inline-block; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #fca5a5; font-weight: 700; background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.3); padding: 4px 14px; border-radius: 20px; margin-bottom: 24px; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; line-height: 1.1; max-width: 700px; margin: 0 auto 20px; }
+    .hero .tagline { font-size: 1.05rem; color: #94a3b8; max-width: 580px; margin: 0 auto 36px; line-height: 1.75; }
+    .btn-primary { display: inline-block; background: #dc2626; color: #fff; padding: 16px 32px; border-radius: 8px; font-weight: 800; font-size: 1rem; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+    .btn-primary:hover { background: #b91c1c; transform: translateY(-1px); }
+    .trust-line { margin-top: 16px; font-size: 0.78rem; color: #475569; }
+    .urgency-banner { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; text-align: center; padding: 14px 24px; font-size: 0.88rem; font-weight: 600; }
+    .section { max-width: 1000px; margin: 0 auto; padding: 72px 24px; }
+    .section-label { font-size: 0.7rem; letter-spacing: 0.13em; text-transform: uppercase; font-weight: 700; color: #dc2626; margin-bottom: 10px; }
+    .section h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; margin-bottom: 10px; color: #0D2B4C; }
+    .section .lead { font-size: 0.95rem; color: #555; max-width: 560px; line-height: 1.7; margin-bottom: 40px; }
+    .items-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media(max-width: 640px) { .items-grid { grid-template-columns: 1fr; } }
+    .item-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; display: flex; gap: 14px; align-items: flex-start; }
+    .item-icon { width: 38px; height: 38px; background: #fef2f2; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #dc2626; }
+    .item-icon svg { width: 20px; height: 20px; }
+    .item-text h4 { font-size: 0.9rem; font-weight: 700; color: #0D2B4C; margin-bottom: 4px; }
+    .item-text p { font-size: 0.8rem; color: #64748b; line-height: 1.5; }
+    .for-bg { background: #fff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
+    .for-inner { max-width: 1000px; margin: 0 auto; padding: 64px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    @media(max-width: 720px) { .for-inner { grid-template-columns: 1fr; gap: 32px; } }
+    .for-inner h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 800; color: #0D2B4C; margin-bottom: 20px; }
+    .for-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .for-list li { display: flex; gap: 10px; font-size: 0.88rem; color: #374151; line-height: 1.55; }
+    .for-list li::before { content: ""; display: block; width: 6px; height: 6px; border-radius: 50%; background: #dc2626; flex-shrink: 0; margin-top: 7px; }
+    .time-box { background: #fef2f2; border: 1px solid #fecaca; border-radius: 12px; padding: 24px; }
+    .time-box .lbl { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #dc2626; margin-bottom: 8px; }
+    .time-box .val { font-size: 0.95rem; color: #0D2B4C; font-weight: 600; line-height: 1.6; }
+    .time-box .sub { font-size: 0.82rem; color: #64748b; font-weight: 400; margin-top: 6px; }
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
+    @media(max-width: 640px) { .how-grid { grid-template-columns: 1fr; } }
+    .how-step { text-align: center; padding: 28px 20px; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; }
+    .how-num { width: 36px; height: 36px; background: #dc2626; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; margin: 0 auto 14px; }
+    .how-step h4 { font-size: 0.92rem; font-weight: 700; color: #0D2B4C; margin-bottom: 6px; }
+    .how-step p { font-size: 0.8rem; color: #64748b; line-height: 1.5; }
+    .cta-section { background: linear-gradient(150deg, #0c0a0a 0%, #1c0a0a 40%, #1e1010 100%); color: #fff; text-align: center; padding: 80px 24px; }
+    .cta-section h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 900; max-width: 620px; margin: 0 auto 16px; line-height: 1.2; }
+    .cta-section p { font-size: 0.95rem; color: #94a3b8; max-width: 480px; margin: 0 auto 8px; line-height: 1.7; }
+    .cta-urgency { font-size: 0.88rem; color: #fca5a5; font-weight: 600; margin-bottom: 28px; }
+    .btn-white { display: inline-block; background: #fff; color: #0D2B4C; padding: 16px 36px; border-radius: 8px; font-weight: 800; font-size: 1rem; text-decoration: none; transition: transform 0.15s; }
+    .btn-white:hover { transform: translateY(-1px); }
+    .guarantee { margin-top: 16px; font-size: 0.78rem; color: #475569; }
+    footer { background: #060f1c; color: #334155; text-align: center; padding: 24px; font-size: 0.78rem; }
+    footer a { color: #475569; text-decoration: none; }
+    footer a:hover { color: #94a3b8; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="back">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:14px;height:14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+    products.jaredpeno.com
+  </a>
+  <a href="https://buy.stripe.com/cNicN60y9ekJartdqtaR205" class="cta-nav">Get Crisis Playbook — $97</a>
+</nav>
+
+<div class="urgency-banner">
+  Don't wait until something breaks to get this. That's the whole point.
+</div>
+
+<div class="hero">
+  <div class="eyebrow">Incident Response · $97</div>
+  <h1>Technology Crisis Response Playbook</h1>
+  <p class="tagline">When something breaks — breach, outage, failure — this is exactly what you do in the first 48 hours.</p>
+  <a href="https://buy.stripe.com/cNicN60y9ekJartdqtaR205" class="btn-primary">Get Crisis Response Playbook — $97</a>
+  <div class="trust-line">🔒 Stripe checkout &nbsp;·&nbsp; Instant access &nbsp;·&nbsp; 30-day guarantee</div>
+</div>
+
+<div class="section">
+  <div class="section-label">What's Inside</div>
+  <h2>Everything you need. Nothing you don't.</h2>
+  <p class="lead">Seven battle-tested tools that turn crisis chaos into a coordinated, documented, controlled response.</p>
+  <div class="items-grid">
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Incident Classification Matrix</h4>
+        <p>Priority 1–4 definitions so your team knows instantly how serious it is and who to wake up.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>First 30-Minute Response Checklist</h4>
+        <p>Exactly what to do in the first 30 minutes — before panic sets in and mistakes get made.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Stakeholder Communication Templates</h4>
+        <p>Three phases of communication — initial alert, status updates, and all-clear — pre-written and ready.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Vendor Escalation Script</h4>
+        <p>How to escalate with vendors under pressure — getting the right people on the phone fast.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Evidence Preservation Checklist</h4>
+        <p>What to capture and preserve — especially critical in a breach where legal and insurance are involved.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Z" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Post-Incident Review Template</h4>
+        <p>The blameless review structure that turns a crisis into documented learning — and proves it won't happen again.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Prevention Roadmap Framework</h4>
+        <p>Translate your post-incident findings into a prevention plan that closes the gaps before the next crisis.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="for-bg">
+  <div class="for-inner">
+    <div>
+      <h2>Who this is for</h2>
+      <ul class="for-list">
+        <li>IT leaders who don't have a documented crisis response plan — and know they should.</li>
+        <li>Business owners who've already lived through a bad incident and never want to repeat that experience.</li>
+        <li>Leaders who have a plan on paper but haven't tested it — and aren't sure it would actually hold up.</li>
+        <li>Anyone who gets called when something breaks and needs a clear process to follow under pressure.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="time-box">
+        <div class="lbl">Time investment</div>
+        <div class="val">20 minutes to absorb</div>
+        <div class="sub">Read once before a crisis. Use it during. The whole point is having this ready before you need it — not scrambling for it after.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">How It Works</div>
+  <h2>Read once. Use when it matters.</h2>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="how-num">1</div>
+      <h4>Buy &amp; get instant access</h4>
+      <p>Purchase via Stripe. Immediately redirected to your Google Doc — ready to read.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">2</div>
+      <h4>Make a copy &amp; customize</h4>
+      <p>Add your vendor escalation contacts, stakeholder list, and communication channels. Takes 20 minutes.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">3</div>
+      <h4>Have it ready before you need it</h4>
+      <p>Bookmark it. Share it with your team. When something breaks, you'll already know exactly what to do.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <h2>The time to get this is before something breaks.</h2>
+  <p>This is exactly what you do in the first 48 hours of a breach, outage, or failure.</p>
+  <p class="cta-urgency">Don't wait until something breaks to get this. That's the whole point.</p>
+  <a href="https://buy.stripe.com/cNicN60y9ekJartdqtaR205" class="btn-white">Get Crisis Response Playbook — $97</a>
+  <div class="guarantee">30-day money-back guarantee. No questions asked.</div>
+</div>
+
+<footer>
+  © Jared Peno &nbsp;·&nbsp; <a href="https://jaredpeno.com">jaredpeno.com</a> &nbsp;·&nbsp;
+  <a href="/privacy/">Privacy</a> &nbsp;·&nbsp;
+  <a href="/refund/">Refund Policy</a>
+</footer>
+
+</body>
+</html>

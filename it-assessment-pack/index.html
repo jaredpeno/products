@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IT Assessment Template Pack — Jared Peno</title>
+  <meta name="description" content="The exact framework to assess any company's technology in one afternoon — and walk out with a report that commands respect." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #111; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    nav { background: #0D2B4C; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    nav a.back { color: #64748b; text-decoration: none; font-size: 0.82rem; display: flex; align-items: center; gap: 6px; }
+    nav a.back:hover { color: #94a3b8; }
+    nav a.cta-nav { background: #2563eb; color: #fff; padding: 9px 18px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; text-decoration: none; white-space: nowrap; }
+    nav a.cta-nav:hover { background: #1d4ed8; }
+    .hero { background: linear-gradient(150deg, #071829 0%, #0D2B4C 60%, #0f3460 100%); color: #fff; padding: 72px 24px 80px; text-align: center; }
+    .eyebrow { display: inline-block; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #2563eb; font-weight: 700; background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.3); padding: 4px 14px; border-radius: 20px; margin-bottom: 24px; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; line-height: 1.1; max-width: 700px; margin: 0 auto 20px; }
+    .hero .tagline { font-size: 1.05rem; color: #94a3b8; max-width: 580px; margin: 0 auto 36px; line-height: 1.75; }
+    .btn-primary { display: inline-block; background: #2563eb; color: #fff; padding: 16px 32px; border-radius: 8px; font-weight: 800; font-size: 1rem; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+    .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); }
+    .trust-line { margin-top: 16px; font-size: 0.78rem; color: #475569; }
+    .section { max-width: 1000px; margin: 0 auto; padding: 72px 24px; }
+    .section-label { font-size: 0.7rem; letter-spacing: 0.13em; text-transform: uppercase; font-weight: 700; color: #2563eb; margin-bottom: 10px; }
+    .section h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; margin-bottom: 10px; color: #0D2B4C; }
+    .section .lead { font-size: 0.95rem; color: #555; max-width: 560px; line-height: 1.7; margin-bottom: 40px; }
+    .items-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media(max-width: 640px) { .items-grid { grid-template-columns: 1fr; } }
+    .item-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; display: flex; gap: 14px; align-items: flex-start; }
+    .item-icon { width: 38px; height: 38px; background: #eff6ff; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #2563eb; }
+    .item-icon svg { width: 20px; height: 20px; }
+    .item-text h4 { font-size: 0.9rem; font-weight: 700; color: #0D2B4C; margin-bottom: 4px; }
+    .item-text p { font-size: 0.8rem; color: #64748b; line-height: 1.5; }
+    .for-bg { background: #fff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
+    .for-inner { max-width: 1000px; margin: 0 auto; padding: 64px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    @media(max-width: 720px) { .for-inner { grid-template-columns: 1fr; gap: 32px; } }
+    .for-inner h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 800; color: #0D2B4C; margin-bottom: 20px; }
+    .for-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .for-list li { display: flex; gap: 10px; font-size: 0.88rem; color: #374151; line-height: 1.55; }
+    .for-list li::before { content: ""; display: block; width: 6px; height: 6px; border-radius: 50%; background: #2563eb; flex-shrink: 0; margin-top: 7px; }
+    .time-box { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 24px; }
+    .time-box .lbl { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #2563eb; margin-bottom: 8px; }
+    .time-box .val { font-size: 0.95rem; color: #0D2B4C; font-weight: 600; line-height: 1.6; }
+    .time-box .sub { font-size: 0.82rem; color: #64748b; font-weight: 400; margin-top: 6px; }
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
+    @media(max-width: 640px) { .how-grid { grid-template-columns: 1fr; } }
+    .how-step { text-align: center; padding: 28px 20px; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; }
+    .how-num { width: 36px; height: 36px; background: #2563eb; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; margin: 0 auto 14px; }
+    .how-step h4 { font-size: 0.92rem; font-weight: 700; color: #0D2B4C; margin-bottom: 6px; }
+    .how-step p { font-size: 0.8rem; color: #64748b; line-height: 1.5; }
+    .cta-section { background: linear-gradient(150deg, #071829 0%, #0D2B4C 60%, #0f3460 100%); color: #fff; text-align: center; padding: 80px 24px; }
+    .cta-section h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 900; max-width: 600px; margin: 0 auto 16px; line-height: 1.2; }
+    .cta-section p { font-size: 0.95rem; color: #94a3b8; max-width: 480px; margin: 0 auto 32px; line-height: 1.7; }
+    .btn-white { display: inline-block; background: #fff; color: #0D2B4C; padding: 16px 36px; border-radius: 8px; font-weight: 800; font-size: 1rem; text-decoration: none; transition: transform 0.15s; }
+    .btn-white:hover { transform: translateY(-1px); }
+    .guarantee { margin-top: 16px; font-size: 0.78rem; color: #475569; }
+    footer { background: #060f1c; color: #334155; text-align: center; padding: 24px; font-size: 0.78rem; }
+    footer a { color: #475569; text-decoration: none; }
+    footer a:hover { color: #94a3b8; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="back">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:14px;height:14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+    products.jaredpeno.com
+  </a>
+  <a href="https://buy.stripe.com/14AcN694Fa4tbvxcmpaR203" class="cta-nav">Get IT Assessment Pack — $97</a>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">IT Assessment · $97</div>
+  <h1>IT Assessment Template Pack</h1>
+  <p class="tagline">The exact framework to assess any company's technology in one afternoon — and walk out with a report that commands respect.</p>
+  <a href="https://buy.stripe.com/14AcN694Fa4tbvxcmpaR203" class="btn-primary">Get IT Assessment Pack — $97</a>
+  <div class="trust-line">🔒 Stripe checkout &nbsp;·&nbsp; Instant access &nbsp;·&nbsp; 30-day guarantee</div>
+</div>
+
+<div class="section">
+  <div class="section-label">What's Inside</div>
+  <h2>Everything you need. Nothing you don't.</h2>
+  <p class="lead">Seven battle-tested templates covering the full assessment lifecycle — from walking in the door to presenting to leadership.</p>
+  <div class="items-grid">
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Executive Summary Template</h4>
+        <p>The one-page brief that turns your findings into a leadership-ready narrative they'll actually read.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Infrastructure Assessment Checklist</h4>
+        <p>Covers network, servers, cloud, and endpoints — nothing falls through the cracks.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Application Inventory Worksheet</h4>
+        <p>Catalog every system in use — owner, cost, integration points, and renewal dates in one place.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Vendor &amp; Contract Register</h4>
+        <p>Every vendor, contract date, cost, and renewal in a single register you can present on day one.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Risk Scoring Rubric (1–5 Scale)</h4>
+        <p>Objectively score every risk area so your findings have credibility — not just opinions.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Findings &amp; Recommendations Template</h4>
+        <p>Structure your output so every finding has a recommendation, priority, and owner attached.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>One-Page State of Technology</h4>
+        <p>The board-ready summary — one page that tells the whole story for executives who don't want the details.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="for-bg">
+  <div class="for-inner">
+    <div>
+      <h2>Who this is for</h2>
+      <ul class="for-list">
+        <li>You just stepped into a new IT leadership role and need to understand what you've inherited — fast.</li>
+        <li>You're a consultant or fractional CTO doing an assessment for a new client and need a professional deliverable.</li>
+        <li>You've been asked to do a formal technology audit and need a structured framework to follow.</li>
+        <li>You want to walk into leadership with a report that commands respect — not a rough draft.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="time-box">
+        <div class="lbl">Time to complete</div>
+        <div class="val">3–5 hours on-site</div>
+        <div class="sub">Then 1–2 hours to write up your report. You'll have a professional deliverable the same day you do the assessment.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">How It Works</div>
+  <h2>Three steps. One afternoon.</h2>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="how-num">1</div>
+      <h4>Buy &amp; get instant access</h4>
+      <p>Purchase via Stripe. Immediately redirected to your Google Doc — ready to use.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">2</div>
+      <h4>Make a copy &amp; customize</h4>
+      <p>Click File → Make a Copy. Fill in your company details. The framework does the rest.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">3</div>
+      <h4>Walk out with a report</h4>
+      <p>Complete the assessment in one afternoon. Present to leadership the same day or next morning.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <h2>Assess any company's technology in one afternoon.</h2>
+  <p>Walk in with a framework. Walk out with a report that commands respect.</p>
+  <a href="https://buy.stripe.com/14AcN694Fa4tbvxcmpaR203" class="btn-white">Get IT Assessment Pack — $97</a>
+  <div class="guarantee">30-day money-back guarantee. No questions asked.</div>
+</div>
+
+<footer>
+  © Jared Peno &nbsp;·&nbsp; <a href="https://jaredpeno.com">jaredpeno.com</a> &nbsp;·&nbsp;
+  <a href="/privacy/">Privacy</a> &nbsp;·&nbsp;
+  <a href="/refund/">Refund Policy</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Technology Budget Template — Jared Peno</title>
+  <meta name="description" content="Build a technology budget leadership will actually approve — and defend it in any room." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #111; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    nav { background: #0D2B4C; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    nav a.back { color: #64748b; text-decoration: none; font-size: 0.82rem; display: flex; align-items: center; gap: 6px; }
+    nav a.back:hover { color: #94a3b8; }
+    nav a.cta-nav { background: #d97706; color: #fff; padding: 9px 18px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; text-decoration: none; white-space: nowrap; }
+    nav a.cta-nav:hover { background: #b45309; }
+    .hero { background: linear-gradient(150deg, #071829 0%, #0D2B4C 50%, #1c1200 100%); color: #fff; padding: 72px 24px 80px; text-align: center; }
+    .eyebrow { display: inline-block; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #fcd34d; font-weight: 700; background: rgba(217,119,6,0.15); border: 1px solid rgba(217,119,6,0.3); padding: 4px 14px; border-radius: 20px; margin-bottom: 24px; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; line-height: 1.1; max-width: 700px; margin: 0 auto 20px; }
+    .hero .tagline { font-size: 1.05rem; color: #94a3b8; max-width: 580px; margin: 0 auto 36px; line-height: 1.75; }
+    .btn-primary { display: inline-block; background: #d97706; color: #fff; padding: 16px 32px; border-radius: 8px; font-weight: 800; font-size: 1rem; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+    .btn-primary:hover { background: #b45309; transform: translateY(-1px); }
+    .trust-line { margin-top: 16px; font-size: 0.78rem; color: #475569; }
+    .section { max-width: 1000px; margin: 0 auto; padding: 72px 24px; }
+    .section-label { font-size: 0.7rem; letter-spacing: 0.13em; text-transform: uppercase; font-weight: 700; color: #d97706; margin-bottom: 10px; }
+    .section h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; margin-bottom: 10px; color: #0D2B4C; }
+    .section .lead { font-size: 0.95rem; color: #555; max-width: 560px; line-height: 1.7; margin-bottom: 40px; }
+    .items-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media(max-width: 640px) { .items-grid { grid-template-columns: 1fr; } }
+    .item-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; display: flex; gap: 14px; align-items: flex-start; }
+    .item-icon { width: 38px; height: 38px; background: #fffbeb; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #d97706; }
+    .item-icon svg { width: 20px; height: 20px; }
+    .item-text h4 { font-size: 0.9rem; font-weight: 700; color: #0D2B4C; margin-bottom: 4px; }
+    .item-text p { font-size: 0.8rem; color: #64748b; line-height: 1.5; }
+    .for-bg { background: #fff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
+    .for-inner { max-width: 1000px; margin: 0 auto; padding: 64px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    @media(max-width: 720px) { .for-inner { grid-template-columns: 1fr; gap: 32px; } }
+    .for-inner h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 800; color: #0D2B4C; margin-bottom: 20px; }
+    .for-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .for-list li { display: flex; gap: 10px; font-size: 0.88rem; color: #374151; line-height: 1.55; }
+    .for-list li::before { content: ""; display: block; width: 6px; height: 6px; border-radius: 50%; background: #d97706; flex-shrink: 0; margin-top: 7px; }
+    .time-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 24px; }
+    .time-box .lbl { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #d97706; margin-bottom: 8px; }
+    .time-box .val { font-size: 0.95rem; color: #0D2B4C; font-weight: 600; line-height: 1.6; }
+    .time-box .sub { font-size: 0.82rem; color: #64748b; font-weight: 400; margin-top: 6px; }
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
+    @media(max-width: 640px) { .how-grid { grid-template-columns: 1fr; } }
+    .how-step { text-align: center; padding: 28px 20px; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; }
+    .how-num { width: 36px; height: 36px; background: #d97706; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; margin: 0 auto 14px; }
+    .how-step h4 { font-size: 0.92rem; font-weight: 700; color: #0D2B4C; margin-bottom: 6px; }
+    .how-step p { font-size: 0.8rem; color: #64748b; line-height: 1.5; }
+    .cta-section { background: linear-gradient(150deg, #071829 0%, #0D2B4C 50%, #1c1200 100%); color: #fff; text-align: center; padding: 80px 24px; }
+    .cta-section h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 900; max-width: 600px; margin: 0 auto 16px; line-height: 1.2; }
+    .cta-section p { font-size: 0.95rem; color: #94a3b8; max-width: 480px; margin: 0 auto 32px; line-height: 1.7; }
+    .btn-white { display: inline-block; background: #fff; color: #0D2B4C; padding: 16px 36px; border-radius: 8px; font-weight: 800; font-size: 1rem; text-decoration: none; transition: transform 0.15s; }
+    .btn-white:hover { transform: translateY(-1px); }
+    .guarantee { margin-top: 16px; font-size: 0.78rem; color: #475569; }
+    footer { background: #060f1c; color: #334155; text-align: center; padding: 24px; font-size: 0.78rem; }
+    footer a { color: #475569; text-decoration: none; }
+    footer a:hover { color: #94a3b8; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="back">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:14px;height:14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+    products.jaredpeno.com
+  </a>
+  <a href="https://buy.stripe.com/8x24gA4OpekJ0QTeuxaR207" class="cta-nav">Get Budget Template — $97</a>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">Budget Planning · $97</div>
+  <h1>Technology Budget Template</h1>
+  <p class="tagline">Build a technology budget leadership will actually approve — and defend it in any room.</p>
+  <a href="https://buy.stripe.com/8x24gA4OpekJ0QTeuxaR207" class="btn-primary">Get Technology Budget Template — $97</a>
+  <div class="trust-line">🔒 Stripe checkout &nbsp;·&nbsp; Instant access &nbsp;·&nbsp; 30-day guarantee</div>
+</div>
+
+<div class="section">
+  <div class="section-label">What's Inside</div>
+  <h2>Everything you need. Nothing you don't.</h2>
+  <p class="lead">Seven tools that take you from a blank spreadsheet to a boardroom-ready budget with the justifications to back it up.</p>
+  <div class="items-grid">
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Annual Technology Budget Spreadsheet</h4>
+        <p>Full structure across all categories — hardware, software, services, staffing, and projects — pre-built and ready to fill in.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Cost Per Category Benchmarks</h4>
+        <p>Industry benchmarks by company size — so your numbers are defensible, not just guesses.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Budget Narrative Template</h4>
+        <p>The written justification that goes alongside your numbers — tells the story, not just the math.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>ROI Calculator Framework</h4>
+        <p>Translate technology investments into business outcomes — the language finance and the CEO actually speak.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Budget Presentation Slide Outline</h4>
+        <p>A 5-slide structure that presents your budget clearly — context, ask, ROI, risks, and next steps.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Common Budget Objections + Responses</h4>
+        <p>The 8 most common objections IT budgets face — with ready-to-use responses that land with leadership.</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" /></svg>
+      </div>
+      <div class="item-text">
+        <h4>Vendor Cost Comparison Template</h4>
+        <p>Side-by-side vendor cost analysis — so your budget reflects the best deal, not just the first quote.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="for-bg">
+  <div class="for-inner">
+    <div>
+      <h2>Who this is for</h2>
+      <ul class="for-list">
+        <li>IT leaders heading into budget season who need a professional, defensible budget built from real structure.</li>
+        <li>Anyone who got asked "why does IT cost so much?" and didn't have a clean, confident answer.</li>
+        <li>Leaders who've had budgets cut or rejected and want to present one leadership will actually approve this time.</li>
+        <li>New IT directors and managers who've never built a formal technology budget from scratch.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="time-box">
+        <div class="lbl">Time to complete</div>
+        <div class="val">2–3 hours for your first budget</div>
+        <div class="sub">Once built, updating it each year takes under an hour. The structure is reusable across every budget cycle.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">How It Works</div>
+  <h2>Build it once. Use it every year.</h2>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="how-num">1</div>
+      <h4>Buy &amp; get instant access</h4>
+      <p>Purchase via Stripe. Immediately redirected to your Google Sheet + Doc — ready to build.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">2</div>
+      <h4>Make a copy &amp; fill it in</h4>
+      <p>Work through the spreadsheet category by category. Benchmarks are built in to guide your numbers.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">3</div>
+      <h4>Present with confidence</h4>
+      <p>Use the narrative template and slide outline to walk into the budget meeting prepared for every question.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <h2>Build a budget leadership will actually approve.</h2>
+  <p>Come in with benchmarks, ROI language, and a presentation that holds up under scrutiny.</p>
+  <a href="https://buy.stripe.com/8x24gA4OpekJ0QTeuxaR207" class="btn-white">Get Technology Budget Template — $97</a>
+  <div class="guarantee">30-day money-back guarantee. No questions asked.</div>
+</div>
+
+<footer>
+  © Jared Peno &nbsp;·&nbsp; <a href="https://jaredpeno.com">jaredpeno.com</a> &nbsp;·&nbsp;
+  <a href="/privacy/">Privacy</a> &nbsp;·&nbsp;
+  <a href="/refund/">Refund Policy</a>
+</footer>
+
+</body>
+</html>
