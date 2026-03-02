@@ -4,416 +4,493 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Technology Clarity Playbook — Jared Peno</title>
-  <meta name="description" content="In one afternoon, you'll know exactly where your technology stands, which decisions actually matter, and how to lead with confidence, not chaos." />
+  <meta name="description" content="In one afternoon, you'll know exactly where your technology stands, which decisions matter, and how to lead with confidence — not chaos." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #f9fafb; color: #111; margin: 0; line-height: 1.7; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #fff; color: #111; line-height: 1.6; }
 
-    /* NAV */
-    nav { background: #0D2B4C; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
-    nav a { color: #fff; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
-    nav span { color: #94a3b8; font-size: 0.85rem; }
+    /* ─── NAV ─── */
+    nav { background: #0D2B4C; padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    nav a.back { color: #94a3b8; text-decoration: none; font-size: 0.85rem; }
+    nav a.cta-nav { background: #2563eb; color: #fff; padding: 8px 18px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; }
 
-    /* HERO */
-    .hero { background: #0D2B4C; color: #fff; padding: 80px 24px 100px; text-align: center; }
-    .hero .eyebrow { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: #64b5f6; font-weight: 600; margin-bottom: 20px; }
-    .hero h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; line-height: 1.15; max-width: 760px; margin: 0 auto 24px; }
-    .hero p { font-size: 1.15rem; color: #cbd5e1; max-width: 600px; margin: 0 auto 40px; }
-    .btn-primary { display: inline-block; background: #2563eb; color: #fff; padding: 18px 36px; border-radius: 10px; font-size: 1.05rem; font-weight: 700; text-decoration: none; transition: background 0.2s; }
-    .btn-primary:hover { background: #1d4ed8; }
-    .btn-secondary { display: inline-block; background: transparent; color: #94a3b8; border: 1px solid #334155; padding: 14px 28px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; text-decoration: none; margin-left: 12px; transition: all 0.2s; }
-    .btn-secondary:hover { border-color: #94a3b8; color: #fff; }
-    .trust { margin-top: 20px; font-size: 0.85rem; color: #64748b; }
+    /* ─── HERO ─── */
+    .hero { background: linear-gradient(160deg, #0D2B4C 0%, #0f3460 100%); color: #fff; padding: 80px 24px 60px; text-align: center; }
+    .hero .eyebrow { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: #64b5f6; font-weight: 700; margin-bottom: 18px; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 900; line-height: 1.1; max-width: 780px; margin: 0 auto 20px; }
+    .hero h1 em { font-style: normal; color: #64b5f6; }
+    .hero .sub { font-size: clamp(1rem, 2vw, 1.2rem); color: #94a3b8; max-width: 580px; margin: 0 auto 36px; }
+    .btn { display: inline-block; padding: 16px 32px; border-radius: 8px; font-weight: 800; font-size: 1rem; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .btn-blue { background: #2563eb; color: #fff; }
+    .btn-outline { background: transparent; color: #94a3b8; border: 1px solid #334155; padding: 14px 24px; font-size: 0.9rem; font-weight: 600; margin-left: 10px; }
+    .trust-line { margin-top: 18px; font-size: 0.8rem; color: #475569; }
 
-    /* SECTIONS */
-    section { padding: 80px 24px; max-width: 800px; margin: 0 auto; }
-    section.full { max-width: 100%; padding: 80px 24px; background: #fff; }
-    section.full .inner { max-width: 800px; margin: 0 auto; }
-    h2.section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin: 0 0 24px; line-height: 1.2; }
-    .label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: #2563eb; margin-bottom: 12px; }
+    /* ─── PRODUCT MOCKUP ─── */
+    .mockup-wrap { max-width: 700px; margin: 48px auto 0; position: relative; }
+    .mockup-laptop { background: #1e293b; border-radius: 16px 16px 0 0; padding: 12px 12px 0; border: 2px solid #334155; }
+    .mockup-screen { background: #0f172a; border-radius: 8px; overflow: hidden; }
+    .mockup-header { background: #1e3a5f; padding: 16px 24px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #334155; }
+    .mockup-header .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #ef4444; } .dot-y { background: #f59e0b; } .dot-g { background: #22c55e; }
+    .mockup-header .title { font-size: 0.8rem; color: #64b5f6; font-weight: 700; margin-left: 8px; }
+    .mockup-body { padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .mockup-card { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 14px; }
+    .mockup-card .m-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: #64b5f6; font-weight: 700; margin-bottom: 6px; }
+    .mockup-card .m-title { font-size: 0.8rem; color: #e2e8f0; font-weight: 600; margin-bottom: 8px; }
+    .mockup-bar { height: 4px; border-radius: 2px; margin-bottom: 4px; }
+    .bar-green { background: #22c55e; width: 80%; }
+    .bar-yellow { background: #f59e0b; width: 55%; }
+    .bar-red { background: #ef4444; width: 30%; }
+    .mockup-score { font-size: 1.4rem; font-weight: 900; color: #22c55e; }
+    .mockup-score-label { font-size: 0.7rem; color: #64748b; }
+    .mockup-list { list-style: none; }
+    .mockup-list li { font-size: 0.72rem; color: #94a3b8; padding: 3px 0; border-bottom: 1px solid #1e293b; }
+    .mockup-list li::before { content: "→ "; color: #64b5f6; }
+    .mockup-base { background: #334155; height: 14px; border-radius: 0 0 4px 4px; }
+    .mockup-stand { width: 120px; height: 8px; background: #475569; border-radius: 0 0 8px 8px; margin: 0 auto; }
 
-    /* PAIN */
-    .pain p { font-size: 1.05rem; color: #333; margin-bottom: 20px; }
-    .pain blockquote { border-left: 3px solid #0D2B4C; padding-left: 20px; font-style: italic; color: #444; margin: 32px 0; font-size: 1.05rem; }
+    /* ─── SECTIONS ─── */
+    .section { padding: 72px 24px; max-width: 800px; margin: 0 auto; }
+    .section-full { padding: 72px 24px; }
+    .section-full .inner { max-width: 800px; margin: 0 auto; }
+    .label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: #2563eb; margin-bottom: 10px; }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
 
-    /* WHO IT'S FOR */
-    .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-    @media (max-width: 600px) { .who-grid { grid-template-columns: 1fr; } }
-    .who-col h3 { font-size: 1rem; font-weight: 700; margin: 0 0 16px; }
-    .who-col ul { list-style: none; padding: 0; margin: 0; }
-    .who-col ul li { padding: 6px 0; font-size: 0.95rem; color: #444; }
-    .who-col.yes li::before { content: "✅ "; }
-    .who-col.no li::before { content: "❌ "; }
+    /* ─── PAIN BULLETS ─── */
+    .pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+    @media(max-width:600px){ .pain-grid { grid-template-columns: 1fr; } }
+    .pain-item { background: #fef2f2; border-left: 3px solid #ef4444; border-radius: 0 8px 8px 0; padding: 16px 18px; font-size: 0.95rem; color: #374151; }
 
-    /* WHAT YOU GET */
-    .includes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    @media (max-width: 600px) { .includes-grid { grid-template-columns: 1fr; } }
-    .include-item { background: #f1f5f9; border-radius: 10px; padding: 24px; }
-    .include-item .icon { font-size: 1.5rem; margin-bottom: 10px; }
-    .include-item h3 { font-size: 1rem; font-weight: 700; margin: 0 0 8px; }
-    .include-item p { font-size: 0.9rem; color: #555; margin: 0; }
+    /* ─── INCLUDES ─── */
+    .includes-bg { background: #f8fafc; }
+    .includes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+    @media(max-width:600px){ .includes-grid { grid-template-columns: 1fr; } }
+    .inc { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px; display: flex; gap: 14px; align-items: flex-start; }
+    .inc .icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .inc h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+    .inc p { font-size: 0.85rem; color: #555; }
 
-    /* HOW IT WORKS */
-    .steps { counter-reset: steps; }
-    .step { display: flex; gap: 20px; margin-bottom: 32px; align-items: flex-start; }
-    .step-num { counter-increment: steps; background: #0D2B4C; color: #fff; font-weight: 800; font-size: 1rem; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; content: counter(steps); }
-    .step-content h3 { margin: 0 0 6px; font-size: 1rem; font-weight: 700; }
-    .step-content p { margin: 0; font-size: 0.95rem; color: #444; }
+    /* ─── STORY ─── */
+    .story-bg { background: #0D2B4C; color: #fff; }
+    .story-bg h2 { color: #fff; }
+    .story-bg .label { color: #64b5f6; }
+    .story-bg p { color: #94a3b8; margin-bottom: 16px; font-size: 0.98rem; }
+    .story-bg strong { color: #e2e8f0; }
+    .result-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 24px; margin-top: 28px; }
+    .result-card p { color: #e2e8f0 !important; margin: 0; font-size: 1rem !important; line-height: 1.8; }
+    .result-card strong { color: #4ade80 !important; }
 
-    /* STORY */
-    .story { background: #0D2B4C; color: #fff; }
-    .story .inner p { color: #cbd5e1; font-size: 1rem; margin-bottom: 18px; }
-    .story .inner strong { color: #fff; }
-    .story .result-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 24px; margin-top: 32px; font-size: 0.95rem; color: #e2e8f0; }
+    /* ─── OUTCOMES ─── */
+    .outcomes-list { margin-top: 28px; display: flex; flex-direction: column; gap: 0; }
+    .outcome { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid #f1f5f9; align-items: flex-start; }
+    .outcome:last-child { border-bottom: none; }
+    .outcome .ico { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+    .outcome h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .outcome p { font-size: 0.88rem; color: #555; }
 
-    /* OUTCOMES */
-    .outcomes ul { list-style: none; padding: 0; margin: 0; }
-    .outcomes ul li { padding: 16px 0; border-bottom: 1px solid #e5e7eb; font-size: 1rem; }
-    .outcomes ul li:last-child { border-bottom: none; }
-    .outcomes ul li strong { display: block; margin-bottom: 4px; font-size: 1.05rem; }
-    .outcomes ul li span { color: #555; font-size: 0.95rem; }
+    /* ─── HOW IT WORKS ─── */
+    .steps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+    @media(max-width:600px){ .steps-grid { grid-template-columns: 1fr; } }
+    .step-card { background: #f8fafc; border-radius: 10px; padding: 24px; position: relative; }
+    .step-card .num { font-size: 2rem; font-weight: 900; color: #e2e8f0; position: absolute; top: 16px; right: 20px; }
+    .step-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+    .step-card p { font-size: 0.85rem; color: #555; }
+    .step-card .time { font-size: 0.75rem; font-weight: 700; color: #2563eb; margin-bottom: 8px; }
 
-    /* PRICING */
-    .pricing-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
-    @media (max-width: 760px) { .pricing-cards { grid-template-columns: 1fr; } }
-    .pricing-card { background: #fff; border: 2px solid #e5e7eb; border-radius: 12px; padding: 28px; }
-    .pricing-card.featured { border-color: #0D2B4C; }
-    .pricing-card .badge { display: inline-block; background: #0D2B4C; color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; margin-bottom: 16px; }
-    .pricing-card h3 { font-size: 1rem; font-weight: 700; margin: 0 0 6px; }
-    .pricing-card .price { font-size: 2rem; font-weight: 800; margin: 12px 0; }
-    .pricing-card .price span { font-size: 1rem; font-weight: 400; color: #888; }
-    .pricing-card p { font-size: 0.9rem; color: #555; margin: 0 0 20px; }
-    .pricing-card ul { list-style: none; padding: 0; margin: 0 0 24px; }
-    .pricing-card ul li { font-size: 0.88rem; padding: 5px 0; color: #333; }
-    .pricing-card ul li::before { content: "✅ "; }
-    .pricing-card .btn-buy { display: block; text-align: center; background: #0D2B4C; color: #fff; padding: 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.95rem; }
-    .pricing-card.featured .btn-buy { background: #2563eb; }
-    .pricing-card .btn-apply { display: block; text-align: center; border: 2px solid #0D2B4C; color: #0D2B4C; padding: 12px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.95rem; }
+    /* ─── PROOF / QUOTE ─── */
+    .proof-bg { background: #f0f9ff; border-top: 3px solid #2563eb; }
+    .proof-inner { max-width: 600px; margin: 0 auto; text-align: center; padding: 60px 24px; }
+    .proof-inner blockquote { font-size: clamp(1.1rem, 2.5vw, 1.4rem); font-weight: 700; color: #0D2B4C; line-height: 1.5; margin-bottom: 16px; }
+    .proof-inner .attr { font-size: 0.85rem; color: #555; }
+    .proof-inner .attr strong { color: #0D2B4C; }
 
-    /* FAQ */
-    .faq-item { border-bottom: 1px solid #e5e7eb; padding: 24px 0; }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-item h3 { font-size: 1rem; font-weight: 700; margin: 0 0 10px; }
-    .faq-item p { font-size: 0.95rem; color: #444; margin: 0; }
+    /* ─── PRICING ─── */
+    .pricing-bg { background: #f8fafc; }
+    .pricing-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 32px; }
+    @media(max-width:760px){ .pricing-cards { grid-template-columns: 1fr; } }
+    .pc { background: #fff; border: 2px solid #e2e8f0; border-radius: 14px; padding: 28px; display: flex; flex-direction: column; }
+    .pc.featured { border-color: #2563eb; }
+    .pc .badge { display: inline-block; background: #2563eb; color: #fff; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; margin-bottom: 14px; align-self: flex-start; }
+    .pc h3 { font-size: 1rem; font-weight: 800; margin-bottom: 6px; }
+    .pc .price { font-size: 2.2rem; font-weight: 900; line-height: 1; margin: 10px 0 4px; }
+    .pc .price-note { font-size: 0.8rem; color: #22c55e; font-weight: 700; margin-bottom: 12px; }
+    .pc .desc { font-size: 0.88rem; color: #555; margin-bottom: 20px; flex: 1; }
+    .pc ul { list-style: none; margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px; }
+    .pc ul li { font-size: 0.85rem; color: #333; display: flex; gap: 8px; align-items: flex-start; }
+    .pc ul li::before { content: "✓"; color: #22c55e; font-weight: 800; flex-shrink: 0; }
+    .pc .btn-buy { display: block; text-align: center; background: #0D2B4C; color: #fff; padding: 14px; border-radius: 8px; font-weight: 800; text-decoration: none; font-size: 0.95rem; margin-top: auto; }
+    .pc.featured .btn-buy { background: #2563eb; }
+    .pc .fine { font-size: 0.75rem; color: #94a3b8; text-align: center; margin-top: 10px; }
+    .guarantee { text-align: center; margin-top: 24px; font-size: 0.88rem; color: #555; }
+    .guarantee strong { color: #111; }
 
-    /* FOOTER CTA */
-    .footer-cta { background: #0D2B4C; color: #fff; text-align: center; padding: 80px 24px; }
-    .footer-cta h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; max-width: 640px; margin: 0 auto 20px; }
-    .footer-cta p { color: #94a3b8; max-width: 500px; margin: 0 auto 36px; }
+    /* ─── FAQ ─── */
+    details { border-bottom: 1px solid #e5e7eb; padding: 20px 0; cursor: pointer; }
+    details:last-child { border-bottom: none; }
+    summary { font-size: 1rem; font-weight: 700; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    summary::after { content: "+"; font-size: 1.2rem; color: #2563eb; flex-shrink: 0; }
+    details[open] summary::after { content: "−"; }
+    details p { font-size: 0.92rem; color: #444; margin-top: 12px; line-height: 1.7; }
 
-    /* FOOTER */
-    footer { background: #0a1f38; color: #64748b; text-align: center; padding: 24px; font-size: 0.82rem; }
-    footer a { color: #64748b; }
+    /* ─── FOOTER CTA ─── */
+    .fcta { background: #0D2B4C; color: #fff; text-align: center; padding: 80px 24px; }
+    .fcta h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 900; max-width: 600px; margin: 0 auto 16px; }
+    .fcta p { color: #64748b; max-width: 480px; margin: 0 auto 36px; font-size: 0.95rem; }
 
-    /* DIVIDER */
-    .divider { height: 1px; background: #e5e7eb; max-width: 800px; margin: 0 auto; }
+    /* ─── FOOTER ─── */
+    footer { background: #060f1c; color: #334155; text-align: center; padding: 20px 24px; font-size: 0.8rem; }
+    footer a { color: #475569; text-decoration: none; }
+
+    /* ─── DIVIDER ─── */
+    hr.div { border: none; border-top: 1px solid #f1f5f9; max-width: 800px; margin: 0 auto; }
   </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="https://jaredpeno.com">← jaredpeno.com</a>
-  <span>Technology Clarity Playbook</span>
+  <a href="https://jaredpeno.com" class="back">← jaredpeno.com</a>
+  <a href="#pricing" class="cta-nav">Get the Playbook →</a>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
   <div class="eyebrow">The Technology Clarity Playbook</div>
-  <h1>You Were Handed the Technology. Nobody Handed You the Playbook.</h1>
-  <p>In one afternoon, you'll know exactly where your technology stands, which decisions actually matter, and how to lead your team through what's coming — with confidence, not chaos.</p>
-  <a href="#pricing" class="btn-primary">Get the Playbook — $497</a>
-  <a href="#whats-included" class="btn-secondary">See what's included ↓</a>
-  <div class="trust">🔒 Secure checkout via Stripe &nbsp;·&nbsp; Instant access after purchase &nbsp;·&nbsp; 30-day guarantee</div>
+  <h1>You Were Handed the Technology.<br><em>Nobody Handed You the Playbook.</em></h1>
+  <p class="sub">In one afternoon, know exactly where your tech stands, which decisions matter, and how to lead — with confidence, not anxiety.</p>
+  <a href="#pricing" class="btn btn-blue">Get the Playbook — $497</a>
+  <a href="#whats-included" class="btn btn-outline">See what's inside ↓</a>
+  <div class="trust-line">🔒 Stripe checkout &nbsp;·&nbsp; Instant access &nbsp;·&nbsp; 30-day guarantee</div>
+
+  <!-- PRODUCT MOCKUP -->
+  <div class="mockup-wrap">
+    <div class="mockup-laptop">
+      <div class="mockup-screen">
+        <div class="mockup-header">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+          <span class="title">📋 Technology Clarity Assessment</span>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-card">
+            <div class="m-label">Overall Health Score</div>
+            <div class="mockup-score">74<span style="font-size:1rem;color:#64748b">/100</span></div>
+            <div class="mockup-score-label">Infrastructure · 80% · Good</div>
+            <div style="margin-top:10px">
+              <div class="m-label" style="margin-bottom:4px">By Category</div>
+              <div class="mockup-bar bar-green" style="width:80%"></div>
+              <div class="mockup-bar bar-yellow" style="width:55%"></div>
+              <div class="mockup-bar bar-red" style="width:30%"></div>
+            </div>
+          </div>
+          <div class="mockup-card">
+            <div class="m-label">Priority Matrix</div>
+            <div class="m-title">Do Now ↗</div>
+            <ul class="mockup-list">
+              <li>MFA not enforced org-wide</li>
+              <li>3 vendor contracts expiring Q2</li>
+              <li>No DR plan documented</li>
+            </ul>
+            <div class="m-title" style="margin-top:10px">Monitor →</div>
+            <ul class="mockup-list">
+              <li>Cloud cost trending up 18%</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-base"></div>
+    </div>
+    <div class="mockup-stand"></div>
+  </div>
 </div>
 
 <!-- PAIN -->
-<section class="pain">
-  <div class="label">The Problem</div>
-  <h2 class="section-title">You didn't apply for a technology leadership role. It found you.</h2>
-  <p>Maybe the company grew fast and someone decided you were the person to figure it out. Maybe there was a crisis — a vendor failure, a security incident, a system that went down at the worst possible time — and suddenly you were in charge of making sure it never happened again.</p>
-  <p>Now you're sitting in meetings where people are throwing around acronyms, recommending platforms, asking for budget sign-off on things you're not sure you actually need. And somewhere in the back of your mind is a quiet fear:</p>
-  <blockquote>What if I make the wrong call? What if I'm wasting money on the wrong things? What if I'm missing something that blows up later?</blockquote>
-  <p>That's not incompetence. That's what happens when responsibility outpaces experience. It happens to good leaders all the time.</p>
-  <p>The problem isn't that you're not smart enough for this. The problem is you've never had a framework — a clear, structured way to assess where things actually stand, cut through the noise, and lead with confidence instead of anxiety.</p>
-  <p><strong>That's what the Technology Clarity Playbook is.</strong></p>
-</section>
-
-<div class="divider"></div>
-
-<!-- WHO IT'S FOR -->
-<section>
-  <div class="label">Who This Is For</div>
-  <h2 class="section-title">Built for leaders who were handed responsibility they weren't prepared for.</h2>
-  <div class="who-grid">
-    <div class="who-col yes">
-      <h3>This is for you if:</h3>
-      <ul>
-        <li>You've been handed more technology responsibility than your experience prepared you for</li>
-        <li>Your company is growing fast — or just survived a crisis</li>
-        <li>You're approving technology spend but you're not sure what "good" looks like</li>
-        <li>You're leading an IT team without a strong technical background</li>
-        <li>You feel like you're always reacting instead of steering</li>
-        <li>Your career depends on getting technology right, and you know it</li>
-      </ul>
-    </div>
-    <div class="who-col no">
-      <h3>This is NOT for you if:</h3>
-      <ul>
-        <li>You're a seasoned CTO looking for advanced technical training</li>
-        <li>You want theory — this is an action-oriented framework</li>
-        <li>You're not willing to spend an afternoon doing the work</li>
-      </ul>
-    </div>
+<div class="section">
+  <div class="label">Sound familiar?</div>
+  <h2>Most technology leaders were never trained to lead technology.</h2>
+  <p style="color:#555; margin-bottom:0;">You got here through business — through growth, through crisis, through trust someone placed in you. The problem isn't your intelligence. It's that nobody gave you a framework.</p>
+  <div class="pain-grid">
+    <div class="pain-item">You're in meetings approving budgets for things you're not sure you actually need.</div>
+    <div class="pain-item">Your IT team recommends things and you have no way to evaluate if they're right.</div>
+    <div class="pain-item">You're always reacting — vendors, outages, requests — never steering.</div>
+    <div class="pain-item">Somewhere in the back of your mind: <em>what if I make the wrong call?</em></div>
   </div>
-</section>
+</div>
 
-<div class="divider"></div>
+<hr class="div" />
 
 <!-- WHAT'S INCLUDED -->
-<section id="whats-included" class="full" style="padding: 80px 24px;">
-  <div style="max-width: 800px; margin: 0 auto;">
-    <div class="label">What You Get</div>
-    <h2 class="section-title">A complete system — not another course you'll never finish.</h2>
+<div class="section-full includes-bg" id="whats-included">
+  <div class="inner">
+    <div class="label">What's inside</div>
+    <h2>Seven tools. One afternoon. Permanent clarity.</h2>
     <div class="includes-grid">
-      <div class="include-item">
+      <div class="inc">
         <div class="icon">📋</div>
-        <h3>The Technology Clarity Assessment</h3>
-        <p>A guided framework to evaluate your technology landscape — infrastructure, vendors, team, security posture, and business alignment. No jargon. Just clear questions that surface real answers.</p>
+        <div>
+          <h3>Technology Clarity Assessment</h3>
+          <p>42 guided questions across infrastructure, vendors, team, security, and business alignment. Clear answers, no jargon.</p>
+        </div>
       </div>
-      <div class="include-item">
+      <div class="inc">
         <div class="icon">🎯</div>
-        <h3>The Priority Matrix</h3>
-        <p>A decision-making tool that ranks everything by business impact and urgency. You'll know exactly what to tackle first, what to defer, and what to stop spending money on.</p>
+        <div>
+          <h3>Priority Matrix</h3>
+          <p>Plug in your assessment results. Get a ranked list: what to do now, what to plan, what to stop spending money on.</p>
+        </div>
       </div>
-      <div class="include-item">
+      <div class="inc">
         <div class="icon">🗣️</div>
-        <h3>The Leader's Communication Framework</h3>
-        <p>How to translate technology complexity into business language — for your CEO, board, and team. Includes templates for status updates, incident communication, and vendor conversations.</p>
+        <div>
+          <h3>Leader's Communication Framework</h3>
+          <p>Fill-in templates for status updates, incident response, vendor conversations, and board summaries.</p>
+        </div>
       </div>
-      <div class="include-item">
+      <div class="inc">
         <div class="icon">📊</div>
-        <h3>The Technology Budget Clarity Guide</h3>
-        <p>A plain-language guide to understanding what technology should cost, what questions to ask vendors, and how to evaluate whether you're getting value from your current spend.</p>
+        <div>
+          <h3>Technology Budget Clarity Guide</h3>
+          <p>What technology should cost, what questions to ask vendors, and how to know if you're getting value.</p>
+        </div>
       </div>
-      <div class="include-item">
+      <div class="inc">
         <div class="icon">🔐</div>
-        <h3>The Risk Snapshot Tool</h3>
-        <p>A straightforward way to identify your top technology risks — security, operational, vendor, and people — before they become emergencies.</p>
+        <div>
+          <h3>Risk Snapshot Tool</h3>
+          <p>20 yes/no questions. Surfaces your top risks across security, operations, vendors, and people — before they blow up.</p>
+        </div>
       </div>
-      <div class="include-item">
+      <div class="inc">
         <div class="icon">🎥</div>
-        <h3>5 Video Walkthroughs</h3>
-        <p>I walk you through each component step by step. Not a lecture series — a working session. Grab a notebook and do it with me.</p>
+        <div>
+          <h3>5 Video Walkthroughs</h3>
+          <p>Jared walks you through each tool step by step. Not lectures — working sessions. Grab a notebook.</p>
+        </div>
       </div>
-    </div>
-    <div style="background: #f1f5f9; border-radius: 10px; padding: 24px; margin-top: 24px;">
-      <div class="include-item" style="background: transparent; padding: 0;">
+      <div class="inc" style="grid-column: 1 / -1;">
         <div class="icon">📞</div>
-        <h3>The "Stuck" Reference Guide</h3>
-        <p>Common leadership scenarios and how to handle them: vendor pushing a major upgrade, IT team resisting change, budget cuts threatening critical systems, post-incident recovery. Real situations, practical responses.</p>
+        <div>
+          <h3>The "Stuck" Reference Guide</h3>
+          <p>8 real leadership scenarios — vendor pushing an upgrade, IT team resisting change, post-breach recovery — with exact language for each situation.</p>
+        </div>
       </div>
     </div>
   </div>
-</section>
-
-<div class="divider"></div>
+</div>
 
 <!-- HOW IT WORKS -->
-<section>
-  <div class="label">How It Works</div>
-  <h2 class="section-title">This isn't a course you watch and forget. It's a working session.</h2>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <div class="step-content">
-        <h3>Run the Assessment (60–90 min)</h3>
-        <p>Go through the Technology Clarity Assessment for your organization. Answer the questions honestly. The framework does the heavy lifting — you just have to show up with what you know.</p>
-      </div>
+<div class="section">
+  <div class="label">How it works</div>
+  <h2>One focused afternoon. Real output.</h2>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="num">1</div>
+      <div class="time">60–90 min</div>
+      <h3>Run the Assessment</h3>
+      <p>Go through the 42 questions for your organization. The framework does the heavy lifting.</p>
     </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div class="step-content">
-        <h3>Build Your Priority Matrix (30–45 min)</h3>
-        <p>Take your assessment results and plug them into the Priority Matrix. You'll see, in plain terms, what actually matters right now versus what can wait.</p>
-      </div>
+    <div class="step-card">
+      <div class="num">2</div>
+      <div class="time">30–45 min</div>
+      <h3>Build Your Priority Matrix</h3>
+      <p>Plug in your results. See exactly what matters now vs. what can wait.</p>
     </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div class="step-content">
-        <h3>Create Your Communication Plan (30 min)</h3>
-        <p>Use the Leader's Communication Framework to document how you'll talk about your technology priorities — to leadership, to your team, to vendors.</p>
-      </div>
+    <div class="step-card">
+      <div class="num">3</div>
+      <div class="time">30 min</div>
+      <h3>Create Your Comms Plan</h3>
+      <p>Document how you'll talk about technology priorities — to leadership, team, and vendors.</p>
     </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <div class="step-content">
-        <h3>Identify Your Risks (15–20 min)</h3>
-        <p>Run the Risk Snapshot. Name your top 3. Now you're not just reacting to fires — you're anticipating them.</p>
-      </div>
+    <div class="step-card">
+      <div class="num">4</div>
+      <div class="time">15–20 min</div>
+      <h3>Run the Risk Snapshot</h3>
+      <p>Name your top 3. Now you're anticipating fires instead of just fighting them.</p>
     </div>
   </div>
-  <div style="background: #0D2B4C; color: #fff; border-radius: 12px; padding: 28px; margin-top: 16px; text-align: center;">
-    <strong style="font-size: 1.05rem;">The result:</strong>
-    <p style="color: #cbd5e1; margin: 8px 0 0; font-size: 0.95rem;">In one afternoon, you have a clear picture of where things stand, a ranked list of priorities, and the language to lead confidently in every technology conversation going forward.</p>
+  <div style="background:#0D2B4C; color:#fff; border-radius:12px; padding:24px 28px; margin-top:20px; display:flex; align-items:center; gap:16px;">
+    <div style="font-size:2rem;">⏱️</div>
+    <div>
+      <strong style="font-size:1rem;">Total time: one afternoon.</strong>
+      <p style="color:#94a3b8; margin:4px 0 0; font-size:0.88rem;">You'll leave with a completed assessment, a live priority list, a documented risk snapshot, and communication templates ready to use.</p>
+    </div>
   </div>
-</section>
+</div>
+
+<!-- PROOF QUOTE -->
+<div class="proof-bg">
+  <div class="proof-inner">
+    <blockquote>"He started showing up differently in leadership meetings. A year later, he was promoted to IT Director — managing 13 staff across multiple locations."</blockquote>
+    <div class="attr">— From <strong>Mike's story</strong>, HVAC company that grew from $100M to $800M</div>
+  </div>
+</div>
 
 <!-- STORY -->
-<section class="story full" style="max-width: 100%; background: #0D2B4C; padding: 80px 24px;">
-  <div class="inner" style="max-width: 800px; margin: 0 auto;">
-    <div class="label" style="color: #64b5f6;">The Story Behind This</div>
-    <h2 class="section-title" style="color: #fff;">From $100M to $800M — and the IT leader who had to keep up.</h2>
-    <p>A few years ago, I got a call from a man I'll call Mike.</p>
-    <p>Mike was the IT person at an HVAC company that had grown from $100M to $800M in revenue — fast. The kind of growth that changes everything: new locations, new systems, new staff, constant pressure to keep things running while the business scaled underneath him.</p>
-    <p>He was good at what he did. But the company had outgrown what "good at what he did" used to mean. He was now managing vendors he didn't fully understand, making budget decisions he wasn't trained for, and leading a small team that was looking to him for direction he wasn't sure he could give.</p>
-    <p>Then came the breach.</p>
-    <p>Not catastrophic. But real. And suddenly Mike wasn't just the IT guy anymore — he was the person who had to stand in front of leadership and explain what happened, what it would cost, and what they were going to do about it.</p>
-    <p>He didn't have a framework. He had knowledge, instincts, and a lot of stress.</p>
-    <p>That's when we started working together. Over the next several months, I helped Mike build the clarity he needed — not by making him into a technical expert overnight, but by giving him a structured way to assess what he had, prioritize what mattered, and communicate with confidence.</p>
-    <div class="result-box">
-      <strong>He started showing up differently in leadership meetings.</strong> He stopped apologizing for not knowing things and started asking the right questions. He built a team, made decisions that held up, and earned the trust of people above him who'd been skeptical.<br><br>
-      A year later, he was promoted to IT Director, managing 13 staff across multiple locations.<br><br>
-      The technology didn't change that much. <em>He</em> changed.<br><br>
-      <strong>That's what clarity does.</strong>
+<div class="section-full story-bg">
+  <div class="inner">
+    <div class="label">The story behind this</div>
+    <h2>From $100M to $800M — and the IT leader who had to keep up.</h2>
+    <p>A few years ago, I got a call from a man I'll call Mike. He was the IT person at an HVAC company that had just scaled from $100M to $800M. New locations. New systems. New staff. Constant pressure.</p>
+    <p>He was good. But the company had outgrown what "good" used to mean. Then came the breach. Not catastrophic — but real. And suddenly Mike had to stand in front of leadership and explain what happened, what it would cost, and how they'd prevent it from happening again.</p>
+    <p>He didn't have a framework. He had instincts, knowledge, and a lot of stress.</p>
+    <p><strong>That's when we started working together.</strong> I didn't make him a technical expert overnight. I gave him a structured way to assess what he had, prioritize what mattered, and communicate with confidence.</p>
+    <div class="result-card">
+      <p>He stopped apologizing and started asking the right questions. He built a team. His decisions held up. He earned trust from people who'd been skeptical.<br><br>
+      A year later, he was promoted to IT Director — managing 13 staff across multiple locations.<br><br>
+      <strong>The technology didn't change that much. He changed. That's what clarity does.</strong></p>
     </div>
-    <p style="margin-top: 28px;">The Technology Clarity Playbook is the framework I built from that engagement — and from dozens like it. It's not theoretical. It comes from sitting across from leaders who were in over their heads, helping them find solid ground.</p>
   </div>
-</section>
+</div>
 
 <!-- OUTCOMES -->
-<section class="outcomes">
-  <div class="label">What Changes After</div>
-  <h2 class="section-title">Here's what looks different on the other side of the Playbook.</h2>
-  <ul>
-    <li>
-      <strong>You walk into technology conversations with a framework, not a feeling.</strong>
-      <span>No more nodding along hoping nobody asks a hard question. You know what to ask, what to look for, and how to respond.</span>
-    </li>
-    <li>
-      <strong>You know what to spend money on — and what to stop.</strong>
-      <span>Technology budgets are full of decisions that made sense once. The Playbook helps you see which ones still do.</span>
-    </li>
-    <li>
-      <strong>You lead your IT team instead of being led by them.</strong>
-      <span>When you can articulate priorities clearly, your team follows. When you can't, they fill the vacuum.</span>
-    </li>
-    <li>
-      <strong>You stop reacting and start steering.</strong>
-      <span>Fires still happen. But you see them coming more often, and when they don't — you know how to respond without panic.</span>
-    </li>
-    <li>
-      <strong>Your leadership is taken more seriously.</strong>
-      <span>Not because you suddenly know everything. Because you know what matters — and that's what leadership actually requires.</span>
-    </li>
-  </ul>
-</section>
+<div class="section">
+  <div class="label">What changes after</div>
+  <h2>This isn't information. It's transformation.</h2>
+  <div class="outcomes-list">
+    <div class="outcome">
+      <div class="ico">🧭</div>
+      <div>
+        <h3>You walk in with a framework, not a feeling.</h3>
+        <p>No more nodding along hoping nobody asks a hard question. You know what to ask, what to look for, and how to respond.</p>
+      </div>
+    </div>
+    <div class="outcome">
+      <div class="ico">💰</div>
+      <div>
+        <h3>You know what to spend money on — and what to stop.</h3>
+        <p>Technology budgets are full of decisions that made sense once. The Playbook helps you see which ones still do.</p>
+      </div>
+    </div>
+    <div class="outcome">
+      <div class="ico">👥</div>
+      <div>
+        <h3>You lead your IT team instead of being led by them.</h3>
+        <p>When you can articulate priorities clearly, your team follows. When you can't, they fill the vacuum.</p>
+      </div>
+    </div>
+    <div class="outcome">
+      <div class="ico">🚒</div>
+      <div>
+        <h3>You stop reacting and start steering.</h3>
+        <p>Fires still happen. But you see them coming more often — and when they don't, you respond without panic.</p>
+      </div>
+    </div>
+    <div class="outcome">
+      <div class="ico">🏆</div>
+      <div>
+        <h3>Your leadership gets taken more seriously.</h3>
+        <p>Not because you suddenly know everything. Because you know what matters — and that's what leadership actually requires.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<div class="divider"></div>
+<hr class="div" />
 
 <!-- PRICING -->
-<section id="pricing" class="full" style="background: #f1f5f9; padding: 80px 24px;">
-  <div style="max-width: 900px; margin: 0 auto;">
+<div class="section-full pricing-bg" id="pricing">
+  <div class="inner">
     <div class="label">Pricing</div>
-    <h2 class="section-title">Choose your level.</h2>
+    <h2>Choose your level.</h2>
     <div class="pricing-cards">
-      <div class="pricing-card">
-        <h3>Playbook Essentials</h3>
-        <div class="price">$197 <span>one-time</span></div>
-        <p>Same framework. Same tools. No video walkthroughs.</p>
+      <div class="pc">
+        <h3>Essentials</h3>
+        <div class="price">$197</div>
+        <p class="desc">Same framework and tools — no video walkthroughs. For self-starters who prefer to work through it independently.</p>
         <ul>
           <li>Technology Clarity Assessment</li>
           <li>Priority Matrix</li>
-          <li>Leader's Communication Framework</li>
-          <li>Technology Budget Clarity Guide</li>
+          <li>Communication Framework</li>
+          <li>Budget Clarity Guide</li>
           <li>Risk Snapshot Tool</li>
           <li>The "Stuck" Reference Guide</li>
         </ul>
         <a href="https://buy.stripe.com/14AeVegx7a4t9np4TXaR201" class="btn-buy">Get Essentials — $197</a>
       </div>
-      <div class="pricing-card featured">
+      <div class="pc featured">
         <div class="badge">Most Popular</div>
-        <h3>Technology Clarity Playbook</h3>
-        <div class="price">$497 <span>one-time</span></div>
-        <p>Everything you need to get clear on your technology and lead with confidence.</p>
+        <h3>Full Playbook</h3>
+        <div class="price">$497</div>
+        <p class="desc">Everything you need to get clear on your technology and lead with confidence. Includes all 5 video walkthroughs.</p>
         <ul>
           <li>Technology Clarity Assessment</li>
           <li>Priority Matrix</li>
-          <li>Leader's Communication Framework</li>
-          <li>Technology Budget Clarity Guide</li>
+          <li>Communication Framework</li>
+          <li>Budget Clarity Guide</li>
           <li>Risk Snapshot Tool</li>
-          <li>5 Video Walkthroughs</li>
+          <li>5 Video Walkthroughs with Jared</li>
           <li>The "Stuck" Reference Guide</li>
         </ul>
         <a href="https://buy.stripe.com/cNiaEYa8J2C1fLNcmpaR200" class="btn-buy">Get the Playbook — $497</a>
       </div>
-      <div class="pricing-card">
-        <h3>Playbook + Cut to Clarity Session</h3>
-        <div class="price">$997 <span>one-time</span></div>
-        <p style="color:#16a34a; font-weight:600; font-size:0.85rem; margin-bottom:8px;">$1,246 value — save $249</p>
-        <p>Full Playbook plus a private 60-minute Cut to Clarity session with Jared — included free.</p>
+      <div class="pc">
+        <h3>Playbook + Session</h3>
+        <div class="price">$997</div>
+        <div class="price-note">$1,246 value — you save $249</div>
+        <p class="desc">Full Playbook plus a private 60-minute Cut to Clarity session with Jared — included free. Booking link sent after purchase.</p>
         <ul>
-          <li>Everything in the full Playbook ($497 value)</li>
-          <li>60-min Cut to Clarity session ($749 value)</li>
+          <li>Everything in the Full Playbook</li>
+          <li>60-min Cut to Clarity session <span style="color:#22c55e; font-weight:700;">($749 value, free)</span></li>
           <li>Jared reviews your situation live</li>
           <li>Walk away with a clear action plan</li>
           <li>Session booked after purchase</li>
         </ul>
         <a href="https://buy.stripe.com/5kQ5kE3Kla4t2Z1fyBaR202" class="btn-buy">Get Playbook + Session — $997</a>
-        <p style="font-size:0.78rem; color:#888; margin-top:12px; margin-bottom:0;">Booking link sent via email after purchase.</p>
+        <div class="fine">Booking link sent via email after purchase.</div>
       </div>
     </div>
-    <p style="text-align: center; color: #64748b; font-size: 0.88rem; margin-top: 24px;">🔒 Secure checkout via Stripe &nbsp;·&nbsp; Instant access after purchase &nbsp;·&nbsp; 30-day money-back guarantee</p>
+    <div class="guarantee">
+      🔒 <strong>30-day guarantee.</strong> Go through the Playbook. If it wasn't worth it, email Jared within 30 days for a full refund. No hoops.
+    </div>
   </div>
-</section>
+</div>
 
 <!-- FAQ -->
-<section>
+<div class="section">
   <div class="label">FAQ</div>
-  <h2 class="section-title">Common questions.</h2>
-  <div class="faq-item">
-    <h3>I'm not technical at all. Will this be over my head?</h3>
-    <p>No. The Playbook is specifically designed for leaders who came to technology through business — not engineering. If you can run a P&L or lead a team, you can work through this.</p>
-  </div>
-  <div class="faq-item">
-    <h3>How long does this actually take?</h3>
-    <p>The core work — assessment, priority matrix, risk snapshot, communication plan — takes most people 3–4 hours. Video walkthroughs are about 90 minutes total. You can do it in one focused afternoon, or spread it across a week.</p>
-  </div>
-  <div class="faq-item">
-    <h3>My situation is pretty unique. Will this apply to my company?</h3>
-    <p>The framework is industry-agnostic. I've used variations of this with manufacturing companies, service businesses, healthcare organizations, and professional services firms. If you have technology and a team, this applies.</p>
-  </div>
-  <div class="faq-item">
-    <h3>What if I buy it and it doesn't work for me?</h3>
-    <p>If you go through the Playbook and feel like it wasn't worth it, email me within 30 days and I'll refund you. No hoops. I'd rather you tell me it didn't land than walk away feeling burned.</p>
-  </div>
-  <div class="faq-item">
-    <h3>How is this different from hiring a consultant?</h3>
-    <p>A consultant does the assessment for you and hands you a report. That's valuable — but it doesn't build your capability. The Playbook puts you in the driver's seat. You learn to think through technology decisions yourself.</p>
-  </div>
-  <div class="faq-item">
-    <h3>I already have an IT team. Why do I need this?</h3>
-    <p>Because leading an IT team and being <em>led</em> by your IT team are two very different things. Most non-technical leaders default to trusting whatever their IT team recommends because they don't have a way to evaluate it. The Playbook gives you that.</p>
-  </div>
-  <div class="faq-item">
-    <h3>Is this a course or a tool?</h3>
-    <p>Both. It's structured like a course — there's an order, there are concepts to absorb. But the output is a real artifact: a completed assessment, a live priority list, a documented risk snapshot, communication templates. You don't just learn something. You produce something.</p>
-  </div>
-</section>
+  <h2>Common questions.</h2>
+  <details>
+    <summary>I'm not technical at all. Will this be over my head?</summary>
+    <p>No. This is specifically built for leaders who came to technology through business — not engineering. If you can run a P&L or lead a team, you can work through this. Plain language throughout.</p>
+  </details>
+  <details>
+    <summary>How long does this actually take?</summary>
+    <p>The core work takes most people 3–4 hours. Video walkthroughs are about 90 minutes total. One focused afternoon — or spread across a week. Either works.</p>
+  </details>
+  <details>
+    <summary>Will this apply to my specific industry?</summary>
+    <p>Yes. The framework is industry-agnostic — manufacturing, healthcare, professional services, construction. If you have technology and a team, this applies. The assessment surfaces what's real in your organization, not a hypothetical one.</p>
+  </details>
+  <details>
+    <summary>I already have an IT team. Why do I need this?</summary>
+    <p>Because leading an IT team and being led by your IT team are two different things. Most non-technical leaders default to trusting whatever their team recommends because they can't evaluate it. The Playbook gives you that lens.</p>
+  </details>
+  <details>
+    <summary>What's the difference between this and hiring a consultant?</summary>
+    <p>A consultant does the assessment for you and hands you a report. Valuable — but it doesn't build your capability. The Playbook puts you in the driver's seat. You learn to think through these decisions yourself. The $997 tier gives you both: the tools and Jared in your corner for a session.</p>
+  </details>
+  <details>
+    <summary>What if it doesn't work for me?</summary>
+    <p>Go through the Playbook. If you feel like it wasn't worth it, email jaredpeno@gmail.com within 30 days for a full refund. No questions, no hoops.</p>
+  </details>
+</div>
 
 <!-- FOOTER CTA -->
-<div class="footer-cta">
-  <h2>You already know what it feels like to be responsible for something you weren't fully prepared for.</h2>
-  <p>You can keep navigating it the way you have been — or you can spend an afternoon getting clear. The Playbook gives you a framework that lasts.</p>
-  <a href="#pricing" class="btn-primary">Get the Technology Clarity Playbook — $497</a>
-  <div class="trust" style="margin-top: 16px;">Questions? <a href="mailto:jaredpeno@gmail.com" style="color: #94a3b8;">jaredpeno@gmail.com</a></div>
+<div class="fcta">
+  <h2>You can keep navigating it on instinct.<br>Or you can spend an afternoon getting clear.</h2>
+  <p>The Playbook gives you a framework that lasts — for this role and every technology challenge ahead of you.</p>
+  <a href="#pricing" class="btn btn-blue">Get the Technology Clarity Playbook — $497</a>
+  <div style="margin-top:16px; font-size:0.82rem; color:#334155;">Questions? <a href="mailto:jaredpeno@gmail.com" style="color:#475569;">jaredpeno@gmail.com</a></div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  © Jared Peno &nbsp;·&nbsp; <a href="https://jaredpeno.com">jaredpeno.com</a> &nbsp;·&nbsp; <a href="https://jaredpeno.com/subscribe" style="color:#64748b">Newsletter</a>
+  © Jared Peno &nbsp;·&nbsp; <a href="https://jaredpeno.com">jaredpeno.com</a> &nbsp;·&nbsp; <a href="https://jaredpeno.com/subscribe">Newsletter</a>
 </footer>
 
 </body>
