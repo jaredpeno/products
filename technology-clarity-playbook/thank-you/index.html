@@ -7,23 +7,80 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'Inter', sans-serif; background: #0D2B4C; color: #fff; margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 24px; }
-    .box { max-width: 560px; }
-    .check { font-size: 4rem; margin-bottom: 24px; }
-    h1 { font-size: 2rem; font-weight: 800; margin: 0 0 16px; }
-    p { color: #94a3b8; font-size: 1.05rem; margin: 0 0 32px; line-height: 1.7; }
-    a { display: inline-block; background: #2563eb; color: #fff; padding: 14px 28px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.95rem; }
-    .fine { margin-top: 24px; font-size: 0.85rem; color: #475569; }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #0D2B4C; color: #fff; margin: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; }
+    .box { max-width: 560px; width: 100%; text-align: center; }
+    .check { font-size: 3.5rem; margin-bottom: 20px; }
+    h1 { font-size: 2rem; font-weight: 800; margin: 0 0 12px; }
+    .sub { color: #94a3b8; font-size: 1rem; margin: 0 0 40px; line-height: 1.7; }
+    .step-box { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 28px; margin-bottom: 16px; text-align: left; }
+    .step-box .num { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #64b5f6; margin-bottom: 8px; }
+    .step-box h3 { font-size: 1rem; font-weight: 700; margin: 0 0 6px; }
+    .step-box p { font-size: 0.9rem; color: #94a3b8; margin: 0; }
+    .form-wrap { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 28px; margin-bottom: 16px; }
+    .form-wrap h3 { font-size: 1rem; font-weight: 700; margin: 0 0 6px; }
+    .form-wrap p { font-size: 0.88rem; color: #94a3b8; margin: 0 0 16px; }
+    .form-row { display: flex; gap: 8px; }
+    .form-row input { flex: 1; padding: 12px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.08); color: #fff; font-size: 0.95rem; font-family: 'Inter', sans-serif; }
+    .form-row input::placeholder { color: #64748b; }
+    .form-row button { padding: 12px 20px; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; white-space: nowrap; font-family: 'Inter', sans-serif; }
+    .form-row button:hover { background: #1d4ed8; }
+    .success-msg { display: none; color: #4ade80; font-size: 0.9rem; margin-top: 10px; font-weight: 600; }
+    .fine { margin-top: 32px; font-size: 0.82rem; color: #334155; }
+    .fine a { color: #475569; }
   </style>
 </head>
 <body>
   <div class="box">
     <div class="check">✅</div>
-    <h1>You're in. Check your email.</h1>
-    <p>Your purchase is confirmed. You'll receive an email shortly with access to the Technology Clarity Playbook.<br><br>
-    Questions? Reply to that email or reach out at <a href="mailto:jaredpeno@gmail.com" style="background:none;padding:0;color:#64b5f6;">jaredpeno@gmail.com</a></p>
-    <a href="https://jaredpeno.com">Back to jaredpeno.com</a>
-    <div class="fine">© Jared Peno</div>
+    <h1>Purchase confirmed.</h1>
+    <p class="sub">Here's what happens next. Follow these two steps and you'll have access within minutes.</p>
+
+    <div class="form-wrap">
+      <h3>Step 1 — Get your access link</h3>
+      <p>Enter your email below to receive your product access link and join Jared's newsletter. Your Playbook will arrive in your inbox immediately.</p>
+      <div class="form-row">
+        <input type="email" id="beehiiv-email" placeholder="your@email.com" />
+        <button onclick="subscribeBeehiiv()">Send My Access →</button>
+      </div>
+      <div class="success-msg" id="success-msg">✅ Done! Check your inbox — access link is on its way.</div>
+    </div>
+
+    <div class="step-box">
+      <div class="num">Step 2 — If you purchased the $997 package</div>
+      <h3>Book your Cut to Clarity session</h3>
+      <p>Your booking link will arrive in the same email. It includes a private discount code for your complimentary 60-minute session with Jared.</p>
+    </div>
+
+    <div class="fine">
+      Questions? <a href="mailto:jaredpeno@gmail.com">jaredpeno@gmail.com</a>
+      &nbsp;·&nbsp; © Jared Peno
+    </div>
   </div>
+
+  <script>
+    async function subscribeBeehiiv() {
+      const email = document.getElementById('beehiiv-email').value.trim();
+      if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+
+      try {
+        const res = await fetch('https://api.beehiiv.com/v2/publications/pub_6c43a73f-5802-437f-8f7c-3d0465c803a6/subscriptions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer G79KtqIcRKhx7Yjnai3GAGMPxkcJfBrxjXERcpvhnl64O12WPXGEAX0zZwwMOsLG' },
+          body: JSON.stringify({ email, utm_source: 'tcp-buyer', utm_medium: 'product-purchase', send_welcome_email: true, reactivate_existing: true })
+        });
+        const data = await res.json();
+        if (res.ok || data.data) {
+          document.getElementById('success-msg').style.display = 'block';
+          document.querySelector('.form-row').style.opacity = '0.4';
+          document.querySelector('.form-row button').disabled = true;
+        } else {
+          alert('Something went wrong. Email jaredpeno@gmail.com for access.');
+        }
+      } catch(e) {
+        alert('Something went wrong. Email jaredpeno@gmail.com for access.');
+      }
+    }
+  </script>
 </body>
 </html>
