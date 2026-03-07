@@ -22,6 +22,15 @@
     .access-btn:hover { background: #b91c1c; }
     .access-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
     .copy-note { font-size: 0.78rem; color: #64748b; margin-top: 10px; text-align: center; }
+    /* Upsell box — visually distinct */
+    .upsell-box { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 28px; margin-bottom: 16px; text-align: left; }
+    .upsell-box .num { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fca5a5; margin-bottom: 8px; }
+    .upsell-box h3 { font-size: 1rem; font-weight: 700; margin: 0 0 10px; }
+    .upsell-box p { font-size: 0.88rem; color: #94a3b8; margin: 0 0 16px; line-height: 1.6; }
+    .upsell-btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: rgba(220,38,38,0.15); border: 1px solid rgba(252,165,165,0.4); color: #fca5a5; padding: 14px 24px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: all 0.2s; }
+    .upsell-btn:hover { background: rgba(220,38,38,0.25); border-color: rgba(252,165,165,0.7); }
+    .upsell-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+    /* Newsletter */
     .form-wrap { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 28px; margin-bottom: 16px; text-align: left; }
     .form-wrap .num { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fca5a5; margin-bottom: 8px; }
     .form-wrap h3 { font-size: 1rem; font-weight: 700; margin: 0 0 6px; }
@@ -41,13 +50,13 @@
     <div class="check-wrap">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
     </div>
-    <h1>Purchase confirmed.</h1>
-    <p class="sub">Here's what happens next.</p>
+    <h1>Your crisis plan is ready — before you need it.</h1>
+    <p class="sub">Most IT leaders build their response plan during the incident. You just built yours before it. That's the difference.</p>
 
     <div class="step-box">
       <div class="num">Step 1 — Access your Crisis Response Playbook</div>
       <h3>Open your playbook</h3>
-      <p>Click below to open the Google Doc. Then go to File → Make a Copy to save your own editable version. Customize it with your contacts and escalation paths now — before you need it.</p>
+      <p>Click below to open the Google Doc. Go to <strong>File → Make a Copy</strong> to save your own editable version. Fill in your contacts and escalation paths now — not when the phone is ringing.</p>
       <a href="https://docs.google.com/document/d/15Wn5n50JScfVcCiabJ8mnB_pL5WdzscIIdrpyQKTNZI/edit?usp=sharing" class="access-btn" target="_blank" rel="noopener">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" /></svg>
         Open Crisis Response Playbook →
@@ -55,10 +64,20 @@
       <div class="copy-note">File → Make a Copy · saves to your own Google Drive</div>
     </div>
 
+    <div class="upsell-box">
+      <div class="num">Step 2 — Optional</div>
+      <h3>Want Jared to walk through this with you?</h3>
+      <p>Book a 60-minute Cut to Clarity session — $750, no fluff, just clarity. We'll tailor the playbook to your environment so it's ready to run, not just ready to sit in a folder.</p>
+      <a href="https://calendly.com/jaredpeno/cut-to-clarity" class="upsell-btn" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" /></svg>
+        Book a Cut to Clarity Session →
+      </a>
+    </div>
+
     <div class="form-wrap">
-      <div class="num">Step 2 — Stay in the loop</div>
-      <h3>Get future updates &amp; resources</h3>
-      <p>Join Jared's newsletter for IT leaders — frameworks, case studies, and practical tools delivered regularly.</p>
+      <div class="num">Step 3 — Stay sharp</div>
+      <h3>The SimplifyIT newsletter</h3>
+      <p>Frameworks, case studies, and practical tools for IT leaders — straight to your inbox. No filler.</p>
       <div class="form-row">
         <input type="email" id="beehiiv-email" placeholder="your@email.com" />
         <button onclick="subscribeBeehiiv()">Subscribe →</button>

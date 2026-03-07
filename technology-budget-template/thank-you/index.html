@@ -24,6 +24,15 @@
     .access-btn.secondary { background: rgba(217,119,6,0.2); border: 1px solid rgba(217,119,6,0.4); }
     .access-btn.secondary:hover { background: rgba(217,119,6,0.3); }
     .copy-note { font-size: 0.78rem; color: #64748b; margin-top: 4px; text-align: center; }
+    /* Upsell box — visually distinct */
+    .upsell-box { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 28px; margin-bottom: 16px; text-align: left; }
+    .upsell-box .num { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fcd34d; margin-bottom: 8px; }
+    .upsell-box h3 { font-size: 1rem; font-weight: 700; margin: 0 0 10px; }
+    .upsell-box p { font-size: 0.88rem; color: #94a3b8; margin: 0 0 16px; line-height: 1.6; }
+    .upsell-btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: rgba(217,119,6,0.15); border: 1px solid rgba(252,211,77,0.4); color: #fcd34d; padding: 14px 24px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: all 0.2s; }
+    .upsell-btn:hover { background: rgba(217,119,6,0.25); border-color: rgba(252,211,77,0.7); }
+    .upsell-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+    /* Newsletter */
     .form-wrap { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 28px; margin-bottom: 16px; text-align: left; }
     .form-wrap .num { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fcd34d; margin-bottom: 8px; }
     .form-wrap h3 { font-size: 1rem; font-weight: 700; margin: 0 0 6px; }
@@ -43,13 +52,13 @@
     <div class="check-wrap">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
     </div>
-    <h1>Purchase confirmed.</h1>
-    <p class="sub">Here's what happens next.</p>
+    <h1>Your budget toolkit is ready.</h1>
+    <p class="sub">The budget is where technology strategy gets real. This is the tool that turns your priorities into language the CFO actually responds to.</p>
 
     <div class="step-box">
       <div class="num">Step 1 — Access your Technology Budget Template</div>
       <h3>Open your budget tools</h3>
-      <p>Click below to open your Google Sheet (budget spreadsheet) and Google Doc (narrative + presentation templates). Make a copy of each.</p>
+      <p>Click below to open your budget spreadsheet (Sheet) and narrative templates (Doc). Go to <strong>File → Make a Copy</strong> on each to save your own editable versions.</p>
       <a href="https://docs.google.com/spreadsheets/d/1LsEfUFfetLsssZZ33KJkhc0mkIF8CI6GwZ41GpYtidk/edit?usp=sharing" class="access-btn" target="_blank" rel="noopener">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25" /></svg>
         Open Technology Budget Spreadsheet →
@@ -61,10 +70,20 @@
       <div class="copy-note">File → Make a Copy on each · saves to your own Google Drive</div>
     </div>
 
+    <div class="upsell-box">
+      <div class="num">Step 2 — Optional</div>
+      <h3>Want Jared to walk through this with you?</h3>
+      <p>Book a 60-minute Cut to Clarity session — $750, no fluff, just clarity. We'll build your budget narrative together so you walk into that CFO conversation with a story that lands.</p>
+      <a href="https://calendly.com/jaredpeno/cut-to-clarity" class="upsell-btn" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" /></svg>
+        Book a Cut to Clarity Session →
+      </a>
+    </div>
+
     <div class="form-wrap">
-      <div class="num">Step 2 — Stay in the loop</div>
-      <h3>Get future updates &amp; resources</h3>
-      <p>Join Jared's newsletter for IT leaders — frameworks, case studies, and practical tools delivered regularly.</p>
+      <div class="num">Step 3 — Stay sharp</div>
+      <h3>The SimplifyIT newsletter</h3>
+      <p>Frameworks, case studies, and practical tools for IT leaders — straight to your inbox. No filler.</p>
       <div class="form-row">
         <input type="email" id="beehiiv-email" placeholder="your@email.com" />
         <button onclick="subscribeBeehiiv()">Subscribe →</button>
