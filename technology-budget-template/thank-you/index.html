@@ -102,9 +102,8 @@
       const email = document.getElementById('beehiiv-email').value.trim();
       if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
       try {
-        const res = await fetch('https://api.beehiiv.com/v2/publications/pub_6c43a73f-5802-437f-8f7c-3d0465c803a6/subscriptions', {
+        const res = await fetch('/api/subscribe', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer G79KtqIcRKhx7Yjnai3GAGMPxkcJfBrxjXERcpvhnl64O12WPXGEAX0zZwwMOsLG' },
           body: JSON.stringify({ email, utm_source: 'technology-budget-template-buyer', utm_medium: 'product-purchase', send_welcome_email: true, reactivate_existing: true })
         });
         const data = await res.json();
