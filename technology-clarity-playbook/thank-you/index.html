@@ -28,6 +28,9 @@
     .success-msg { display: none; color: #4ade80; font-size: 0.9rem; margin-top: 10px; font-weight: 600; }
     .fine { margin-top: 32px; font-size: 0.82rem; color: #334155; }
     .fine a { color: #475569; }
+    .booking-link { display:inline-block; margin-top:14px; padding:12px 22px; background:#2563eb; color:#fff; border-radius:8px; font-weight:700; font-size:0.95rem; text-decoration:none; }
+    .booking-link:hover { background:#1d4ed8; }
+    .booking-loading { color:#94a3b8; font-size:0.9rem; margin-top:10px; }
   </style>
 </head>
 <body>
@@ -46,11 +49,11 @@
       <div class="success-msg" id="success-msg">✅ Done! Check your inbox — access link is on its way.</div>
     </div>
 
-    <div class="step-box">
-      <div class="num">Step 2 — If you purchased the $497 Full Playbook</div>
-      <h3>Book your included Cut to Clarity session</h3>
-      <p>Your 60-minute strategy session with Jared is included at no extra charge. Use the private link below to book it now — it's reserved for Playbook buyers only.</p>
-      <p style="margin-top:12px;"><a href="https://calendly.com/jaredpeno/tcp-included-session-1" target="_blank" style="color:#64b5f6;font-weight:700;">→ Book your session here</a></p>
+    <div class="step-box" id="session-box" style="display:none;">
+      <div class="num">Step 2 — Your included Cut to Clarity session</div>
+      <h3>Book your 60-minute strategy session with Jared</h3>
+      <p>This is your private, single-use booking link. It expires in 30 days and can only be used once — it's reserved for you.</p>
+      <div id="booking-area" class="booking-loading">Generating your link…</div>
     </div>
 
     <div class="fine">
@@ -60,6 +63,32 @@
   </div>
 
   <script>
+    // Check for session_id in URL and generate Calendly booking link
+    (async function() {
+      const params = new URLSearchParams(window.location.search);
+      const sessionId = params.get('session_id');
+      if (!sessionId) return;
+
+      const box = document.getElementById('session-box');
+      const area = document.getElementById('booking-area');
+      box.style.display = 'block';
+
+      try {
+        const res = await fetch(`https://products.jaredpeno.com/api/tcp-session?session_id=${encodeURIComponent(sessionId)}`);
+        const data = await res.json();
+
+        if (data.eligible && data.booking_url) {
+          area.innerHTML = `<a class="booking-link" href="${data.booking_url}" target="_blank">→ Book your session now</a>`;
+        } else if (data.eligible === false) {
+          box.style.display = 'none'; // Not a session-eligible purchase
+        } else {
+          area.innerHTML = '<span style="color:#f87171;">Could not generate your link. Email <a href="mailto:jaredpeno@gmail.com" style="color:#f87171;">jaredpeno@gmail.com</a> and we\'ll sort it out.</span>';
+        }
+      } catch(e) {
+        area.innerHTML = '<span style="color:#f87171;">Could not generate your link. Email <a href="mailto:jaredpeno@gmail.com" style="color:#f87171;">jaredpeno@gmail.com</a> and we\'ll sort it out.</span>';
+      }
+    })();
+
     async function subscribeBeehiiv() {
       const email = document.getElementById('beehiiv-email').value.trim();
       if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
