@@ -47,7 +47,29 @@
     .fine a { color: #475569; }
   </style>
 </head>
-<body>
+<body style="display:none;">
+  <script>
+    (async function gate() {
+      const params = new URLSearchParams(window.location.search);
+      const sessionId = params.get('session_id');
+      if (!sessionId || !sessionId.startsWith('cs_')) {
+        window.location.replace('/technology-budget-template/');
+        return;
+      }
+      try {
+        const res = await fetch('/api/verify-purchase?session_id=' + encodeURIComponent(sessionId));
+        const data = await res.json();
+        if (!data.valid) {
+          window.location.replace('/technology-budget-template/');
+          return;
+        }
+      } catch(e) {
+        window.location.replace('/technology-budget-template/');
+        return;
+      }
+      document.body.style.display = '';
+    })();
+  </script>
   <div class="box">
     <div class="check-wrap">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>

@@ -74,7 +74,29 @@
     }
   </style>
 </head>
-<body>
+<body style="display:none;">
+  <script>
+    (async function gate() {
+      const params = new URLSearchParams(window.location.search);
+      const sessionId = params.get('session_id');
+      if (!sessionId || !sessionId.startsWith('cs_')) {
+        window.location.replace('/technology-clarity-playbook/');
+        return;
+      }
+      try {
+        const res = await fetch('/api/verify-purchase?session_id=' + encodeURIComponent(sessionId));
+        const data = await res.json();
+        if (!data.valid) {
+          window.location.replace('/technology-clarity-playbook/');
+          return;
+        }
+      } catch(e) {
+        window.location.replace('/technology-clarity-playbook/');
+        return;
+      }
+      document.body.style.display = '';
+    })();
+  </script>
   <div class="box">
     <div class="check">✅</div>
     <h1>Purchase confirmed.</h1>
