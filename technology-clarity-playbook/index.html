@@ -8,20 +8,16 @@
   <link rel="manifest" href="/site.webmanifest" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Technology Clarity Playbook — Jared Peno</title>
-  <meta name="description" content="In one afternoon, know exactly where your technology stands, which decisions matter, and how to lead with confidence — not chaos." />
+  <meta name="description" content="In one afternoon, score your technology across 6 dimensions, know your maturity level, and walk out with a ranked action plan — no guesswork, no jargon." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; background: #fff; color: #111; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-
-    /* ─── NAV ─── */
     nav { background: #0D2B4C; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
     nav a.back { color: #64748b; text-decoration: none; font-size: 0.82rem; white-space: nowrap; }
     nav a.cta-nav { background: #2563eb; color: #fff; padding: 9px 18px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
-
-    /* ─── HERO ─── */
     .hero { background: linear-gradient(150deg, #071829 0%, #0D2B4C 60%, #0f3460 100%); color: #fff; padding: 60px 24px 0; overflow: hidden; }
     .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
     @media(max-width: 800px) { .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; } }
@@ -38,17 +34,12 @@
     .btn-ghost:hover { border-color: #64748b; color: #e2e8f0; }
     .trust-line { margin-top: 16px; font-size: 0.75rem; color: #475569; }
     @media(max-width: 800px) { .trust-line { text-align: center; } }
-
-    /* ─── DOCUMENT STACK MOCKUP ─── */
     .doc-stack-wrap { position: relative; height: 380px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 0; }
     @media(max-width: 800px) { .doc-stack-wrap { height: 280px; } }
     .doc-card { position: absolute; background: #fff; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); overflow: hidden; transition: transform 0.3s ease; }
     .doc-card:hover { transform: translateY(-8px) !important; }
-    /* Card 3 — back */
     .dc3 { width: 240px; height: 310px; bottom: 0; left: 50%; transform: translateX(-62%) rotate(-6deg) translateY(20px); z-index: 1; opacity: 0.85; }
-    /* Card 2 — middle */
     .dc2 { width: 240px; height: 310px; bottom: 0; left: 50%; transform: translateX(-38%) rotate(3deg) translateY(10px); z-index: 2; opacity: 0.92; }
-    /* Card 1 — front */
     .dc1 { width: 260px; height: 330px; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 3; }
     @media(max-width: 800px) {
       .dc3 { width: 180px; height: 230px; transform: translateX(-62%) rotate(-6deg) translateY(15px); }
@@ -65,7 +56,6 @@
     .dc-bar { height: 100%; border-radius: 3px; }
     .dc-score-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 8px 10px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
     .dc-score-val { font-size: 1.1rem; font-weight: 900; color: #16a34a; }
-    .dc-score-label { font-size: 0.6rem; color: #555; }
     .dc-section { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 6px; }
     .dc-item { font-size: 0.65rem; color: #374151; padding: 4px 0; border-bottom: 1px solid #f9fafb; display: flex; gap: 4px; }
     .dc-item::before { content: "→"; color: #2563eb; flex-shrink: 0; }
@@ -73,7 +63,6 @@
     .badge-red { background: #fef2f2; color: #ef4444; }
     .badge-yellow { background: #fffbeb; color: #d97706; }
     .badge-green { background: #f0fdf4; color: #16a34a; }
-    /* Card 2 content — Priority Matrix */
     .quad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
     .quad { border-radius: 6px; padding: 8px; }
     .quad-dn { background: #fef2f2; } .quad-pl { background: #fffbeb; }
@@ -83,7 +72,6 @@
     .quad-mo .q-label { color: #2563eb; } .quad-de .q-label { color: #94a3b8; }
     .quad .q-count { font-size: 1.2rem; font-weight: 900; color: #111; }
     .quad .q-sub { font-size: 0.55rem; color: #64748b; }
-    /* Card 3 content — Comms template */
     .tmpl-line { height: 6px; background: #f1f5f9; border-radius: 3px; margin-bottom: 6px; }
     .tmpl-line.short { width: 60%; }
     .tmpl-line.med { width: 80%; }
@@ -91,20 +79,14 @@
     .tmpl-block { background: #eff6ff; border-left: 3px solid #2563eb; padding: 6px 8px; border-radius: 0 4px 4px 0; margin: 8px 0; }
     .tmpl-block .tmpl-line { background: #bfdbfe; margin-bottom: 4px; }
     .tmpl-block .tmpl-line:last-child { margin-bottom: 0; width: 50%; }
-
-    /* ─── SECTIONS ─── */
     .section { padding: 64px 24px; max-width: 860px; margin: 0 auto; }
     .section-full { padding: 64px 24px; }
     .section-full .inner { max-width: 860px; margin: 0 auto; }
     .label { font-size: 0.7rem; letter-spacing: 0.13em; text-transform: uppercase; font-weight: 700; color: #2563eb; margin-bottom: 10px; }
     h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
-
-    /* ─── PAIN ─── */
     .pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
     @media(max-width: 580px) { .pain-grid { grid-template-columns: 1fr; } }
     .pain-item { background: #fef2f2; border-left: 3px solid #ef4444; border-radius: 0 8px 8px 0; padding: 14px 16px; font-size: 0.92rem; color: #374151; line-height: 1.5; }
-
-    /* ─── INCLUDES ─── */
     .includes-bg { background: #f8fafc; }
     .includes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
     @media(max-width: 580px) { .includes-grid { grid-template-columns: 1fr; } }
@@ -112,8 +94,7 @@
     .inc .icon { width: 28px; height: 28px; flex-shrink: 0; margin-top: 1px; color: #1e3a5f; }
     .inc h3 { font-size: 0.92rem; font-weight: 700; margin-bottom: 4px; }
     .inc p { font-size: 0.82rem; color: #555; line-height: 1.5; }
-
-    /* ─── HOW IT WORKS ─── */
+    .inc .bonus-tag { display: inline-block; font-size: 0.62rem; font-weight: 800; color: #16a34a; background: #f0fdf4; border: 1px solid #bbf7d0; padding: 2px 7px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
     .steps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
     @media(max-width: 580px) { .steps-grid { grid-template-columns: 1fr; } }
     .step-card { background: #f8fafc; border-radius: 10px; padding: 22px 20px 20px; position: relative; overflow: hidden; }
@@ -125,15 +106,11 @@
     .result-banner .rb-ico { width: 30px; height: 30px; flex-shrink: 0; color: #1e3a5f; }
     .result-banner strong { font-size: 0.95rem; display: block; margin-bottom: 4px; }
     .result-banner p { font-size: 0.82rem; color: #94a3b8; }
-
-    /* ─── PROOF ─── */
     .proof-bg { background: #eff6ff; border-top: 3px solid #2563eb; border-bottom: 3px solid #2563eb; }
     .proof-inner { max-width: 640px; margin: 0 auto; text-align: center; padding: 56px 24px; }
     .proof-inner blockquote { font-size: clamp(1.05rem, 2.5vw, 1.3rem); font-weight: 700; color: #0D2B4C; line-height: 1.55; margin-bottom: 14px; }
     .proof-inner .attr { font-size: 0.82rem; color: #64748b; }
     .proof-inner .attr strong { color: #0D2B4C; }
-
-    /* ─── STORY ─── */
     .story-bg { background: #0D2B4C; color: #fff; }
     .story-bg h2 { color: #fff; }
     .story-bg .label { color: #64b5f6; }
@@ -142,15 +119,11 @@
     .result-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 22px; margin-top: 24px; }
     .result-card p { color: #e2e8f0 !important; margin: 0; font-size: 0.95rem !important; line-height: 1.8; }
     .result-card strong { color: #4ade80 !important; }
-
-    /* ─── OUTCOMES ─── */
     .outcome { display: flex; gap: 14px; padding: 18px 0; border-bottom: 1px solid #f1f5f9; align-items: flex-start; }
     .outcome:last-child { border-bottom: none; }
     .outcome .ico { width: 26px; height: 26px; flex-shrink: 0; margin-top: 3px; color: #1e3a5f; }
     .outcome h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 3px; }
     .outcome p { font-size: 0.85rem; color: #555; line-height: 1.5; }
-
-    /* ─── PRICING ─── */
     .pricing-bg { background: #f8fafc; }
     .pricing-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
     @media(max-width: 840px) { .pricing-cards { grid-template-columns: 1fr; max-width: 420px; } }
@@ -164,6 +137,8 @@
     .pc ul { list-style: none; margin-bottom: 22px; display: flex; flex-direction: column; gap: 7px; }
     .pc ul li { font-size: 0.82rem; color: #333; display: flex; gap: 8px; align-items: flex-start; line-height: 1.4; }
     .pc ul li::before { content: "✓"; color: #16a34a; font-weight: 800; flex-shrink: 0; }
+    .pc ul li.bonus::before { color: #2563eb; }
+    .pc ul li.bonus { font-weight: 600; }
     .pc .btn-buy { display: block; text-align: center; background: #0D2B4C; color: #fff; padding: 14px; border-radius: 8px; font-weight: 800; text-decoration: none; font-size: 0.9rem; margin-top: auto; transition: background 0.2s; }
     .pc .btn-buy:hover { background: #0a1f38; }
     .pc.featured .btn-buy { background: #2563eb; }
@@ -171,8 +146,6 @@
     .pc .fine { font-size: 0.72rem; color: #94a3b8; text-align: center; margin-top: 8px; }
     .guarantee { text-align: center; margin-top: 20px; font-size: 0.85rem; color: #555; }
     .guarantee strong { color: #111; }
-
-    /* ─── FAQ ─── */
     details { border-bottom: 1px solid #e5e7eb; padding: 18px 0; }
     details:last-child { border-bottom: none; }
     summary { font-size: 0.95rem; font-weight: 700; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; cursor: pointer; }
@@ -180,16 +153,11 @@
     summary::after { content: "+"; font-size: 1.2rem; color: #2563eb; flex-shrink: 0; }
     details[open] summary::after { content: "−"; }
     details p { font-size: 0.88rem; color: #444; margin-top: 10px; line-height: 1.7; }
-
-    /* ─── FOOTER CTA ─── */
     .fcta { background: #0D2B4C; color: #fff; text-align: center; padding: 72px 24px; }
     .fcta h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 900; max-width: 560px; margin: 0 auto 14px; line-height: 1.25; }
     .fcta p { color: #64748b; max-width: 440px; margin: 0 auto 32px; font-size: 0.9rem; }
-
-    /* ─── FOOTER ─── */
     footer { background: #060f1c; color: #334155; text-align: center; padding: 20px 24px; font-size: 0.78rem; }
     footer a { color: #475569; text-decoration: none; }
-
     hr.div { border: none; border-top: 1px solid #f1f5f9; max-width: 860px; margin: 0 auto; }
   </style>
 </head>
@@ -208,9 +176,9 @@
     <div class="hero-text">
       <div class="eyebrow">The Technology Clarity Playbook</div>
       <h1>You Were Handed the Technology.<br><em>Nobody Handed You the Playbook.</em></h1>
-      <p class="sub">In one afternoon, score your technology across 10 ITIL practice domains, know your maturity level, and walk out with a ranked action plan — no guesswork, no jargon.</p>
+      <p class="sub">In one afternoon, score your technology across 6 dimensions, know your maturity level, and walk out with a ranked action plan — no guesswork, no jargon.</p>
       <div class="hero-btns">
-        <a href="#pricing" class="btn-blue">Get the Playbook — $497</a>
+        <a href="#pricing" class="btn-blue">Get the Playbook — $597</a>
         <a href="#whats-included" class="btn-ghost">See what's inside ↓</a>
       </div>
       <div class="trust-line">🔒 Stripe checkout &nbsp;·&nbsp; Instant access &nbsp;·&nbsp; 30-day guarantee</div>
@@ -218,22 +186,21 @@
 
     <!-- DOCUMENT STACK -->
     <div class="doc-stack-wrap">
-
-      <!-- Card 3 — Communication Framework (back) -->
+      <!-- Card 3 — Communication Toolkit (back) -->
       <div class="doc-card dc3">
         <div class="dc-header" style="background:#faf5ff;">
           <div class="dot" style="background:#8b5cf6;"></div>
           <div class="dot" style="background:#c4b5fd;"></div>
-          <div class="dc-title">🗣️ Communication Framework</div>
+          <div class="dc-title">🗣️ Communication Toolkit</div>
         </div>
         <div class="dc-body">
-          <div class="dc-section">Weekly Status Update</div>
+          <div class="dc-section">C-Suite Assessment Briefing</div>
           <div class="tmpl-block">
             <div class="tmpl-line full"></div>
             <div class="tmpl-line med"></div>
             <div class="tmpl-line short"></div>
           </div>
-          <div class="dc-section" style="margin-top:10px;">Incident Response — Phase 1</div>
+          <div class="dc-section" style="margin-top:10px;">Technology Investment Proposal</div>
           <div class="tmpl-block">
             <div class="tmpl-line full"></div>
             <div class="tmpl-line med"></div>
@@ -244,36 +211,20 @@
         </div>
       </div>
 
-      <!-- Card 2 — Priority Matrix (middle) -->
+      <!-- Card 2 — Priority Planner (middle) -->
       <div class="doc-card dc2">
         <div class="dc-header" style="background:#fffbeb;">
           <div class="dot" style="background:#f59e0b;"></div>
           <div class="dot" style="background:#fcd34d;"></div>
-          <div class="dc-title">🎯 Priority Matrix</div>
+          <div class="dc-title">🎯 30/60/90 Priority Planner</div>
         </div>
         <div class="dc-body">
           <div class="dc-section">Quadrant Summary</div>
           <div class="quad-grid">
-            <div class="quad quad-dn">
-              <div class="q-label">Do Now</div>
-              <div class="q-count">4</div>
-              <div class="q-sub">High impact · urgent</div>
-            </div>
-            <div class="quad quad-pl">
-              <div class="q-label">Plan For</div>
-              <div class="q-count">7</div>
-              <div class="q-sub">High impact · not urgent</div>
-            </div>
-            <div class="quad quad-mo">
-              <div class="q-label">Monitor</div>
-              <div class="q-count">5</div>
-              <div class="q-sub">Lower impact</div>
-            </div>
-            <div class="quad quad-de">
-              <div class="q-label">Deprioritize</div>
-              <div class="q-count">3</div>
-              <div class="q-sub">Low · low</div>
-            </div>
+            <div class="quad quad-dn"><div class="q-label">Do Now</div><div class="q-count">4</div><div class="q-sub">High impact · urgent</div></div>
+            <div class="quad quad-pl"><div class="q-label">Plan For</div><div class="q-count">7</div><div class="q-sub">High impact · not urgent</div></div>
+            <div class="quad quad-mo"><div class="q-label">Monitor</div><div class="q-count">5</div><div class="q-sub">Lower impact</div></div>
+            <div class="quad quad-de"><div class="q-label">Deprioritize</div><div class="q-count">3</div><div class="q-sub">Low · low</div></div>
           </div>
           <div class="dc-section" style="margin-top:12px;">Top Priority Items</div>
           <div class="dc-item">MFA enforcement <span class="dc-badge badge-red">Critical</span></div>
@@ -287,29 +238,29 @@
         <div class="dc-header" style="background:#eff6ff;">
           <div class="dot" style="background:#2563eb;"></div>
           <div class="dot" style="background:#93c5fd;"></div>
-          <div class="dc-title">Technology Clarity Assessment — ITIL</div>
+          <div class="dc-title">Technology Clarity Assessment</div>
         </div>
         <div class="dc-body">
           <div class="dc-score-box">
             <div>
-              <div class="dc-section" style="margin-bottom:2px;">IT Maturity Score</div>
+              <div class="dc-section" style="margin-bottom:2px;">Maturity Score</div>
               <div class="dc-score-val">2.4<span style="font-size:0.75rem;color:#555;font-weight:600;">/5.0</span></div>
             </div>
             <div class="dc-badge badge-yellow" style="font-size:0.65rem;padding:4px 8px;">Developing</div>
           </div>
-          <div class="dc-section">Score by ITIL Domain</div>
-          <div class="dc-row"><span class="dc-label">Incident Mgmt</span><div class="dc-bar-wrap"><div class="dc-bar" style="width:60%;background:#22c55e;"></div></div></div>
+          <div class="dc-section">Score by Dimension</div>
+          <div class="dc-row"><span class="dc-label">Infrastructure</span><div class="dc-bar-wrap"><div class="dc-bar" style="width:60%;background:#22c55e;"></div></div></div>
           <div class="dc-row"><span class="dc-label">Security</span><div class="dc-bar-wrap"><div class="dc-bar" style="width:26%;background:#ef4444;"></div></div></div>
-          <div class="dc-row"><span class="dc-label">Vendor Mgmt</span><div class="dc-bar-wrap"><div class="dc-bar" style="width:74%;background:#22c55e;"></div></div></div>
-          <div class="dc-row"><span class="dc-label">Change Mgmt</span><div class="dc-bar-wrap"><div class="dc-bar" style="width:40%;background:#f59e0b;"></div></div></div>
-          <div class="dc-row"><span class="dc-label">IT Governance</span><div class="dc-bar-wrap"><div class="dc-bar" style="width:32%;background:#ef4444;"></div></div></div>
-          <div class="dc-section" style="margin-top:10px;">Priority Domains</div>
-          <div class="dc-item">Security — Level 1 <span class="dc-badge badge-red">Critical</span></div>
-          <div class="dc-item">IT Governance — Level 1.6 <span class="dc-badge badge-red">Critical</span></div>
-          <div class="dc-item">Change Mgmt — Level 2 <span class="dc-badge badge-yellow">Developing</span></div>
+          <div class="dc-row"><span class="dc-label">Operations</span><div class="dc-bar-wrap"><div class="dc-bar" style="width:74%;background:#22c55e;"></div></div></div>
+          <div class="dc-row"><span class="dc-label">Data</span><div class="dc-bar-wrap"><div class="dc-bar" style="width:40%;background:#f59e0b;"></div></div></div>
+          <div class="dc-row"><span class="dc-label">Strategy</span><div class="dc-bar-wrap"><div class="dc-bar" style="width:32%;background:#ef4444;"></div></div></div>
+          <div class="dc-row"><span class="dc-label">People</span><div class="dc-bar-wrap"><div class="dc-bar" style="width:52%;background:#f59e0b;"></div></div></div>
+          <div class="dc-section" style="margin-top:10px;">Priority Dimensions</div>
+          <div class="dc-item">Security — Level 1.3 <span class="dc-badge badge-red">Critical</span></div>
+          <div class="dc-item">Strategy — Level 1.6 <span class="dc-badge badge-red">Critical</span></div>
+          <div class="dc-item">Data — Level 2.0 <span class="dc-badge badge-yellow">Developing</span></div>
         </div>
       </div>
-
     </div>
   </div>
 </div>
@@ -333,39 +284,39 @@
 <div class="section-full includes-bg" id="whats-included">
   <div class="inner">
     <div class="label">What's inside</div>
-    <h2>Eight tools. One afternoon. Permanent clarity.</h2>
+    <h2>Nine tools. One afternoon. Permanent clarity.</h2>
     <div class="includes-grid">
       <div class="inc">
+        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg></div>
+        <div><h3>Start Here Guide</h3><p>Your orientation. Five persona snapshots so you see yourself in the framework, a translation guide for the examples, and the sequence to follow. Open this first.</p></div>
+      </div>
+      <div class="inc">
         <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25Z" /></svg></div>
-        <div><h3>ITIL-Aligned Maturity Assessment</h3><p>44 questions across 10 ITIL v4 practice domains. Score your organization 1–5 on each — with written maturity descriptors so you know exactly where you land and why.</p></div>
+        <div><h3>Technology Clarity Assessment</h3><p>30 questions across 6 dimensions. Score your organization 1–5 on each with written maturity descriptors. Includes a filled sample, benchmarks by company size, and an auto-scored dashboard.</p></div>
+      </div>
+      <div class="inc">
+        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z" /></svg></div>
+        <div><h3>Core Playbook — 6 Modules</h3><p>The framework. Cut the noise, run your assessment, align to the business, build your plan, lead your people, and make principled decisions. Real scenarios and filled examples throughout.</p></div>
       </div>
       <div class="inc">
         <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z" /></svg></div>
-        <div><h3>Maturity Dashboard</h3><p>Auto-calculates your score per domain and overall maturity band — Developing, Defined, Measured, or Optimizing. Flags your three lowest domains so you know exactly where to focus.</p></div>
-      </div>
-      <div class="inc">
-        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605" /></svg></div>
-        <div><h3>Priority Matrix</h3><p>Your lowest maturity domains drive this. Get a ranked list: what to address in 30 days, what to plan for 90, and what can wait.</p></div>
+        <div><h3>30/60/90 Priority Planner</h3><p>Turn your assessment gaps into a sequenced action plan. Week-by-week milestones, resource calculator, ROI framing, and a complete filled sample showing the full journey.</p></div>
       </div>
       <div class="inc">
         <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" /></svg></div>
-        <div><h3>Leader's Communication Framework</h3><p>Fill-in templates for status updates, incident response, vendor conversations, and board summaries.</p></div>
-      </div>
-      <div class="inc">
-        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg></div>
-        <div><h3>Technology Budget Clarity Guide</h3><p>What technology should cost, what questions to ask vendors, and how to know if you're getting value.</p></div>
+        <div><h3>Executive Communication Toolkit</h3><p>6 ready-to-use scripts: C-suite presentations, ROI proposals, risk explanations, change management, AI conversations, and board memos. Exact words to say — and what not to.</p></div>
       </div>
       <div class="inc">
         <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg></div>
-        <div><h3>Risk Snapshot Tool</h3><p>20 yes/no questions. Surfaces top risks across security, operations, vendors, and people — before they blow up.</p></div>
+        <div><h3>Quick Reference Card</h3><p>3 pages. Print it. Pin it. The decision framework, scoring cheat sheet, and communication quick reference — all designed for mid-meeting glances.</p></div>
       </div>
       <div class="inc">
-        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" /></svg></div>
-        <div><h3>5 Video Walkthroughs</h3><p>Jared walks you through each tool step by step. Working sessions, not lectures. Grab a notebook.</p></div>
+        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605" /></svg></div>
+        <div><div class="bonus-tag">Bonus</div><h3>Executive Presentation Template</h3><p>14-slide premium deck. Fill in your assessment results, present to leadership with confidence. Detailed speaker notes coach you through every slide.</p></div>
       </div>
-      <div class="inc" style="grid-column: 1 / -1;">
-        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg></div>
-        <div><h3>The "Stuck" Reference Guide</h3><p>8 real leadership scenarios — vendor pushing an upgrade, IT team resisting change, post-breach recovery — with exact language to use in each situation.</p></div>
+      <div class="inc">
+        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg></div>
+        <div><div class="bonus-tag">Bonus</div><h3>First 90 Days Playbook</h3><p>New to tech leadership? This condensed guide maps your first 90 days: who to talk to, what to assess, how to build credibility through results.</p></div>
       </div>
     </div>
   </div>
@@ -376,14 +327,14 @@
   <div class="label">How it works</div>
   <h2>One focused afternoon. Real output.</h2>
   <div class="steps-grid">
-    <div class="step-card"><div class="bg-num">1</div><div class="time">60–90 min</div><h3>Run the Assessment</h3><p>44 questions across 10 ITIL domains. Score each 1–5 using the written maturity descriptors. Honest answers only.</p></div>
-    <div class="step-card"><div class="bg-num">2</div><div class="time">15 min</div><h3>Read Your Maturity Dashboard</h3><p>Scores auto-calculate. Your dashboard shows your overall band, domain scores, and the three areas that need attention first.</p></div>
-    <div class="step-card"><div class="bg-num">3</div><div class="time">30–45 min</div><h3>Build Your Priority Matrix</h3><p>Your lowest maturity domains drive your agenda. Rank them by business impact and urgency. Now you have a plan.</p></div>
-    <div class="step-card"><div class="bg-num">4</div><div class="time">30 min</div><h3>Build Your Comms Plan</h3><p>Use the Communication Framework to document how you'll present priorities to leadership, your team, and vendors.</p></div>
+    <div class="step-card"><div class="bg-num">1</div><div class="time">15 min</div><h3>Read the Start Here Guide</h3><p>Orient yourself. See which persona matches your situation. Understand the translation guide so every example maps to your industry.</p></div>
+    <div class="step-card"><div class="bg-num">2</div><div class="time">60–90 min</div><h3>Run the Assessment</h3><p>30 questions across 6 dimensions. Score each 1–5 using the maturity descriptors. Honest answers only. Dashboard auto-calculates your results.</p></div>
+    <div class="step-card"><div class="bg-num">3</div><div class="time">60 min</div><h3>Work Through the Core Playbook</h3><p>6 modules that turn your scores into action. Cut the noise, align to business impact, build your plan, prepare your communication.</p></div>
+    <div class="step-card"><div class="bg-num">4</div><div class="time">30–45 min</div><h3>Build Your 30/60/90 Plan</h3><p>Map your top gaps to initiatives, sequence them, assign owners and budgets. Use the filled sample as your guide.</p></div>
   </div>
   <div class="result-banner">
     <div class="rb-ico"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg></div>
-    <div><strong>Total time: one afternoon.</strong><p>Leave with a maturity score, ranked priority list, 30/90/180-day roadmap, and communication templates — built on a globally recognized framework.</p></div>
+    <div><strong>Total time: one afternoon.</strong><p>Leave with a maturity score, ranked priority list, 30/60/90 roadmap, communication scripts, and presentation deck — ready for leadership.</p></div>
   </div>
 </div>
 
@@ -433,41 +384,41 @@
       <div class="pc">
         <h3>Clarity</h3>
         <div class="price">$197</div>
-        <p class="desc">The diagnostic layer. Know exactly where your technology stands and what your top priorities are — scored against a globally recognized framework.</p>
+        <p class="desc">The diagnostic layer. Know exactly where your technology stands and what your top priorities are.</p>
         <ul>
-          <li>ITIL-Aligned Maturity Assessment (44 questions, 10 domains)</li>
-          <li>Maturity Dashboard — auto-scored, maturity band, top 3 priorities</li>
-          <li>Priority Matrix</li>
+          <li>Start Here Guide</li>
+          <li>Technology Clarity Assessment (30 questions, 6 dimensions, auto-scored dashboard)</li>
+          <li>Quick Reference Card (3-page printable)</li>
         </ul>
         <a href="https://buy.stripe.com/14AeVegx7a4t9np4TXaR201" class="btn-buy">Get Clarity — $197</a>
       </div>
       <div class="pc featured">
         <div class="badge">Most Popular</div>
         <h3>Full Playbook</h3>
-        <div class="price">$497</div>
-        <p class="desc">Everything in Clarity, plus all the tools to act on what you find — communicate it, budget for it, and lead through it.</p>
+        <div class="price">$597</div>
+        <p class="desc">Everything in Clarity, plus all the tools to act on what you find — communicate it, plan it, present it, and lead through it.</p>
         <ul>
-          <li>ITIL-Aligned Maturity Assessment</li>
-          <li>Maturity Dashboard</li>
-          <li>Priority Matrix</li>
-          <li>Leader's Communication Framework</li>
-          <li>Technology Budget Clarity Guide</li>
-          <li>Risk Snapshot Tool</li>
-          <li>The "Stuck" Reference Guide</li>
-          <li>5 Video Walkthroughs with Jared</li>
+          <li>Start Here Guide</li>
+          <li>Technology Clarity Assessment</li>
+          <li>Core Playbook — 6 Modules</li>
+          <li>30/60/90 Priority Planner</li>
+          <li>Executive Communication Toolkit (6 scripts)</li>
+          <li>Quick Reference Card</li>
+          <li class="bonus">🎁 Executive Presentation Template (14-slide premium deck)</li>
+          <li class="bonus">🎁 First 90 Days Technology Leader Playbook</li>
         </ul>
-        <a href="https://buy.stripe.com/cNiaEYa8J2C1fLNcmpaR200" class="btn-buy">Get the Playbook — $497</a>
+        <a href="https://buy.stripe.com/7sYeVeft30tTgPR2LPaR20b" class="btn-buy">Get the Playbook — $597</a>
       </div>
       <div class="pc">
         <h3>Playbook + Session</h3>
         <div class="price">$997</div>
-        <div class="price-note">$1,246 value — save $249</div>
+        <div class="price-note">$1,347 value — save $350</div>
         <p class="desc">Full Playbook plus a private 60-minute Cut to Clarity session with Jared — included at no extra cost.</p>
         <ul>
-          <li>Everything in the Full Playbook (all 8 tools)</li>
-          <li>60-min Cut to Clarity session <strong style="color:#16a34a;">($749 value, free)</strong></li>
-          <li>Jared reviews your situation live</li>
-          <li>Walk away with a clear action plan</li>
+          <li>Everything in the Full Playbook (all 9 tools)</li>
+          <li>60-min Cut to Clarity session <strong style="color:#16a34a;">($750 value, free)</strong></li>
+          <li>Jared reviews your assessment results live</li>
+          <li>Walk away with a personalized action plan</li>
           <li>Session booked after purchase</li>
         </ul>
         <a href="https://buy.stripe.com/5kQ5kE3Kla4t2Z1fyBaR202" class="btn-buy">Get Playbook + Session — $997</a>
@@ -483,8 +434,8 @@
   <div class="label">FAQ</div>
   <h2>Common questions.</h2>
   <details><summary>I'm not technical at all. Will this be over my head?</summary><p>No. This is built for leaders who came to technology through business — not engineering. If you can run a P&L or lead a team, you can work through this. Plain language throughout.</p></details>
-  <details><summary>How long does this actually take?</summary><p>The assessment takes 60–90 minutes. The Maturity Dashboard auto-calculates instantly. The Priority Matrix takes another 30–45 minutes. Video walkthroughs are about 90 minutes total. One focused afternoon — or spread across a week. Either works.</p></details>
-  <details><summary>Will this apply to my specific industry?</summary><p>Yes. The framework is industry-agnostic — manufacturing, healthcare, professional services, construction. If you have technology and a team, this applies.</p></details>
+  <details><summary>How long does this actually take?</summary><p>The Start Here guide is 15 minutes. The assessment takes 60–90 minutes. The core playbook and planning take another 90 minutes. One focused afternoon — or spread across a week. Either works.</p></details>
+  <details><summary>Will this apply to my specific industry?</summary><p>Yes. The framework is industry-agnostic — manufacturing, healthcare, professional services, construction, logistics, retail, distribution. The Start Here guide includes a translation table that maps every example to your situation. If you have technology and a team, this applies.</p></details>
   <details><summary>I already have an IT team. Why do I need this?</summary><p>Because leading an IT team and being led by your IT team are two different things. Most non-technical leaders default to trusting whatever their team recommends because they have no way to evaluate it. The Playbook gives you that lens.</p></details>
   <details><summary>What's the difference between this and hiring a consultant?</summary><p>A consultant does the assessment for you and hands you a report. Valuable — but it doesn't build your capability. The Playbook puts you in the driver's seat. The $997 tier gives you both: the tools and Jared in your corner for a session.</p></details>
   <details><summary>What if it doesn't work for me?</summary><p>Go through the Playbook. If you feel like it wasn't worth it, email <a href="mailto:jaredpeno@simplifyit.co">jaredpeno@simplifyit.co</a> within 30 days for a full refund. No questions, no hoops.</p></details>
@@ -494,7 +445,7 @@
 <div class="fcta">
   <h2>You can keep navigating it on instinct.<br>Or spend an afternoon getting clear.</h2>
   <p>The Playbook gives you a framework that lasts — for this role and every technology challenge ahead of you.</p>
-  <a href="#pricing" class="btn-blue">Get the Technology Clarity Playbook — $497</a>
+  <a href="#pricing" class="btn-blue">Get the Technology Clarity Playbook — $597</a>
   <div style="margin-top:14px; font-size:0.78rem; color:#334155;">Questions? <a href="mailto:jaredpeno@simplifyit.co" style="color:#475569;">jaredpeno@simplifyit.co</a></div>
 </div>
 
