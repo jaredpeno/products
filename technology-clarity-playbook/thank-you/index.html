@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #0D2B4C; color: #fff; margin: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; }
+    body { font-family: 'Inter', sans-serif; background: #0D2B4C; color: #fff; margin: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 40px 16px; }
     .box { max-width: 560px; width: 100%; text-align: center; }
     .check-wrap { width: 64px; height: 64px; background: rgba(37,99,235,0.2); border: 2px solid rgba(37,99,235,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; color: #60a5fa; }
     .check-wrap svg { width: 32px; height: 32px; }
@@ -60,10 +60,10 @@
     .form-wrap .num { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #60a5fa; margin-bottom: 8px; }
     .form-wrap h3 { font-size: 1rem; font-weight: 700; margin: 0 0 6px; }
     .form-wrap p { font-size: 0.88rem; color: #94a3b8; margin: 0 0 16px; }
-    .form-row { display: flex; gap: 8px; }
-    .form-row input { flex: 1; padding: 12px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.08); color: #fff; font-size: 0.95rem; font-family: 'Inter', sans-serif; }
+    .form-row { display: flex; flex-direction: column; gap: 8px; }
+    .form-row input { width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.08); color: #fff; font-size: 0.95rem; font-family: 'Inter', sans-serif; }
     .form-row input::placeholder { color: #64748b; }
-    .form-row button { padding: 12px 20px; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; white-space: nowrap; font-family: 'Inter', sans-serif; }
+    .form-row button { width: 100%; padding: 14px 20px; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; font-family: 'Inter', sans-serif; }
     .form-row button:hover { background: #1d4ed8; }
     .success-msg { display: none; color: #4ade80; font-size: 0.9rem; margin-top: 10px; font-weight: 600; }
     .fine { margin-top: 32px; font-size: 0.82rem; color: #334155; }
@@ -71,6 +71,23 @@
     .hidden { display: none !important; }
     .loading-text { color: #94a3b8; font-size: 0.88rem; margin-top: 10px; }
     .error-text { color: #f87171; font-size: 0.88rem; margin-top: 10px; }
+    /* Mobile */
+    .access-btn { font-size: 0.88rem; padding: 12px 16px; }
+    .book-btn { font-size: 0.95rem; padding: 14px 20px; }
+    .copy-row { flex-direction: column; }
+    .copy-url { font-size: 0.7rem; padding: 10px; word-break: break-all; white-space: normal; }
+    .copy-btn { width: 100%; text-align: center; padding: 12px; }
+    @media (min-width: 480px) {
+      body { padding: 40px 24px; }
+      .form-row { flex-direction: row; }
+      .form-row input { flex: 1; width: auto; }
+      .form-row button { width: auto; white-space: nowrap; }
+      .access-btn { font-size: 0.95rem; padding: 14px 24px; }
+      .book-btn { font-size: 1.05rem; padding: 16px 24px; }
+      .copy-row { flex-direction: row; }
+      .copy-url { white-space: nowrap; word-break: normal; }
+      .copy-btn { width: auto; }
+    }
   </style>
 </head>
 <body style="display:none;">
@@ -201,44 +218,47 @@
       <h3>Open your documents</h3>
       <p>Click below to open each Google Doc. Go to <strong>File → Make a Copy</strong> on each to save your own editable versions to your Drive.</p>
 
-      <!-- Core docs (all tiers) -->
+      <!-- Documents in order: 0, 1, 2, 3, 4, 5, B, C -->
+      <!-- Doc 0: Start Here (all tiers) -->
       <a href="https://docs.google.com/document/d/1Su9O5PrxZ7H_dlDd2Iwa0E5dtcRDwXUekEbDI7RPoiQ/edit" class="access-btn" target="_blank" rel="noopener">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
         0. Start Here →
       </a>
+      <!-- Doc 1: Core Playbook ($597/$997 only) -->
+      <a href="https://docs.google.com/document/d/1tYXsol33qMrP5vERxuvfq8TtGoA4e_5hUepjJc1QD8s/edit" class="access-btn secondary full-only" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+        1. Core Playbook →
+      </a>
+      <!-- Doc 2: Assessment Tool (all tiers) -->
       <a href="https://docs.google.com/document/d/1IpMjCE7FSQjEWyHJHJDsnMYxH5PqPsdAxPO-jHvwKhI/edit" class="access-btn secondary" target="_blank" rel="noopener">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
         2. Assessment Tool →
       </a>
+      <!-- Doc 3: Communication Toolkit ($597/$997 only) -->
+      <a href="https://docs.google.com/document/d/1xnomKp22-S98Pk_ayR2nMXuJdBnsQ0F15B5wqWuSuJY/edit" class="access-btn secondary full-only" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+        3. Communication Toolkit →
+      </a>
+      <!-- Doc 4: Priority Planner ($597/$997 only) -->
+      <a href="https://docs.google.com/document/d/1EBrOVc7yf2w8lIc23n82dUMqW0l97U-FYPliyxt3x_M/edit" class="access-btn secondary full-only" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+        4. Priority Planner →
+      </a>
+      <!-- Doc 5: Quick Reference Card (all tiers) -->
       <a href="https://docs.google.com/document/d/1p6ht0FNDPNkMOvKlpWj6XFVkjXRKXkO-nkTJQTAxGeU/edit" class="access-btn secondary" target="_blank" rel="noopener">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
         5. Quick Reference Card →
       </a>
-
-      <!-- Full tier docs ($597/$997 only) -->
-      <div class="full-only">
-        <a href="https://docs.google.com/document/d/1tYXsol33qMrP5vERxuvfq8TtGoA4e_5hUepjJc1QD8s/edit" class="access-btn secondary" target="_blank" rel="noopener">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
-          1. Core Playbook →
-        </a>
-        <a href="https://docs.google.com/document/d/1xnomKp22-S98Pk_ayR2nMXuJdBnsQ0F15B5wqWuSuJY/edit" class="access-btn secondary" target="_blank" rel="noopener">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
-          3. Communication Toolkit →
-        </a>
-        <a href="https://docs.google.com/document/d/1EBrOVc7yf2w8lIc23n82dUMqW0l97U-FYPliyxt3x_M/edit" class="access-btn secondary" target="_blank" rel="noopener">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
-          4. Priority Planner →
-        </a>
-        <div class="bonus-label">Bonus Documents</div>
-        <a href="https://docs.google.com/document/d/158ODS9LlZGp-Y-ujnPf6MBX1_G26oBGeg7ylw5sCDUo/edit" class="access-btn bonus" target="_blank" rel="noopener">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
-          B. Executive Presentation Template →
-        </a>
-        <a href="https://docs.google.com/document/d/1VX4IIiNCK-Z9OWrJlG1C5b1Lt6eInGZYAlhzgXKadnk/edit" class="access-btn bonus" target="_blank" rel="noopener">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
-          C. First 90 Days Playbook →
-        </a>
-      </div>
+      <!-- Bonus docs ($597/$997 only) -->
+      <div class="bonus-label full-only">Bonus Documents</div>
+      <a href="https://docs.google.com/document/d/158ODS9LlZGp-Y-ujnPf6MBX1_G26oBGeg7ylw5sCDUo/edit" class="access-btn bonus full-only" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+        B. Executive Presentation Template →
+      </a>
+      <a href="https://docs.google.com/document/d/1VX4IIiNCK-Z9OWrJlG1C5b1Lt6eInGZYAlhzgXKadnk/edit" class="access-btn bonus full-only" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+        C. First 90 Days Playbook →
+      </a>
 
       <div class="copy-note">File → Make a Copy on each · saves to your own Google Drive</div>
     </div>
