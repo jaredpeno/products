@@ -12,91 +12,81 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #0D2B4C;
-      color: #fff;
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 32px 16px 48px;
-    }
-    .box { max-width: 540px; width: 100%; text-align: center; }
-    .check { font-size: 3rem; margin-bottom: 16px; }
-    h1 { font-size: 1.7rem; font-weight: 800; margin: 0 0 10px; line-height: 1.2; }
-    .sub { color: #94a3b8; font-size: 0.95rem; margin: 0 0 32px; line-height: 1.7; }
-
-    /* Cards */
-    .card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 22px; margin-bottom: 14px; text-align: left; }
-    .card-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #64b5f6; margin-bottom: 8px; }
-    .card h3 { font-size: 0.97rem; font-weight: 700; margin: 0 0 6px; }
-    .card p { font-size: 0.87rem; color: #94a3b8; margin: 0; line-height: 1.6; }
-
-    /* Urgent session card */
-    .urgent-card { background: rgba(245,158,11,0.1); border: 2px solid #f59e0b; border-radius: 12px; padding: 22px; margin-bottom: 14px; text-align: left; }
-    .urgent-label { display: flex; align-items: center; gap: 7px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #f59e0b; margin-bottom: 10px; }
-    .urgent-card h3 { font-size: 0.97rem; font-weight: 800; margin: 0 0 8px; color: #fff; }
-    .urgent-card p { font-size: 0.87rem; color: #cbd5e1; margin: 0; line-height: 1.6; }
-    .warning-note { font-size: 0.82rem; color: #f59e0b; font-weight: 700; margin-top: 10px; }
-
-    /* Book button */
-    .book-btn { display: block; width: 100%; text-align: center; margin-top: 14px; padding: 15px 20px; background: #f59e0b; color: #000; border-radius: 10px; font-weight: 800; font-size: 1rem; text-decoration: none; letter-spacing: 0.01em; }
-    .book-btn:hover { background: #d97706; }
-
-    /* Copy row */
-    .copy-row { display: flex; align-items: stretch; gap: 8px; margin-top: 10px; }
+    body { font-family: 'Inter', sans-serif; background: #0D2B4C; color: #fff; margin: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; }
+    .box { max-width: 560px; width: 100%; text-align: center; }
+    .check-wrap { width: 64px; height: 64px; background: rgba(37,99,235,0.2); border: 2px solid rgba(37,99,235,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; color: #60a5fa; }
+    .check-wrap svg { width: 32px; height: 32px; }
+    h1 { font-size: 2rem; font-weight: 800; margin: 0 0 12px; }
+    .sub { color: #94a3b8; font-size: 1rem; margin: 0 0 40px; line-height: 1.7; }
+    .step-box { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 28px; margin-bottom: 16px; text-align: left; }
+    .step-box .num { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #60a5fa; margin-bottom: 8px; }
+    .step-box h3 { font-size: 1rem; font-weight: 700; margin: 0 0 10px; }
+    .step-box p { font-size: 0.88rem; color: #94a3b8; margin: 0 0 16px; line-height: 1.6; }
+    .access-btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: #2563eb; color: #fff; padding: 14px 24px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: background 0.2s; margin-bottom: 10px; }
+    .access-btn:hover { background: #1d4ed8; }
+    .access-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .access-btn.secondary { background: rgba(37,99,235,0.2); border: 1px solid rgba(37,99,235,0.4); }
+    .access-btn.secondary:hover { background: rgba(37,99,235,0.3); }
+    .access-btn.bonus { background: rgba(168,85,247,0.2); border: 1px solid rgba(168,85,247,0.4); color: #c084fc; }
+    .access-btn.bonus:hover { background: rgba(168,85,247,0.3); }
+    .copy-note { font-size: 0.78rem; color: #64748b; margin-top: 10px; text-align: center; }
+    .bonus-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #c084fc; margin: 16px 0 8px; }
+    /* Session card — urgent, stands out */
+    .session-card { background: rgba(239,68,68,0.1); border: 3px solid #ef4444; border-radius: 12px; padding: 28px; margin-bottom: 16px; text-align: left; animation: pulse-border 2s ease-in-out infinite; }
+    @keyframes pulse-border { 0%, 100% { border-color: #ef4444; } 50% { border-color: #f97316; } }
+    .session-card .num { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #ef4444; margin-bottom: 8px; }
+    .session-card h3 { font-size: 1.1rem; font-weight: 800; margin: 0 0 10px; color: #fff; }
+    .session-card p { font-size: 0.88rem; color: #cbd5e1; margin: 0 0 12px; line-height: 1.6; }
+    .session-warning { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; }
+    .session-warning p { color: #fca5a5; font-weight: 700; font-size: 0.85rem; margin: 0; }
+    .session-warning svg { width: 18px; height: 18px; color: #ef4444; vertical-align: middle; margin-right: 6px; }
+    .book-btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: #ef4444; color: #fff; padding: 16px 24px; border-radius: 8px; font-weight: 800; font-size: 1.05rem; text-decoration: none; transition: background 0.2s; margin-bottom: 12px; }
+    .book-btn:hover { background: #dc2626; }
+    .copy-row { display: flex; align-items: stretch; gap: 8px; }
     .copy-url { flex: 1; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 10px 12px; font-size: 0.75rem; color: #94a3b8; font-family: monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; display: flex; align-items: center; }
     .copy-btn { padding: 10px 14px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; border-radius: 8px; font-weight: 700; font-size: 0.82rem; cursor: pointer; white-space: nowrap; font-family: 'Inter', sans-serif; flex-shrink: 0; }
     .copy-btn:hover { background: rgba(255,255,255,0.18); }
     .copy-btn.copied { background: rgba(74,222,128,0.2); border-color: #4ade80; color: #4ade80; }
-
-    /* Email form */
-    .form-wrap { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 22px; margin-bottom: 14px; text-align: left; }
-    .form-wrap h3 { font-size: 0.97rem; font-weight: 700; margin: 0 0 6px; }
-    .form-wrap p { font-size: 0.87rem; color: #94a3b8; margin: 0 0 14px; line-height: 1.6; }
-    .form-row { display: flex; flex-direction: column; gap: 8px; }
-    .form-row input { width: 100%; padding: 13px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.08); color: #fff; font-size: 0.95rem; font-family: 'Inter', sans-serif; }
+    /* Upsell box */
+    .upsell-box { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 28px; margin-bottom: 16px; text-align: left; }
+    .upsell-box .num { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #60a5fa; margin-bottom: 8px; }
+    .upsell-box h3 { font-size: 1rem; font-weight: 700; margin: 0 0 10px; }
+    .upsell-box p { font-size: 0.88rem; color: #94a3b8; margin: 0 0 16px; line-height: 1.6; }
+    .upsell-btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: rgba(37,99,235,0.15); border: 1px solid rgba(96,165,250,0.4); color: #60a5fa; padding: 14px 24px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: all 0.2s; }
+    .upsell-btn:hover { background: rgba(37,99,235,0.25); border-color: rgba(96,165,250,0.7); }
+    .upsell-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+    /* Newsletter */
+    .form-wrap { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 28px; margin-bottom: 16px; text-align: left; }
+    .form-wrap .num { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #60a5fa; margin-bottom: 8px; }
+    .form-wrap h3 { font-size: 1rem; font-weight: 700; margin: 0 0 6px; }
+    .form-wrap p { font-size: 0.88rem; color: #94a3b8; margin: 0 0 16px; }
+    .form-row { display: flex; gap: 8px; }
+    .form-row input { flex: 1; padding: 12px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.08); color: #fff; font-size: 0.95rem; font-family: 'Inter', sans-serif; }
     .form-row input::placeholder { color: #64748b; }
-    .form-row button { width: 100%; padding: 13px 20px; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; font-family: 'Inter', sans-serif; }
+    .form-row button { padding: 12px 20px; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; white-space: nowrap; font-family: 'Inter', sans-serif; }
     .form-row button:hover { background: #1d4ed8; }
-    .success-msg { display: none; color: #4ade80; font-size: 0.88rem; margin-top: 10px; font-weight: 600; }
-
+    .success-msg { display: none; color: #4ade80; font-size: 0.9rem; margin-top: 10px; font-weight: 600; }
+    .fine { margin-top: 32px; font-size: 0.82rem; color: #334155; }
+    .fine a { color: #475569; }
+    .hidden { display: none !important; }
     .loading-text { color: #94a3b8; font-size: 0.88rem; margin-top: 10px; }
     .error-text { color: #f87171; font-size: 0.88rem; margin-top: 10px; }
-    .fine { margin-top: 28px; font-size: 0.8rem; color: #334155; }
-    .fine a { color: #475569; }
-
-    @media (min-width: 480px) {
-      body { padding: 48px 24px 64px; }
-      h1 { font-size: 2rem; }
-      .form-row { flex-direction: row; }
-      .form-row input { flex: 1; width: auto; }
-      .form-row button { width: auto; }
-    }
   </style>
 </head>
 <body style="display:none;">
   <script>
-    // Tier detection: map payment_link IDs to tiers
+    /* Tier detection from Stripe payment link */
     const TIER_MAP = {
-      'plink_1TAlJ1Ld695go1352YLTSRBN': 'clarity',   // $197 (new link with session_id)
-      'plink_1TAeLVLd695go135XpHLA7uK': 'full',       // $597
-      'plink_1T6NkxLd695go135jlmoO6nH': 'session'     // $997
+      'plink_1TAlJ1Ld695go1352YLTSRBN': 'clarity',
+      'plink_1TAeLVLd695go135XpHLA7uK': 'full',
+      'plink_1T6NkxLd695go135jlmoO6nH': 'session'
     };
     const UTM_MAP = {
       'clarity': 'tcp-clarity-buyer',
-      'full': 'tcp-full-buyer',
-      'session': 'tcp-session-buyer'
+      'full': 'tcp-buyer',
+      'session': 'tcp-buyer'
     };
-    const TIER_LABELS = {
-      'clarity': 'Clarity Edition (Assessment Tool + Quick Reference)',
-      'full': 'Full Playbook (all 8 documents + 3 companion assets)',
-      'session': 'Full Playbook + Cut to Clarity Session'
-    };
-    window._purchaseTier = 'full'; // default fallback
+    window._purchaseTier = 'full';
 
     (async function gate() {
       const params = new URLSearchParams(window.location.search);
@@ -112,50 +102,168 @@
           window.location.replace('/technology-clarity-playbook/');
           return;
         }
-        // Detect tier from payment_link
         if (data.payment_link && TIER_MAP[data.payment_link]) {
           window._purchaseTier = TIER_MAP[data.payment_link];
         }
-        // Update page text based on tier
-        const tierLabel = document.getElementById('tier-label');
-        if (tierLabel) tierLabel.textContent = TIER_LABELS[window._purchaseTier] || '';
       } catch(e) {
         window.location.replace('/technology-clarity-playbook/');
         return;
       }
       document.body.style.display = '';
+
+      /* Show/hide elements based on tier */
+      const tier = window._purchaseTier;
+
+      /* Clarity ($197): only 3 docs, show upsell */
+      if (tier === 'clarity') {
+        document.querySelectorAll('.full-only').forEach(el => el.classList.add('hidden'));
+        document.getElementById('upsell-box').classList.remove('hidden');
+        document.getElementById('session-card').classList.add('hidden');
+      }
+      /* Full ($597): all 8 docs, show upsell for session */
+      else if (tier === 'full') {
+        document.querySelectorAll('.full-only').forEach(el => el.classList.remove('hidden'));
+        document.getElementById('upsell-box').classList.remove('hidden');
+        document.getElementById('session-card').classList.add('hidden');
+      }
+      /* Session ($997): all 8 docs + session booking */
+      else if (tier === 'session') {
+        document.querySelectorAll('.full-only').forEach(el => el.classList.remove('hidden'));
+        document.getElementById('upsell-box').classList.add('hidden');
+        document.getElementById('session-card').classList.remove('hidden');
+        generateCalendlyLink(sessionId);
+      }
     })();
+
+    async function generateCalendlyLink(sessionId) {
+      const area = document.getElementById('booking-area');
+      try {
+        const res = await fetch('/api/calendly-link?session_id=' + encodeURIComponent(sessionId));
+        const data = await res.json();
+        if (data.url) {
+          const url = data.url;
+          area.innerHTML = `
+            <a class="book-btn" href="${url}" target="_blank" rel="noopener">Book My Session Now →</a>
+            <div class="copy-row">
+              <div class="copy-url" title="${url}">${url}</div>
+              <button class="copy-btn" id="copy-btn" onclick="copyLink('${url}')">Copy Link</button>
+            </div>
+          `;
+          /* Warn on page leave */
+          window.addEventListener('beforeunload', function(e) {
+            e.preventDefault();
+            e.returnValue = 'Your session booking link will not be available after leaving. Have you booked or copied your link?';
+          });
+        } else {
+          area.innerHTML = '<p class="error-text">Could not generate your link. Email <a href="mailto:jaredpeno@simplifyit.co" style="color:#f87171;">jaredpeno@simplifyit.co</a> and we\'ll sort it out.</p>';
+        }
+      } catch(e) {
+        area.innerHTML = '<p class="error-text">Could not generate your link. Email <a href="mailto:jaredpeno@simplifyit.co" style="color:#f87171;">jaredpeno@simplifyit.co</a> and we\'ll sort it out.</p>';
+      }
+    }
+
+    function copyLink(url) {
+      const btn = document.getElementById('copy-btn');
+      navigator.clipboard.writeText(url).then(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy Link'; btn.classList.remove('copied'); }, 2500);
+      }).catch(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy Link'; btn.classList.remove('copied'); }, 2500);
+      });
+    }
   </script>
   <div class="box">
-    <div class="check">✅</div>
-    <h1>Purchase confirmed.</h1>
-    <p class="sub">Follow these two steps to get full access to your Playbook.</p>
-    <p id="tier-label" style="color:#64b5f6; font-size:0.85rem; font-weight:600; margin:-20px 0 24px;"></p>
+    <div class="check-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+    </div>
+    <h1>Your Technology Clarity Playbook is ready.</h1>
+    <p class="sub">You now have a complete system for assessing, prioritizing, and communicating technology decisions with confidence.</p>
 
-    <!-- STEP 1: Urgent session booking -->
-    <div class="urgent-card" id="session-box" style="display:none;">
-      <div class="urgent-label">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" style="width:15px;height:15px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
-        Step 1 — Do This Before Leaving
-      </div>
+    <!-- SESSION BOOKING — $997 only, BEFORE doc links -->
+    <div class="session-card hidden" id="session-card">
+      <div class="num">⚠️ Do this first — before anything else</div>
       <h3>Book your included 60-minute session with Jared</h3>
-      <p>Your purchase includes a private 1:1 session. Your booking link is below — it is single-use and cannot be regenerated.</p>
-      <p class="warning-note">⚠️ Copy this link or book now. It will not be accessible after you leave this page.</p>
+      <p>Your purchase includes a private 1:1 Cut to Clarity session. Your booking link is below — it is <strong>single-use and cannot be regenerated.</strong></p>
+      <div class="session-warning">
+        <p><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="display:inline;width:16px;height:16px;vertical-align:middle;margin-right:4px;color:#ef4444;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" /></svg> Copy this link or book now. It will NOT be available after you leave this page.</p>
+      </div>
       <div id="booking-area">
         <p class="loading-text">Generating your private booking link…</p>
       </div>
     </div>
 
-    <!-- STEP 2: Email / newsletter -->
+    <!-- STEP 1: Doc links -->
+    <div class="step-box">
+      <div class="num">Step 1 — Access your Playbook</div>
+      <h3>Open your documents</h3>
+      <p>Click below to open each Google Doc. Go to <strong>File → Make a Copy</strong> on each to save your own editable versions to your Drive.</p>
+
+      <!-- Core docs (all tiers) -->
+      <a href="https://docs.google.com/document/d/1Su9O5PrxZ7H_dlDd2Iwa0E5dtcRDwXUekEbDI7RPoiQ/edit" class="access-btn" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+        0. Start Here →
+      </a>
+      <a href="https://docs.google.com/document/d/1IpMjCE7FSQjEWyHJHJDsnMYxH5PqPsdAxPO-jHvwKhI/edit" class="access-btn secondary" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+        2. Assessment Tool →
+      </a>
+      <a href="https://docs.google.com/document/d/1p6ht0FNDPNkMOvKlpWj6XFVkjXRKXkO-nkTJQTAxGeU/edit" class="access-btn secondary" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+        5. Quick Reference Card →
+      </a>
+
+      <!-- Full tier docs ($597/$997 only) -->
+      <div class="full-only">
+        <a href="https://docs.google.com/document/d/1tYXsol33qMrP5vERxuvfq8TtGoA4e_5hUepjJc1QD8s/edit" class="access-btn secondary" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+          1. Core Playbook →
+        </a>
+        <a href="https://docs.google.com/document/d/1xnomKp22-S98Pk_ayR2nMXuJdBnsQ0F15B5wqWuSuJY/edit" class="access-btn secondary" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+          3. Communication Toolkit →
+        </a>
+        <a href="https://docs.google.com/document/d/1EBrOVc7yf2w8lIc23n82dUMqW0l97U-FYPliyxt3x_M/edit" class="access-btn secondary" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+          4. Priority Planner →
+        </a>
+        <div class="bonus-label">Bonus Documents</div>
+        <a href="https://docs.google.com/document/d/158ODS9LlZGp-Y-ujnPf6MBX1_G26oBGeg7ylw5sCDUo/edit" class="access-btn bonus" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+          B. Executive Presentation Template →
+        </a>
+        <a href="https://docs.google.com/document/d/1VX4IIiNCK-Z9OWrJlG1C5b1Lt6eInGZYAlhzgXKadnk/edit" class="access-btn bonus" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+          C. First 90 Days Playbook →
+        </a>
+      </div>
+
+      <div class="copy-note">File → Make a Copy on each · saves to your own Google Drive</div>
+    </div>
+
+    <!-- UPSELL — shown for $197 (upgrade to $597) and $597 (upgrade to $997 session) -->
+    <div class="upsell-box hidden" id="upsell-box">
+      <div class="num">Step 2 — Optional</div>
+      <h3>Want Jared to walk through this with you?</h3>
+      <p>Book a 60-minute Cut to Clarity session — $750, no fluff, just clarity. We'll work through your Playbook together and build a plan specific to your organization.</p>
+      <a href="https://calendly.com/jaredpeno/cut-to-clarity" class="upsell-btn" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" /></svg>
+        Book a Cut to Clarity Session →
+      </a>
+    </div>
+
+    <!-- NEWSLETTER -->
     <div class="form-wrap">
-      <div class="card-label">Step 2 — Get these links delivered to your inbox</div>
+      <div class="num" id="newsletter-step">Step 3 — Get these links delivered to your inbox</div>
       <h3>Want these links in your email?</h3>
       <p>Get your document links delivered straight to your inbox so you never lose them. You'll also join the Think Like A CIO newsletter — frameworks, case studies, and practical tools for IT leaders.</p>
       <div class="form-row">
         <input type="email" id="beehiiv-email" placeholder="your@email.com" />
         <button onclick="subscribeBeehiiv()">Deliver Links + Subscribe →</button>
       </div>
-      <div class="success-msg" id="success-msg">✅ Done! Links are on the way. Welcome to Think Like A CIO!our Playbook is on its way.</div>
+      <div class="success-msg" id="success-msg">✅ Done! Links are on the way. Welcome to Think Like A CIO!</div>
     </div>
 
     <div class="fine">
@@ -165,62 +273,6 @@
   </div>
 
   <script>
-    (async function() {
-      const params = new URLSearchParams(window.location.search);
-      const sessionId = params.get('session_id');
-      if (!sessionId) return;
-
-      const box = document.getElementById('session-box');
-      const area = document.getElementById('booking-area');
-      box.style.display = 'block';
-
-      try {
-        const res = await fetch(`https://products.jaredpeno.com/api/tcp-session?session_id=${encodeURIComponent(sessionId)}`);
-        const data = await res.json();
-
-        if (data.eligible && data.booking_url) {
-          const url = data.booking_url;
-          area.innerHTML = `
-            <a class="book-btn" href="${url}" target="_blank" rel="noopener" onclick="sessionBooked()">→ Book My Session Now</a>
-            <div class="copy-row">
-              <div class="copy-url" title="${url}">${url}</div>
-              <button class="copy-btn" id="copy-btn" onclick="copyLink('${url}')">Copy Link</button>
-            </div>
-          `;
-          window._booked = false;
-          window.addEventListener('beforeunload', function(e) {
-            if (!window._booked) {
-              e.preventDefault();
-              e.returnValue = 'Your session booking link will not be available after leaving. Have you booked or copied your link?';
-              return e.returnValue;
-            }
-          });
-        } else if (data.eligible === false) {
-          box.style.display = 'none';
-        } else {
-          area.innerHTML = `<p class="error-text">Could not generate your link. Email <a href="mailto:jaredpeno@simplifyit.co" style="color:#f87171;">jaredpeno@simplifyit.co</a> and we'll sort it out.</p>`;
-        }
-      } catch(e) {
-        area.innerHTML = `<p class="error-text">Could not generate your link. Email <a href="mailto:jaredpeno@simplifyit.co" style="color:#f87171;">jaredpeno@simplifyit.co</a> and we'll sort it out.</p>`;
-      }
-    })();
-
-    function sessionBooked() { window._booked = true; }
-
-    function copyLink(url) {
-      const btn = document.getElementById('copy-btn');
-      navigator.clipboard.writeText(url).then(() => {
-        btn.textContent = '✓ Copied!';
-        btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = 'Copy Link'; btn.classList.remove('copied'); }, 2500);
-      }).catch(() => {
-        const el = document.createElement('textarea');
-        el.value = url; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el);
-        btn.textContent = '✓ Copied!'; btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = 'Copy Link'; btn.classList.remove('copied'); }, 2500);
-      });
-    }
-
     async function subscribeBeehiiv() {
       const email = document.getElementById('beehiiv-email').value.trim();
       if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
@@ -231,16 +283,12 @@
           body: JSON.stringify({ email, utm_source: UTM_MAP[window._purchaseTier] || 'tcp-buyer', utm_medium: 'product-purchase', send_welcome_email: true, reactivate_existing: true })
         });
         const data = await res.json();
-        if (res.ok || data.ok || data.data) {
+        if (res.ok || data.data) {
           document.getElementById('success-msg').style.display = 'block';
           document.querySelector('.form-row').style.opacity = '0.4';
           document.querySelector('.form-row button').disabled = true;
-        } else {
-          alert('Something went wrong. Email jaredpeno@simplifyit.co for access.');
-        }
-      } catch(e) {
-        alert('Something went wrong. Email jaredpeno@simplifyit.co for access.');
-      }
+        } else { alert('Something went wrong. Email jaredpeno@simplifyit.co for help.'); }
+      } catch(e) { alert('Something went wrong. Email jaredpeno@simplifyit.co for help.'); }
     }
   </script>
 </body>
