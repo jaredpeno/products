@@ -22,9 +22,11 @@
     .step-box .num { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #a78bfa; margin-bottom: 8px; }
     .step-box h3 { font-size: 1rem; font-weight: 700; margin: 0 0 10px; }
     .step-box p { font-size: 0.88rem; color: #94a3b8; margin: 0 0 16px; line-height: 1.6; }
-    .access-btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: #7c3aed; color: #fff; padding: 14px 24px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: background 0.2s; }
+    .access-btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: #7c3aed; color: #fff; padding: 14px 24px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: background 0.2s; margin-bottom: 10px; }
     .access-btn:hover { background: #6d28d9; }
     .access-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .access-btn.secondary { background: rgba(124,58,237,0.2); border: 1px solid rgba(124,58,237,0.4); }
+    .access-btn.secondary:hover { background: rgba(124,58,237,0.3); }
     .copy-note { font-size: 0.78rem; color: #64748b; margin-top: 10px; text-align: center; }
     /* Upsell box — visually distinct */
     .upsell-box { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 28px; margin-bottom: 16px; text-align: left; }
@@ -82,12 +84,28 @@
     <div class="step-box">
       <div class="num">Step 1 — Access your Vendor Scorecard</div>
       <h3>Open your scorecard</h3>
-      <p>Click below to open the Google Sheet. Go to <strong>File → Make a Copy</strong> to save your own editable version to your Drive.</p>
-      <a href="https://docs.google.com/spreadsheets/d/11x0Pi0Ebhs5K1Qtny64EuYCGh4rgIzCrBsM3b4susU0/edit?usp=sharing" class="access-btn" target="_blank" rel="noopener">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 0 1-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75.125v-5.625m0 0A1.125 1.125 0 0 1 3.375 12h.375m0 7.5V12m0 0h1.5m0 0A1.125 1.125 0 0 1 6 13.125V12m0 0h1.5m0 0c.621 0 1.125.504 1.125 1.125V18.375M9 12v6.375m0 0h1.5m0-6.375c0-.621.504-1.125 1.125-1.125h.375m1.5 7.5V12m0 0h1.5m-1.5 7.5v-5.625A1.125 1.125 0 0 1 13.875 12h.375m0 7.5h1.5m-1.5 0v-5.625A1.125 1.125 0 0 1 15.375 12H18m0 7.5v-5.625" /></svg>
-        Open Vendor Scorecard →
+      <p>Click below to open each Google Doc. Go to <strong>File → Make a Copy</strong> on each to save your own editable versions to your Drive.</p>
+      <a href="https://docs.google.com/document/d/1B6MDgYJD4a7FvsBDdNRHSFgodgjb4dQA1IUp7mLDd18/edit?usp=sharing" class="access-btn" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+        1. Start Here →
       </a>
-      <div class="copy-note">File → Make a Copy · saves to your own Google Drive</div>
+      <a href="https://docs.google.com/document/d/1UT09_-RC2pkqWUvwBMgnWgrXfeThjvH266yYCtYUFIU/edit?usp=sharing" class="access-btn secondary" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+        2. Scorecard Framework →
+      </a>
+      <a href="https://docs.google.com/document/d/1QvN7YJqCt6JmKbFZMJABz2FLy-GndRsj0qZtXAm1_6A/edit?usp=sharing" class="access-btn secondary" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+        3. Filled Sample →
+      </a>
+      <a href="https://docs.google.com/document/d/11ZTlDV-1w8KTr8iJrO5nOCKLCujZhusc5JOb-SlWfpQ/edit?usp=sharing" class="access-btn secondary" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+        4. Reference Check →
+      </a>
+      <a href="https://docs.google.com/document/d/1EagzKHpsEhRi60uq7tvBeQGkOwv3_ppNtDF2hQLJlgk/edit?usp=sharing" class="access-btn secondary" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+        5. Quick Reference →
+      </a>
+      <div class="copy-note">File → Make a Copy on each · saves to your own Google Drive</div>
     </div>
 
     <div class="upsell-box">
