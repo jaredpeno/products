@@ -151,11 +151,12 @@
         document.getElementById('upsell-box').classList.remove('hidden');
         document.getElementById('session-card').classList.add('hidden');
       }
-      /* Session ($997): all 8 docs + session booking */
+      /* Session ($997): all 8 docs + session booking, no upsell */
       else if (tier === 'session') {
         document.querySelectorAll('.full-only').forEach(el => el.classList.remove('hidden'));
         document.getElementById('upsell-box').classList.add('hidden');
         document.getElementById('session-card').classList.remove('hidden');
+        document.getElementById('newsletter-step').textContent = 'Step 2 — Get these links delivered to your inbox';
         generateCalendlyLink(sessionId);
       }
     })();
