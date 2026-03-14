@@ -92,16 +92,21 @@
 </head>
 <body style="display:none;">
   <script>
-    /* Tier detection from Stripe payment link */
-    const TIER_MAP = {
+    /* Tier detection — payment link ID → product ID → amount fallback */
+    const LINK_TIER = {
       'plink_1TAlJ1Ld695go1352YLTSRBN': 'clarity',
       'plink_1TAeLVLd695go135XpHLA7uK': 'full',
       'plink_1T6NkxLd695go135jlmoO6nH': 'session'
     };
+    const PRODUCT_TIER = {
+      'prod_U4WL0dBRNRdBP9': 'clarity',
+      'prod_U4WLTSqYaZN1Fa': 'full',
+      'prod_U4WooZVy5b3E9h': 'session'
+    };
     const UTM_MAP = {
       'clarity': 'tcp-clarity-buyer',
-      'full': 'tcp-buyer',
-      'session': 'tcp-buyer'
+      'full': 'tcp-full-buyer',
+      'session': 'tcp-session-buyer'
     };
     window._purchaseTier = 'full';
 
@@ -119,8 +124,11 @@
           window.location.replace('/technology-clarity-playbook/');
           return;
         }
-        if (data.payment_link && TIER_MAP[data.payment_link]) {
-          window._purchaseTier = TIER_MAP[data.payment_link];
+        /* Determine tier: known payment link → product ID → default full */
+        if (data.payment_link && LINK_TIER[data.payment_link]) {
+          window._purchaseTier = LINK_TIER[data.payment_link];
+        } else if (data.product_id && PRODUCT_TIER[data.product_id]) {
+          window._purchaseTier = PRODUCT_TIER[data.product_id];
         }
       } catch(e) {
         window.location.replace('/technology-clarity-playbook/');
@@ -155,10 +163,10 @@
     async function generateCalendlyLink(sessionId) {
       const area = document.getElementById('booking-area');
       try {
-        const res = await fetch('/api/calendly-link?session_id=' + encodeURIComponent(sessionId));
+        const res = await fetch('/api/tcp-session?session_id=' + encodeURIComponent(sessionId));
         const data = await res.json();
-        if (data.url) {
-          const url = data.url;
+        if (data.booking_url) {
+          const url = data.booking_url;
           area.innerHTML = `
             <a class="book-btn" href="${url}" target="_blank" rel="noopener">Book My Session Now →</a>
             <div class="copy-row">
