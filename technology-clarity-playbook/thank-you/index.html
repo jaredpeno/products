@@ -80,6 +80,24 @@
 </head>
 <body style="display:none;">
   <script>
+    // Tier detection: map payment_link IDs to tiers
+    const TIER_MAP = {
+      'plink_1TAlJ1Ld695go1352YLTSRBN': 'clarity',   // $197 (new link with session_id)
+      'plink_1TAeLVLd695go135XpHLA7uK': 'full',       // $597
+      'plink_1T6NkxLd695go135jlmoO6nH': 'session'     // $997
+    };
+    const UTM_MAP = {
+      'clarity': 'tcp-clarity-buyer',
+      'full': 'tcp-full-buyer',
+      'session': 'tcp-session-buyer'
+    };
+    const TIER_LABELS = {
+      'clarity': 'Clarity Edition (Assessment Tool + Quick Reference)',
+      'full': 'Full Playbook (all 8 documents + 3 companion assets)',
+      'session': 'Full Playbook + Cut to Clarity Session'
+    };
+    window._purchaseTier = 'full'; // default fallback
+
     (async function gate() {
       const params = new URLSearchParams(window.location.search);
       const sessionId = params.get('session_id');
@@ -94,6 +112,13 @@
           window.location.replace('/technology-clarity-playbook/');
           return;
         }
+        // Detect tier from payment_link
+        if (data.payment_link && TIER_MAP[data.payment_link]) {
+          window._purchaseTier = TIER_MAP[data.payment_link];
+        }
+        // Update page text based on tier
+        const tierLabel = document.getElementById('tier-label');
+        if (tierLabel) tierLabel.textContent = TIER_LABELS[window._purchaseTier] || '';
       } catch(e) {
         window.location.replace('/technology-clarity-playbook/');
         return;
@@ -105,6 +130,7 @@
     <div class="check">✅</div>
     <h1>Purchase confirmed.</h1>
     <p class="sub">Follow these two steps to get full access to your Playbook.</p>
+    <p id="tier-label" style="color:#64b5f6; font-size:0.85rem; font-weight:600; margin:-20px 0 24px;"></p>
 
     <!-- STEP 1: Urgent session booking -->
     <div class="urgent-card" id="session-box" style="display:none;">
@@ -202,7 +228,7 @@
         const res = await fetch('/api/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, utm_source: 'tcp-buyer', utm_medium: 'product-purchase', send_welcome_email: true, reactivate_existing: true })
+          body: JSON.stringify({ email, utm_source: UTM_MAP[window._purchaseTier] || 'tcp-buyer', utm_medium: 'product-purchase', send_welcome_email: true, reactivate_existing: true })
         });
         const data = await res.json();
         if (res.ok || data.ok || data.data) {
