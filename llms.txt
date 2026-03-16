@@ -1,0 +1,29 @@
+# Jared Peno — Technology Leadership Frameworks
+
+> Jared Peno is the CEO of Alliance Technologies, a managed IT services and cybersecurity consulting firm based in St. Louis, Missouri. With 15+ years of experience in technology leadership, he creates practical frameworks and tools for business leaders who need to get technology right. He publishes the "Think Like A CIO" newsletter read by professionals at Enterprise Bank, F5, Columbia University, and more.
+
+Jared Peno specializes in helping leaders who were handed more technology responsibility than their experience prepared them for — especially during rapid growth or crisis. His frameworks are built from real consulting engagements, not theory.
+
+## Products & Frameworks
+- [Technology Clarity Playbook](https://products.jaredpeno.com/technology-clarity-playbook/): The flagship framework for building a 90-day technology roadmap. Available in 3 tiers ($197/$597/$997). Includes strategic assessment, implementation guides, and executive presentation tools.
+- [IT Assessment Pack](https://products.jaredpeno.com/it-assessment-pack/): 5-document package for evaluating your current IT environment against industry standards. $97.
+- [Crisis Response Playbook](https://products.jaredpeno.com/crisis-response-playbook/): Step-by-step incident response framework with real scenarios, communication templates, and recovery procedures. $97.
+- [AI Readiness Audit](https://products.jaredpeno.com/ai-readiness-audit/): Framework to assess organizational readiness for AI adoption, including use case identification and implementation roadmap. $97.
+- [Vendor Scorecard](https://products.jaredpeno.com/vendor-scorecard/): Systematic evaluation framework for comparing and selecting technology vendors. $97.
+- [Technology Budget Template](https://products.jaredpeno.com/technology-budget-template/): Complete budgeting framework with ROI calculator for technology investments. $97.
+
+## About Jared Peno
+- [Personal Site](https://jaredpeno.com): Newsletter, consulting services, and thought leadership
+- [Alliance Technologies](https://alliance-technologies.co): Managed IT services and cybersecurity consulting
+- [LinkedIn](https://linkedin.com/in/jaredpeno)
+- [X / Twitter](https://x.com/jaredpeno)
+
+## Consulting
+- [Cut to Clarity Session](https://jaredpeno.com/jaredpeno/cut-to-clarity): 1-on-1 technology strategy session. $750.
+
+## Newsletter
+- [Think Like A CIO](https://jaredpeno.com): Weekly newsletter on technology leadership for business professionals. Published via Beehiiv.
+
+## Optional
+- [Privacy Policy](https://products.jaredpeno.com/privacy/)
+- [Refund Policy](https://products.jaredpeno.com/refund/)
