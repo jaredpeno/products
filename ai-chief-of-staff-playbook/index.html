@@ -8,9 +8,9 @@
   <link rel="manifest" href="/site.webmanifest" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The AI Chief of Staff Playbook — Jared Peno</title>
-  <meta name="description" content="Build a fully autonomous AI business partner in 30 days. 20 chapters, real cost breakdowns, 12 documented failures and fixes. Written by the system it teaches you to build." />
+  <meta name="description" content="Build a fully autonomous AI business partner over a weekend. 20 chapters, real cost breakdowns, 12 documented failures and fixes. Written by the system it teaches you to build." />
   <meta property="og:title" content="The AI Chief of Staff Playbook" />
-  <meta property="og:description" content="Build a fully autonomous AI business partner in 30 days. 20 chapters, real architecture, $3–5/day for 25+ autonomous agents." />
+  <meta property="og:description" content="What if your business had a Chief of Staff who never slept, never forgot, and cost $4/day? 20 chapters. Real architecture. $3–5/day for 25+ autonomous agents." />
   <meta property="og:url" content="https://products.jaredpeno.com/ai-chief-of-staff-playbook/" />
   <meta property="og:type" content="product" />
   <script type="application/ld+json">
@@ -18,7 +18,7 @@
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "The AI Chief of Staff Playbook",
-    "description": "A 20-chapter PDF guide covering how to build a fully autonomous AI business partner in 30 days. Includes installation, identity architecture, QMD memory system, agent team setup, content engine, Voice DNA, self-improvement system, cost optimization, and 4 appendices. Written by Ally, Jared's AI Chief of Staff, with his editorial direction.",
+    "description": "A 20-chapter PDF guide covering how to build a fully autonomous AI business partner over a weekend. Includes installation, identity architecture, QMD memory system, agent team setup, content engine, Voice DNA, self-improvement system, cost optimization, and 4 appendices. Written by Ally, Jared's AI Chief of Staff, with his editorial direction.",
     "url": "https://products.jaredpeno.com/ai-chief-of-staff-playbook/",
     "brand": {
       "@type": "Person",
@@ -55,13 +55,13 @@
     nav a.cta-nav { background: #2563eb; color: #fff; padding: 9px 18px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
 
     /* HERO */
-    .hero { background: linear-gradient(150deg, #071829 0%, #0D2B4C 60%, #0f3460 100%); color: #fff; padding: 60px 24px 0; overflow: hidden; }
+    .hero { background: linear-gradient(150deg, #071829 0%, #0D2B4C 60%, #0f3460 100%); color: #fff; padding: 60px 24px 60px; overflow: hidden; }
     .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
     @media(max-width: 800px) { .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; } }
     .hero-text .eyebrow { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #64b5f6; font-weight: 700; margin-bottom: 16px; }
-    .hero-text h1 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+    .hero-text h1 { font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 900; line-height: 1.15; margin-bottom: 20px; }
     .hero-text h1 em { font-style: normal; color: #64b5f6; }
-    .hero-text .sub { font-size: 1rem; color: #94a3b8; margin-bottom: 32px; max-width: 460px; line-height: 1.7; }
+    .hero-text .sub { font-size: 1rem; color: #94a3b8; margin-bottom: 32px; max-width: 480px; line-height: 1.7; }
     @media(max-width: 800px) { .hero-text .sub { margin: 0 auto 28px; } }
     .hero-btns { display: flex; flex-wrap: wrap; gap: 10px; }
     @media(max-width: 800px) { .hero-btns { justify-content: center; } }
@@ -72,37 +72,10 @@
     .trust-line { margin-top: 16px; font-size: 0.75rem; color: #475569; }
     @media(max-width: 800px) { .trust-line { text-align: center; } }
 
-    /* HERO VISUAL — terminal/agent stack */
-    .agent-stack-wrap { position: relative; height: 400px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 0; }
-    @media(max-width: 800px) { .agent-stack-wrap { height: 300px; } }
-    .agent-card { position: absolute; background: #0f1e2e; border: 1px solid rgba(100,181,246,0.2); border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); overflow: hidden; transition: transform 0.3s ease; }
-    .agent-card:hover { transform: translateY(-8px) !important; }
-    .ac3 { width: 240px; bottom: 0; left: 50%; transform: translateX(-62%) rotate(-5deg) translateY(20px); z-index: 1; opacity: 0.8; }
-    .ac2 { width: 240px; bottom: 0; left: 50%; transform: translateX(-38%) rotate(3deg) translateY(10px); z-index: 2; opacity: 0.9; }
-    .ac1 { width: 270px; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 3; }
-    @media(max-width: 800px) {
-      .ac3 { width: 180px; transform: translateX(-62%) rotate(-5deg) translateY(15px); }
-      .ac2 { width: 180px; transform: translateX(-38%) rotate(3deg) translateY(8px); }
-      .ac1 { width: 210px; transform: translateX(-50%); }
-    }
-    .ac-header { background: #071829; padding: 10px 14px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(100,181,246,0.1); }
-    .ac-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-    .ac-title { font-size: 0.6rem; font-weight: 700; color: #64b5f6; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .ac-body { padding: 12px 14px; }
-    .ac-line { font-family: monospace; font-size: 0.62rem; padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; gap: 6px; align-items: flex-start; }
-    .ac-line:last-child { border-bottom: none; }
-    .ac-prompt { color: #64b5f6; flex-shrink: 0; }
-    .ac-cmd { color: #e2e8f0; flex: 1; }
-    .ac-ok { color: #4ade80; flex-shrink: 0; font-size: 0.58rem; font-weight: 700; }
-    .ac-section { font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #475569; margin: 8px 0 4px; }
-    .ac-agent { display: flex; align-items: center; gap: 6px; padding: 4px 0; }
-    .ac-agent-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
-    .ac-agent-name { font-size: 0.62rem; color: #94a3b8; font-family: monospace; flex: 1; }
-    .ac-agent-status { font-size: 0.55rem; font-weight: 700; color: #4ade80; }
-    .ac-cost { background: rgba(100,181,246,0.08); border: 1px solid rgba(100,181,246,0.15); border-radius: 6px; padding: 8px; margin-top: 8px; }
-    .ac-cost-label { font-size: 0.58rem; color: #64748b; font-family: monospace; margin-bottom: 4px; }
-    .ac-cost-val { font-size: 1.1rem; font-weight: 900; color: #4ade80; font-family: monospace; line-height: 1; }
-    .ac-cost-sub { font-size: 0.55rem; color: #475569; margin-top: 2px; }
+    /* HERO IMAGE */
+    .hero-image-wrap { display: flex; align-items: center; justify-content: center; }
+    .hero-image-wrap img { width: 100%; max-width: 520px; height: auto; border-radius: 12px; box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
+    @media(max-width: 800px) { .hero-image-wrap img { max-width: 380px; } }
 
     /* SHARED SECTION STYLES */
     .section { padding: 64px 24px; max-width: 860px; margin: 0 auto; }
@@ -122,12 +95,34 @@
     .vision-bg .label { color: #64b5f6; }
     .vision-bg p { color: #94a3b8; margin-bottom: 14px; font-size: 0.95rem; line-height: 1.75; }
     .vision-bg strong { color: #e2e8f0; }
+
+    /* BEFORE / AFTER */
+    .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+    @media(max-width: 580px) { .before-after { grid-template-columns: 1fr; } }
+    .ba-box { border-radius: 10px; padding: 20px 22px; }
+    .ba-box.before { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25); }
+    .ba-box.after { background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.25); }
+    .ba-label { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .ba-box.before .ba-label { color: #f87171; }
+    .ba-box.after .ba-label { color: #4ade80; }
+    .ba-item { font-size: 0.85rem; color: #94a3b8; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.06); line-height: 1.45; display: flex; gap: 8px; align-items: flex-start; }
+    .ba-item:last-child { border-bottom: none; }
+    .ba-item .bi { flex-shrink: 0; }
+
     .vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
     @media(max-width: 580px) { .vision-grid { grid-template-columns: 1fr; } }
     .vision-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 18px 20px; }
     .vision-item .vi-icon { width: 26px; height: 26px; color: #64b5f6; margin-bottom: 10px; }
     .vision-item h3 { font-size: 0.9rem; font-weight: 700; color: #e2e8f0; margin-bottom: 6px; }
     .vision-item p { font-size: 0.82rem; color: #94a3b8; margin: 0; line-height: 1.5; }
+
+    /* TELEGRAM IMAGE */
+    .telegram-proof { display: flex; gap: 36px; align-items: center; margin-top: 36px; }
+    @media(max-width: 700px) { .telegram-proof { flex-direction: column; gap: 20px; } }
+    .telegram-proof img { width: 220px; flex-shrink: 0; border-radius: 16px; box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+    @media(max-width: 700px) { .telegram-proof img { width: 180px; } }
+    .telegram-proof-text h3 { font-size: 1rem; font-weight: 700; color: #e2e8f0; margin-bottom: 8px; }
+    .telegram-proof-text p { font-size: 0.88rem; color: #94a3b8; margin: 0; line-height: 1.65; }
 
     /* CHAPTERS */
     .includes-bg { background: #f8fafc; }
@@ -164,11 +159,32 @@
     .fit-item:last-child { border-bottom: none; }
     .fit-item .fi-icon { flex-shrink: 0; font-size: 0.85rem; margin-top: 1px; }
 
+    /* AUTHOR */
+    .author-bg { background: #f8fafc; }
+    .author-inner { max-width: 720px; margin: 0 auto; display: flex; gap: 36px; align-items: flex-start; }
+    @media(max-width: 640px) { .author-inner { flex-direction: column; gap: 20px; } }
+    .author-avatar { width: 80px; height: 80px; border-radius: 50%; background: #0D2B4C; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 900; color: #64b5f6; flex-shrink: 0; border: 3px solid #2563eb; }
+    .author-text .author-name { font-size: 1.1rem; font-weight: 800; color: #0D2B4C; margin-bottom: 2px; }
+    .author-text .author-title { font-size: 0.82rem; color: #2563eb; font-weight: 700; margin-bottom: 12px; }
+    .author-text p { font-size: 0.9rem; color: #555; line-height: 1.7; margin-bottom: 10px; }
+    .author-text p:last-child { margin-bottom: 0; }
+    .author-creds { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .author-cred { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 4px 12px; font-size: 0.75rem; font-weight: 700; color: #1e40af; }
+
+    /* PRICE ANCHORING */
+    .price-anchor { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
+    .price-anchor .pa-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; margin-bottom: 14px; }
+    .pa-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-size: 0.88rem; }
+    .pa-row:last-child { border-bottom: none; }
+    .pa-row .pa-item { color: #374151; }
+    .pa-row .pa-cost { font-weight: 700; color: #dc2626; }
+    .pa-row.highlight .pa-item { color: #0D2B4C; font-weight: 700; }
+    .pa-row.highlight .pa-cost { color: #16a34a; font-weight: 900; font-size: 1rem; }
+
     /* PRICING */
     .pricing-bg { background: #f8fafc; }
-    .price-single { background: #fff; border: 2px solid #2563eb; border-radius: 16px; padding: 36px; max-width: 560px; margin: 28px auto 0; }
+    .price-single { background: #fff; border: 2px solid #2563eb; border-radius: 16px; padding: 36px; max-width: 560px; margin: 0 auto; }
     .price-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
-    .price-badge { display: inline-block; background: #2563eb; color: #fff; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 8px; }
     .price-name { font-size: 1.2rem; font-weight: 900; color: #0D2B4C; }
     .price-amount { font-size: 3rem; font-weight: 900; line-height: 1; color: #0D2B4C; }
     .price-note { font-size: 0.78rem; color: #16a34a; font-weight: 700; margin-top: 4px; }
@@ -178,13 +194,14 @@
     .btn-buy-big { display: block; text-align: center; background: #2563eb; color: #fff; padding: 18px; border-radius: 10px; font-weight: 800; text-decoration: none; font-size: 1.05rem; transition: background 0.2s, transform 0.15s; }
     .btn-buy-big:hover { background: #1d4ed8; transform: translateY(-1px); }
     .price-fine { text-align: center; font-size: 0.75rem; color: #94a3b8; margin-top: 12px; }
+    .price-friction { text-align: center; font-size: 0.8rem; color: #555; margin-top: 10px; }
 
-    /* GUARANTEE */
-    .guarantee-box { max-width: 640px; margin: 40px auto 0; text-align: center; background: #fff; border: 2px solid #e2e8f0; border-radius: 14px; padding: 32px 28px; }
-    .guarantee-box .guar-icon { width: 48px; height: 48px; color: #16a34a; margin: 0 auto 14px; }
-    .guarantee-box h3 { font-size: 1.1rem; font-weight: 800; color: #0D2B4C; margin-bottom: 10px; }
-    .guarantee-box p { font-size: 0.9rem; color: #555; line-height: 1.65; }
-    .guarantee-box p a { color: #2563eb; }
+    /* ALL SALES FINAL */
+    .final-box { max-width: 640px; margin: 40px auto 0; text-align: center; background: #fff; border: 2px solid #e2e8f0; border-radius: 14px; padding: 32px 28px; }
+    .final-box .fi-icon { width: 48px; height: 48px; color: #0D2B4C; margin: 0 auto 14px; }
+    .final-box h3 { font-size: 1.1rem; font-weight: 800; color: #0D2B4C; margin-bottom: 10px; }
+    .final-box p { font-size: 0.9rem; color: #555; line-height: 1.65; }
+    .final-box p a { color: #2563eb; }
 
     /* FAQ */
     details { border-bottom: 1px solid #e5e7eb; padding: 18px 0; }
@@ -206,14 +223,7 @@
     footer a { color: #475569; text-decoration: none; }
     hr.div { border: none; border-top: 1px solid #f1f5f9; max-width: 860px; margin: 0 auto; }
 
-    /* OUTCOMES */
-    .outcome { display: flex; gap: 14px; padding: 18px 0; border-bottom: 1px solid #f1f5f9; align-items: flex-start; }
-    .outcome:last-child { border-bottom: none; }
-    .outcome .ico { width: 26px; height: 26px; flex-shrink: 0; margin-top: 3px; color: #1e3a5f; }
-    .outcome h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 3px; }
-    .outcome p { font-size: 0.85rem; color: #555; line-height: 1.5; }
-
-    /* HEADSTART BANNER */
+    /* OUTCOMES / HEADSTART */
     .headstart-banner { background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); color: #fff; border-radius: 12px; padding: 24px 28px; margin-top: 28px; display: flex; gap: 18px; align-items: flex-start; }
     @media(max-width: 580px) { .headstart-banner { flex-direction: column; gap: 12px; } }
     .headstart-banner .hb-icon { width: 32px; height: 32px; flex-shrink: 0; color: #64b5f6; margin-top: 2px; }
@@ -235,85 +245,26 @@
 <nav>
   <a href="/" class="nav-brand"><img src="/logo-72.png" alt="JP" style="width:32px;height:32px;border-radius:6px;" /></a>
   <a href="https://jaredpeno.com" class="back">jaredpeno.com</a>
-  <a href="#pricing" class="cta-nav">Get the Playbook →</a>
+  <a href="#pricing" class="cta-nav">Get Instant Access →</a>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="eyebrow">The AI Chief of Staff Playbook — v1.1, March 2026</div>
-      <h1>Your AI Partner.<br>Built in <em>30 Days.</em><br>Running Forever.</h1>
-      <p class="sub">While everyone else is watching YouTube tutorials, you could have a fully autonomous AI business partner live and running. 20 chapters. Real architecture. $3–5/day for 25+ agents.</p>
+      <div class="eyebrow">The AI Chief of Staff Playbook</div>
+      <h1>What If Your Business Had a Chief of Staff Who Never Slept, Never Forgot, and Cost <em>$4/Day?</em></h1>
+      <p class="sub">I spent 30 days building this system. You'll spend a weekend. This is the exact playbook — every architecture decision, every failure, every fix.</p>
       <div class="hero-btns">
-        <a href="https://buy.stripe.com/00w4gA94Fb8xeHJcmpaR20s" class="btn-blue">Get the Playbook — $197</a>
-        <a href="#whats-inside" class="btn-ghost">See what's inside ↓</a>
+        <a href="https://buy.stripe.com/00w4gA94Fb8xeHJcmpaR20s" class="btn-blue">Get Instant Access — $197</a>
+        <a href="#whats-inside" class="btn-ghost">See What's Inside ↓</a>
       </div>
-      <div class="trust-line">🔒 Stripe checkout &nbsp;·&nbsp; Instant PDF download &nbsp;·&nbsp; 30-day guarantee</div>
+      <div class="trust-line">🔒 Stripe checkout &nbsp;·&nbsp; Instant PDF download &nbsp;·&nbsp; All sales final</div>
     </div>
 
-    <!-- AGENT TERMINAL STACK -->
-    <div class="agent-stack-wrap">
-      <!-- Card 3 — Agent roster (back) -->
-      <div class="agent-card ac3" style="padding-bottom:14px;">
-        <div class="ac-header">
-          <div class="ac-dot" style="background:#4ade80;"></div>
-          <div class="ac-dot" style="background:#fbbf24;"></div>
-          <div class="ac-title">~/agents $ status --all</div>
-        </div>
-        <div class="ac-body">
-          <div class="ac-section">Active Agents</div>
-          <div class="ac-agent"><div class="ac-agent-dot"></div><span class="ac-agent-name">rex (content)</span><span class="ac-agent-status">● LIVE</span></div>
-          <div class="ac-agent"><div class="ac-agent-dot"></div><span class="ac-agent-name">scout (research)</span><span class="ac-agent-status">● LIVE</span></div>
-          <div class="ac-agent"><div class="ac-agent-dot"></div><span class="ac-agent-name">forge (build)</span><span class="ac-agent-status">● LIVE</span></div>
-          <div class="ac-agent"><div class="ac-agent-dot" style="background:#fbbf24;"></div><span class="ac-agent-name">iris (inbox)</span><span class="ac-agent-status" style="color:#fbbf24;">● IDLE</span></div>
-          <div class="ac-agent"><div class="ac-agent-dot"></div><span class="ac-agent-name">aria (social)</span><span class="ac-agent-status">● LIVE</span></div>
-          <div class="ac-section" style="margin-top:8px;">Total: 25+ agents</div>
-        </div>
-      </div>
-
-      <!-- Card 2 — Cost dashboard (middle) -->
-      <div class="agent-card ac2" style="padding-bottom:14px;">
-        <div class="ac-header">
-          <div class="ac-dot" style="background:#4ade80;"></div>
-          <div class="ac-dot" style="background:#60a5fa;"></div>
-          <div class="ac-title">cost-optimizer.sh --daily</div>
-        </div>
-        <div class="ac-body">
-          <div class="ac-section">Today's Spend</div>
-          <div class="ac-cost">
-            <div class="ac-cost-label">Total API cost (24h)</div>
-            <div class="ac-cost-val">$4.23</div>
-            <div class="ac-cost-sub">25 agents · 847 tasks completed</div>
-          </div>
-          <div class="ac-section" style="margin-top:10px;">Model breakdown</div>
-          <div class="ac-line"><span class="ac-prompt">›</span><span class="ac-cmd">claude-sonnet  $2.81</span><span class="ac-ok">66%</span></div>
-          <div class="ac-line"><span class="ac-prompt">›</span><span class="ac-cmd">gpt-4o-mini    $0.94</span><span class="ac-ok">22%</span></div>
-          <div class="ac-line"><span class="ac-prompt">›</span><span class="ac-cmd">gemini-flash   $0.48</span><span class="ac-ok">11%</span></div>
-        </div>
-      </div>
-
-      <!-- Card 1 — Ally terminal (front) -->
-      <div class="agent-card ac1">
-        <div class="ac-header">
-          <div class="ac-dot" style="background:#4ade80;"></div>
-          <div class="ac-dot" style="background:#fbbf24;"></div>
-          <div class="ac-dot" style="background:#f87171;"></div>
-          <div class="ac-title">ally — Chief of Staff</div>
-        </div>
-        <div class="ac-body">
-          <div class="ac-section">Morning Brief — 08:00 CT</div>
-          <div class="ac-line"><span class="ac-prompt">✓</span><span class="ac-cmd">3 posts scheduled across 2 brands</span></div>
-          <div class="ac-line"><span class="ac-prompt">✓</span><span class="ac-cmd">Newsletter draft ready for review</span></div>
-          <div class="ac-line"><span class="ac-prompt">✓</span><span class="ac-cmd">14 emails triaged, 2 flagged urgent</span></div>
-          <div class="ac-line"><span class="ac-prompt">✓</span><span class="ac-cmd">Memory updated from Limitless transcript</span></div>
-          <div class="ac-line"><span class="ac-prompt">›</span><span class="ac-cmd" style="color:#64b5f6;">signal-loop: 4 new insights queued</span></div>
-          <div class="ac-section" style="margin-top:8px;">Voice DNA</div>
-          <div class="ac-line"><span class="ac-prompt">✓</span><span class="ac-cmd">7-step calibration: active</span><span class="ac-ok">✓ YOU</span></div>
-          <div class="ac-section" style="margin-top:8px;">System health</div>
-          <div class="ac-line"><span class="ac-prompt">✓</span><span class="ac-cmd">kill-check.sh passed (deterministic)</span><span class="ac-ok">OK</span></div>
-        </div>
-      </div>
+    <!-- HERO IMAGE -->
+    <div class="hero-image-wrap">
+      <img src="images/playbook-hero.png" alt="The AI Chief of Staff Playbook" width="1536" height="1024" loading="eager" />
     </div>
   </div>
 </div>
@@ -321,8 +272,8 @@
 <!-- PROBLEM -->
 <div class="section">
   <div class="label">Sound familiar?</div>
-  <h2>You know AI is eating your industry. You're still not sure what to actually build.</h2>
-  <p style="color:#555; margin-bottom:0;">You've seen the demos. You've read the threads. Maybe you've even set up ChatGPT. But there's a gap between "using AI tools" and having a fully autonomous system that works for you around the clock — one that knows your voice, remembers your context, and actually ships work. That gap is what costs you.</p>
+  <h2>You're not behind on AI because you're lazy. You're behind because no one's shown you the architecture.</h2>
+  <p style="color:#555; margin-bottom:0;">You've seen the demos. You've read the threads. Maybe you've even set up ChatGPT. But there's a gap between "using AI tools" and having a fully autonomous system that works for you around the clock — one that knows your voice, remembers your context, and actually ships work. No one hands you this blueprint. Until now.</p>
   <div class="pain-grid">
     <div class="pain-item">You're using AI reactively — one chat at a time — and wondering why it doesn't add up to real leverage.</div>
     <div class="pain-item">You've tried tools, prompts, and productivity hacks. None of them compound. None of them remember.</div>
@@ -335,7 +286,7 @@
     </div>
     <div>
       <strong>AI agents are where websites were in 1998.</strong>
-      <p>The businesses that built web presences early didn't just get a website — they got a decade of compounding advantage. The same window is open right now for autonomous AI systems. The guide documents the exact 30-day path. Skip the mistakes. Start with the architecture.</p>
+      <p>The businesses that built web presences early didn't just get a website — they got a decade of compounding advantage. The same window is open right now for autonomous AI systems. This playbook documents the exact path. Skip the mistakes. Start with the architecture.</p>
     </div>
   </div>
 </div>
@@ -348,7 +299,27 @@
     <div class="label">What you're building</div>
     <h2>A Chief of Staff that never sleeps, never forgets, and costs $3–5/day.</h2>
     <p>By the end of this playbook, you won't have a chatbot. You'll have a structured system of autonomous agents — each with a defined role, a memory architecture, and a communication channel — that actively manages your content, inbox, research, and business operations without you micromanaging every step.</p>
-    <p><strong>Jared runs 25+ of these agents daily.</strong> They manage multiple social media brands autonomously. They write his newsletter drafts. They triage email. They run morning briefings. They monitor signals and surface what matters. All for under $5/day in API costs.</p>
+
+    <!-- BEFORE / AFTER -->
+    <div class="before-after">
+      <div class="ba-box before">
+        <div class="ba-label">⬅ Before</div>
+        <div class="ba-item"><span class="bi">✕</span>Opening ChatGPT every time you need help with something</div>
+        <div class="ba-item"><span class="bi">✕</span>Re-explaining your context to AI from scratch, every session</div>
+        <div class="ba-item"><span class="bi">✕</span>Content takes hours, inbox is unmanaged, no consistent voice</div>
+        <div class="ba-item"><span class="bi">✕</span>AI as a tool — you work it, it doesn't work for you</div>
+      </div>
+      <div class="ba-box after">
+        <div class="ba-label">➡ After This Weekend</div>
+        <div class="ba-item"><span class="bi">✓</span>Agents run on schedule — morning briefings, content, triage</div>
+        <div class="ba-item"><span class="bi">✓</span>Persistent memory means agents know your context, always</div>
+        <div class="ba-item"><span class="bi">✓</span>Content engine publishing autonomously across brands</div>
+        <div class="ba-item"><span class="bi">✓</span>AI as infrastructure — it runs, you review and decide</div>
+      </div>
+    </div>
+
+    <p><strong>Jared runs 25+ of these agents daily.</strong> They manage multiple social media brands autonomously. They write newsletter drafts. They triage email. They run morning briefings. They monitor signals and surface what matters. All for under $5/day in API costs.</p>
+
     <div class="vision-grid">
       <div class="vision-item">
         <div class="vi-icon">
@@ -379,6 +350,16 @@
         <p>Not AI reviewing AI. Actual kill-check scripts that verify outputs meet hard rules before anything goes out — the chapter the others skip.</p>
       </div>
     </div>
+
+    <!-- TELEGRAM PROOF IMAGE -->
+    <div class="telegram-proof">
+      <img src="images/telegram-briefing-v2.png" alt="AI Chief of Staff morning briefing delivered via Telegram" width="1024" height="1536" loading="lazy" />
+      <div class="telegram-proof-text">
+        <h3>Your morning briefing. Every day. Before you're out of bed.</h3>
+        <p>This is what it looks like in practice: Ally sends a structured morning brief via Telegram every day at 8am. Posts scheduled. Drafts ready. Emails triaged. Signals surfaced. You wake up with your day already organized — by an agent that knew exactly what mattered and what could wait.</p>
+        <p style="margin-top:12px; font-size:0.82rem; color:#64748b;">This is the system the playbook builds. Not a concept. Not a demo. A running production system — delivered to your phone.</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -393,7 +374,7 @@
       <div class="chapter">
         <div class="ch-num">Ch 1–3</div>
         <div>
-          <h3>Foundation: Install & Identity</h3>
+          <h3>Foundation: Install &amp; Identity</h3>
           <p>Environment setup, OpenClaw installation, and the identity architecture that makes your AI partner feel like <em>yours</em>. SOUL.md, USER.md, AGENTS.md — the files that define who your AI is.</p>
         </div>
       </div>
@@ -419,7 +400,7 @@
         <div class="ch-num">Ch 9–10</div>
         <div>
           <div class="highlight-tag">★ Copy-paste ready</div>
-          <h3>Cron Templates & Scheduling</h3>
+          <h3>Cron Templates &amp; Scheduling</h3>
           <p>Copy-pasteable cron templates for every agent type. Morning briefings, content publishing, email triage, memory consolidation. Telegram prompt equivalents for every CLI command.</p>
         </div>
       </div>
@@ -445,8 +426,8 @@
         <div class="ch-num">Ch 14–15</div>
         <div>
           <div class="highlight-tag">★ The hard part</div>
-          <h3>12 Documented Failures & Fixes</h3>
-          <p>Every major mistake made during 30 days of building — and the exact fix for each. Runaway agents, memory corruption, voice drift, cost spikes. Skip the pain, keep the lessons.</p>
+          <h3>12 Documented Failures &amp; Fixes</h3>
+          <p>Every major mistake made during the build — and the exact fix for each. Runaway agents, memory corruption, voice drift, cost spikes. Skip the pain, keep the lessons.</p>
         </div>
       </div>
 
@@ -522,10 +503,10 @@
 <!-- ALLY PROOF -->
 <div class="proof-bg">
   <div class="proof-inner">
-    <div class="proof-eyebrow">The Proof That Changes Everything</div>
-    <blockquote>"This guide was written by <em>the system it teaches you to build.</em> That's not marketing — that's the point."</blockquote>
+    <div class="proof-eyebrow">Not Written By A Consultant. Written By The System.</div>
+    <blockquote>"This guide was written by Ally — <em>the autonomous AI Chief of Staff this playbook teaches you to build.</em> That's not a gimmick. That's a product demo."</blockquote>
     <p style="text-align:center; color:#555; font-size:0.92rem; max-width:600px; margin:0 auto 28px; line-height:1.7;">
-      Ally — Jared's AI Chief of Staff — wrote this playbook with Jared's editorial direction and review. Every chapter was produced using the exact architecture described inside. The voice calibration, the memory system, the agent coordination — all of it was running while this guide was being written.
+      Ally wrote this playbook with Jared's editorial direction and review. Every chapter was produced using the exact architecture described inside. The voice calibration, the memory system, the agent coordination — all of it was running while this guide was being written.
       <br><br>
       <strong style="color:#0D2B4C;">The product IS the evidence.</strong> You're not buying a theory. You're buying the documented output of a working system, from the agent that runs it.
     </p>
@@ -539,8 +520,8 @@
         <div class="stat-label">Average daily API cost for the full system</div>
       </div>
       <div class="proof-stat">
-        <div class="stat-num">30</div>
-        <div class="stat-label">Days to build — with 12 failures documented inside</div>
+        <div class="stat-num">12</div>
+        <div class="stat-label">Failures documented inside — so you skip every one of them</div>
       </div>
     </div>
   </div>
@@ -557,38 +538,81 @@
       <div class="fit-item"><span class="fi-icon">→</span>You're comfortable with a terminal (or willing to learn) — the guide uses CLI throughout</div>
       <div class="fit-item"><span class="fi-icon">→</span>You want to be 6–12 months ahead of your peers before this becomes table stakes</div>
       <div class="fit-item"><span class="fi-icon">→</span>You're tired of surface-level AI content and ready for a working system with real architecture</div>
-      <div class="fit-item"><span class="fi-icon">→</span>You want to skip 30 days of mistakes and start with what actually works</div>
+      <div class="fit-item"><span class="fi-icon">→</span>You want to skip the mistakes and start with what actually works — by Monday</div>
     </div>
     <div class="fit-box no">
       <div class="fit-label">🚫 This is NOT for you if…</div>
       <div class="fit-item"><span class="fi-icon">✕</span>You want a no-code, point-and-click solution — this is a technical build guide</div>
       <div class="fit-item"><span class="fi-icon">✕</span>You're looking for AI prompts or ChatGPT tips — this goes several layers deeper</div>
       <div class="fit-item"><span class="fi-icon">✕</span>You want someone else to build it for you — this teaches you to own the system yourself</div>
-      <div class="fit-item"><span class="fi-icon">✕</span>You're not prepared to invest a few hours a week for 30 days to build something that lasts</div>
+      <div class="fit-item"><span class="fi-icon">✕</span>You're not prepared to invest a weekend to build something that runs forever</div>
     </div>
   </div>
 </div>
 
 <hr class="div" />
 
+<!-- AUTHOR CREDIBILITY -->
+<div class="section-full author-bg">
+  <div class="inner">
+    <div class="label">Who built this</div>
+    <div class="author-inner">
+      <div class="author-avatar">JP</div>
+      <div class="author-text">
+        <div class="author-name">Jared Peno</div>
+        <div class="author-title">CEO, Alliance Technologies &nbsp;·&nbsp; AI Systems Architect</div>
+        <p>Jared has spent 20+ years leading technology strategy for businesses — from infrastructure buildouts to enterprise digital transformation. He's not an AI researcher or a YouTuber. He's an operator who built this system because he needed it to run his own companies.</p>
+        <p>Alliance Technologies is a managed service provider serving businesses across the midwest. When Jared built the AI Chief of Staff system, he built it to actually manage his own operations — multiple brands, client communications, content, and strategic research. Everything in this playbook is what he uses every day.</p>
+        <div class="author-creds">
+          <span class="author-cred">20+ years tech leadership</span>
+          <span class="author-cred">CEO, Alliance Technologies</span>
+          <span class="author-cred">25+ agents in production</span>
+          <span class="author-cred">OpenClaw architect</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- PRICING -->
 <div class="section-full pricing-bg" id="pricing">
   <div class="inner">
     <div class="label">Pricing</div>
     <h2 style="text-align:center;">One price. Everything included. Instant access.</h2>
+
+    <!-- PRICE ANCHORING -->
+    <div class="price-anchor" style="max-width:560px; margin:28px auto 24px;">
+      <div class="pa-label">What you'd pay for the same outcome elsewhere</div>
+      <div class="pa-row">
+        <span class="pa-item">Operations coordinator (hire) &nbsp;—&nbsp; monthly</span>
+        <span class="pa-cost">$2,000–4,000/mo</span>
+      </div>
+      <div class="pa-row">
+        <span class="pa-item">AI consultant to build this for you</span>
+        <span class="pa-cost">$5,000–15,000</span>
+      </div>
+      <div class="pa-row">
+        <span class="pa-item">Trial-and-error on your own (time cost)</span>
+        <span class="pa-cost">6–12 months</span>
+      </div>
+      <div class="pa-row highlight">
+        <span class="pa-item">The AI Chief of Staff Playbook</span>
+        <span class="pa-cost">$197 once</span>
+      </div>
+    </div>
+
     <div class="price-single">
       <div class="price-top">
         <div>
-          <div class="price-badge">v1.1 — March 2026</div>
           <div class="price-name">The AI Chief of Staff Playbook</div>
         </div>
         <div style="text-align:right;">
           <div class="price-amount">$197</div>
-          <div class="price-note">One-time · Instant PDF download</div>
+          <div class="price-note">One-time &nbsp;·&nbsp; Instant PDF download</div>
         </div>
       </div>
       <ul class="price-includes">
-        <li>20-chapter PDF guide (v1.1, March 2026 — 1,967 lines)</li>
+        <li>20-chapter PDF guide — complete system architecture</li>
         <li>Full system architecture with ASCII diagrams</li>
         <li>Copy-pasteable cron templates for every agent type</li>
         <li>Voice DNA system — 7-step calibration process</li>
@@ -600,20 +624,21 @@
         <li>4 appendices: file maps, cron library, scripts, API checklist</li>
         <li>Instant download — no waiting, no account required</li>
       </ul>
-      <a href="https://buy.stripe.com/00w4gA94Fb8xeHJcmpaR20s" class="btn-buy-big">Get the Playbook — $197 →</a>
-      <div class="price-fine">🔒 Secured by Stripe · PDF delivered instantly · 30-day money-back guarantee</div>
+      <a href="https://buy.stripe.com/00w4gA94Fb8xeHJcmpaR20s" class="btn-buy-big">Get Instant Access — $197 →</a>
+      <div class="price-fine">🔒 Secured by Stripe &nbsp;·&nbsp; PDF delivered instantly &nbsp;·&nbsp; All sales final</div>
+      <div class="price-friction">Instant PDF download. No subscription. No upsells.</div>
     </div>
   </div>
 </div>
 
-<!-- GUARANTEE -->
+<!-- ALL SALES FINAL -->
 <div class="section" style="padding-top:0;">
-  <div class="guarantee-box">
-    <div class="guar-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg>
+  <div class="final-box">
+    <div class="fi-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25M9 12.75h6m-6 3h3M8.25 21H3.75A2.25 2.25 0 0 1 1.5 18.75V7.5A2.25 2.25 0 0 1 3.75 5.25H14.5a2.25 2.25 0 0 1 1.591.659l3 3A2.25 2.25 0 0 1 19.75 10.5v8.25A2.25 2.25 0 0 1 17.5 21H8.25Z" /></svg>
     </div>
-    <h3>30-Day Money-Back Guarantee</h3>
-    <p>Read it. Start building. If you get through the guide and genuinely feel like it wasn't worth $197, email <a href="mailto:jaredpeno@simplifyit.co">jaredpeno@simplifyit.co</a> within 30 days and you'll get a full refund. No questions. No hoops. No explanation required. The risk is on me.</p>
+    <h3>All Sales Final — Digital Download</h3>
+    <p>Due to the nature of instantly-delivered digital downloads, all sales of the AI Chief of Staff Playbook are final. You receive the full PDF immediately upon purchase. Please review the product details carefully before buying. Questions before you purchase? Email <a href="mailto:jaredpeno@gmail.com">jaredpeno@gmail.com</a>.</p>
   </div>
 </div>
 
@@ -626,6 +651,10 @@
     <p>You need to be comfortable with a terminal — opening a command line, running scripts, editing text files. If you've ever SSHed into a server or run a cron job, you're ready. If not, Chapter 1 walks you through environment setup from scratch. This isn't for complete beginners to computers, but it's not for senior engineers only either. It's for builders.</p>
   </details>
   <details>
+    <summary>How long does it actually take to build this?</summary>
+    <p>Most people get their Chief of Staff live on Day 1 of the weekend. By Sunday you'll have the core agent team running. The full content engine, signal loop, and cost optimization take another few sessions over the following week. You're skipping the discovery phase entirely — which is where most of the time normally goes.</p>
+  </details>
+  <details>
     <summary>What's the actual ongoing cost to run this?</summary>
     <p>Jared's full stack of 25+ agents runs for $3–5/day. That's roughly $100–150/month in API costs. Chapter 18–19 breaks this down in detail — which models to use for which tasks, how to route cheap tasks to cheaper models, and where not to skimp. You'll likely start lower and scale up as you add agents.</p>
   </details>
@@ -635,11 +664,7 @@
   </details>
   <details>
     <summary>Why was this written by an AI?</summary>
-    <p>Because that's the proof. Ally — Jared's AI Chief of Staff — wrote this guide with Jared's editorial direction. The fact that an AI could produce a 1,967-line structured technical guide while maintaining voice consistency and architectural accuracy is not a gimmick. It's a demonstration of the exact system this guide teaches you to build. The product is the proof.</p>
-  </details>
-  <details>
-    <summary>How long does it take to actually build the system?</summary>
-    <p>The guide documents a 30-day build — and that timeline includes 12 failures and rebuilds. With this guide, most people can get a basic Chief of Staff running in Week 1, expand to a full agent team by Week 2, and have the content engine and signal loop running by Week 4. You're skipping the discovery phase entirely.</p>
+    <p>Because that's the proof. Ally — Jared's AI Chief of Staff — wrote this guide with Jared's editorial direction. The fact that an AI could produce a structured technical guide while maintaining voice consistency and architectural accuracy is not a gimmick. It's a demonstration of the exact system this guide teaches you to build. The product is the proof.</p>
   </details>
   <details>
     <summary>Is this the same as AutoGPT, CrewAI, or other agent frameworks?</summary>
@@ -647,7 +672,11 @@
   </details>
   <details>
     <summary>What if I get stuck?</summary>
-    <p>The 12-failures chapter covers most of what you'll hit. Beyond that, Jared publishes the Think Like A CIO newsletter at <a href="https://email.simplifyit.co">email.simplifyit.co</a> — subscribe for ongoing AI leadership content. For direct questions, email <a href="mailto:jaredpeno@simplifyit.co">jaredpeno@simplifyit.co</a>.</p>
+    <p>The 12-failures chapter covers most of what you'll hit. Beyond that, Jared publishes the Think Like A CIO newsletter at <a href="https://jaredpeno.com">jaredpeno.com</a> — subscribe for ongoing AI leadership content. For direct questions, email <a href="mailto:jaredpeno@gmail.com">jaredpeno@gmail.com</a>.</p>
+  </details>
+  <details>
+    <summary>Why are all sales final?</summary>
+    <p>The AI Chief of Staff Playbook is an instantly-delivered digital download — the full PDF is in your hands the moment you purchase. Because the content can't be returned, all sales are final. This is standard for digital products of this nature. If you have questions about whether this is the right fit, email before you buy and Jared will give you a straight answer.</p>
   </details>
   <details>
     <summary>Can I use this to build agents for my business, not just personal use?</summary>
@@ -657,17 +686,16 @@
 
 <!-- FINAL CTA -->
 <div class="fcta">
-  <h2>The window is open. Build while others are watching tutorials.</h2>
-  <p>In 30 days you could have a running system. Or you could spend 30 days reading about AI and still be in the same place.</p>
-  <a href="https://buy.stripe.com/00w4gA94Fb8xeHJcmpaR20s" class="btn-blue" style="font-size:1rem; padding:16px 32px;">Get the Playbook — $197 →</a>
-  <div class="trust-line">🔒 Stripe checkout &nbsp;·&nbsp; Instant PDF download &nbsp;·&nbsp; 30-day guarantee</div>
-  <div style="margin-top:16px; font-size:0.78rem; color:#334155;">Questions? <a href="mailto:jaredpeno@simplifyit.co" style="color:#475569;">jaredpeno@simplifyit.co</a></div>
+  <h2>The window is open. Build this weekend while others are watching tutorials.</h2>
+  <p>By Monday you could have a running Chief of Staff. Or you could spend the weekend reading about AI and still be in the same place.</p>
+  <a href="https://buy.stripe.com/00w4gA94Fb8xeHJcmpaR20s" class="btn-blue" style="font-size:1rem; padding:16px 32px;">Get Instant Access — $197 →</a>
+  <div class="trust-line">🔒 Stripe checkout &nbsp;·&nbsp; Instant PDF download &nbsp;·&nbsp; All sales final</div>
+  <div style="margin-top:16px; font-size:0.78rem; color:#334155;">Questions? <a href="mailto:jaredpeno@gmail.com" style="color:#475569;">jaredpeno@gmail.com</a></div>
 </div>
 
 <!-- FOOTER -->
 <footer>
   © Jared Peno &nbsp;·&nbsp; <a href="https://jaredpeno.com">jaredpeno.com</a> &nbsp;·&nbsp;
-  <a href="https://email.simplifyit.co">Think Like A CIO</a> &nbsp;·&nbsp;
   <a href="/privacy/">Privacy Policy</a> &nbsp;·&nbsp;
   <a href="/refund/">Refund Policy</a>
 </footer>
