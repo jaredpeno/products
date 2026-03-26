@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're In — The AI Chief of Staff Playbook</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #0D2B4C; color: #fff; margin: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 48px 16px 40px; }
+    .box { max-width: 580px; width: 100%; text-align: center; }
+
+    /* Check mark */
+    .check-wrap { width: 72px; height: 72px; background: rgba(37,99,235,0.2); border: 2px solid rgba(37,99,235,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; color: #60a5fa; }
+    .check-wrap svg { width: 36px; height: 36px; }
+
+    h1 { font-size: 1.9rem; font-weight: 800; margin: 0 0 12px; line-height: 1.2; }
+    .sub { color: #94a3b8; font-size: 1rem; margin: 0 0 40px; line-height: 1.7; }
+
+    /* Step cards */
+    .step-box { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 28px; margin-bottom: 14px; text-align: left; }
+    .step-box .num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #60a5fa; margin-bottom: 8px; }
+    .step-box h3 { font-size: 1rem; font-weight: 700; margin: 0 0 10px; }
+    .step-box p { font-size: 0.88rem; color: #94a3b8; margin: 0 0 18px; line-height: 1.65; }
+    .step-box p:last-child { margin-bottom: 0; }
+
+    /* Download button */
+    .dl-btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: #2563eb; color: #fff; padding: 16px 24px; border-radius: 10px; font-weight: 800; font-size: 1rem; text-decoration: none; transition: background 0.2s; margin-bottom: 10px; }
+    .dl-btn:hover { background: #1d4ed8; }
+    .dl-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .dl-note { font-size: 0.78rem; color: #64748b; text-align: center; }
+
+    /* Next steps */
+    .next-item { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07); text-align: left; }
+    .next-item:last-child { border-bottom: none; }
+    .next-icon { width: 36px; height: 36px; background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #60a5fa; }
+    .next-icon svg { width: 18px; height: 18px; }
+    .next-content h4 { font-size: 0.92rem; font-weight: 700; margin: 0 0 4px; color: #fff; }
+    .next-content p { font-size: 0.82rem; color: #94a3b8; margin: 0 0 8px; line-height: 1.55; }
+    .next-link { display: inline-flex; align-items: center; gap: 4px; font-size: 0.82rem; font-weight: 700; color: #60a5fa; text-decoration: none; }
+    .next-link:hover { color: #93c5fd; }
+    .next-link svg { width: 12px; height: 12px; }
+
+    /* Milestone tracker */
+    .milestone-box { background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2); border-radius: 12px; padding: 20px 22px; margin-bottom: 14px; text-align: left; }
+    .milestone-box .ml-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #4ade80; margin-bottom: 12px; }
+    .milestone-row { display: flex; gap: 8px; align-items: flex-start; padding: 6px 0; }
+    .milestone-row .ml-dot { width: 20px; height: 20px; border-radius: 50%; border: 2px solid rgba(74,222,128,0.4); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .milestone-row .ml-text { font-size: 0.84rem; color: #94a3b8; line-height: 1.4; }
+    .milestone-row .ml-text strong { color: #e2e8f0; }
+
+    .fine { margin-top: 32px; font-size: 0.8rem; color: #334155; }
+    .fine a { color: #475569; }
+
+    @media(min-width: 480px) { body { padding: 56px 24px 48px; } }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <!-- Header -->
+    <div class="check-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+    </div>
+    <h1>Your Playbook is on its way.</h1>
+    <p class="sub">Welcome to the other side. You've just bought time — 30 days of mistakes you won't have to make, and a running system architecture that took real hours to build.</p>
+
+    <!-- STEP 1: Download -->
+    <div class="step-box">
+      <div class="num">Step 1 — Get your PDF</div>
+      <h3>Download the AI Chief of Staff Playbook</h3>
+      <p>Your download link has been sent to your purchase email. Check your inbox (and spam folder if needed). If you don't see it within a few minutes, email us and we'll sort it out immediately.</p>
+      <!-- Jared: replace this href with your actual delivery link or Stripe/ConvertKit confirmation URL -->
+      <a href="#" class="dl-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+        Download Your Playbook PDF →
+      </a>
+      <div class="dl-note">PDF · ~1,967 lines · v1.1 March 2026 · Delivered via email</div>
+    </div>
+
+    <!-- STEP 2: Your 30-day roadmap -->
+    <div class="milestone-box">
+      <div class="ml-label">⚡ Your 30-Day Build Roadmap</div>
+      <div class="milestone-row">
+        <div class="ml-dot"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" style="width:12px;height:12px;color:#4ade80;"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+        <div class="ml-text"><strong>Week 1:</strong> Chapters 1–5 — Foundation, identity, QMD memory. Chief of Staff is live.</div>
+      </div>
+      <div class="milestone-row">
+        <div class="ml-dot"></div>
+        <div class="ml-text"><strong>Week 2:</strong> Chapters 6–10 — Agent team, cron scheduling. Multiple agents running autonomously.</div>
+      </div>
+      <div class="milestone-row">
+        <div class="ml-dot"></div>
+        <div class="ml-text"><strong>Week 3:</strong> Chapters 11–16 — Voice DNA, content engine, kill-checks. System sounds like you.</div>
+      </div>
+      <div class="milestone-row">
+        <div class="ml-dot"></div>
+        <div class="ml-text"><strong>Week 4:</strong> Chapters 17–20 — Signal loop, cost optimization, self-improvement. Done. Running.</div>
+      </div>
+    </div>
+
+    <!-- STEP 3: Next steps -->
+    <div class="step-box">
+      <div class="num">Step 2 — What to do next</div>
+      <h3>Keep building momentum</h3>
+
+      <div class="next-item">
+        <div class="next-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
+        </div>
+        <div class="next-content">
+          <h4>Join the Think Like A CIO Newsletter</h4>
+          <p>Weekly frameworks for AI leadership, technology strategy, and building systems that compound. Where Jared shares what's actually working.</p>
+          <a href="https://email.simplifyit.co" class="next-link" target="_blank" rel="noopener">
+            Subscribe — free →
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="next-item">
+        <div class="next-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" /></svg>
+        </div>
+        <div class="next-content">
+          <h4>Follow @jaredpeno on X</h4>
+          <p>Real-time thoughts on AI, building systems, and technology leadership. The content that doesn't make it into the newsletter.</p>
+          <a href="https://x.com/jaredpeno" class="next-link" target="_blank" rel="noopener">
+            @jaredpeno on X →
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="next-item">
+        <div class="next-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg>
+        </div>
+        <div class="next-content">
+          <h4>Start with Chapter 1 today</h4>
+          <p>Don't let this sit in your downloads folder. The best time to start is now. Week 1 is environment setup — it takes about 2 hours and you'll have your first agent live by the end.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fine">
+      Questions? <a href="mailto:jaredpeno@simplifyit.co">jaredpeno@simplifyit.co</a>
+      &nbsp;·&nbsp; © Jared Peno &nbsp;·&nbsp; <a href="/privacy/">Privacy</a> &nbsp;·&nbsp; <a href="/refund/">Refund Policy</a>
+    </div>
+  </div>
+</body>
+</html>
