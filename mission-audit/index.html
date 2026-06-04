@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Mission Audit Builder — Jared Peno</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--g:#4EB442;--gd:#3a9830;--gdk:#2d7825;--gg:rgba(78,180,66,.32);--bg:#060e1a;--card:#0b1929;--border:rgba(255,255,255,.07);--red:#ef4444;--txt:#fff;--mu:rgba(255,255,255,.5);--mu2:rgba(255,255,255,.22)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',-apple-system,sans-serif;color:var(--txt);-webkit-font-smoothing:antialiased}
+.ambi{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);animation:drift ease-in-out infinite alternate}
+.o1{width:600px;height:500px;background:rgba(78,180,66,.07);top:-150px;left:-150px;animation-duration:16s}
+.o2{width:500px;height:400px;background:rgba(13,43,76,.6);bottom:-100px;right:-100px;animation-duration:20s;animation-delay:-8s}
+.o3{width:280px;height:280px;background:rgba(78,180,66,.04);top:45%;left:50%;transform:translate(-50%,-50%);animation-duration:12s;animation-delay:-4s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(35px,22px) scale(1.08)}}
+.specks{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.speck{position:absolute;background:var(--g);border-radius:50%;opacity:0;animation:rise linear infinite}
+@keyframes rise{0%{transform:translateY(0) scale(0);opacity:0}10%{opacity:.18}90%{opacity:.04}100%{transform:translateY(-110vh) scale(1.5);opacity:0}}
+.app{position:relative;z-index:1;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 18px}
+.screen{width:100%;max-width:440px;display:flex;flex-direction:column;align-items:center}
+.gone{display:none!important}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:14px;pointer-events:none}
+.topbar span{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.22)}
+#s-intro{text-align:center;padding-top:44px}
+.iv{width:110px;height:110px;margin:0 auto 24px;position:relative;display:flex;align-items:center;justify-content:center}
+.ivr{position:absolute;border-radius:50%;border:1.5px solid rgba(78,180,66,.22);animation:rpulse 3.5s ease-in-out infinite}
+.ivr.a{inset:0}.ivr.b{inset:-12px;opacity:.5;animation-delay:.8s}.ivr.c{inset:-26px;opacity:.24;animation-delay:1.6s}
+@keyframes rpulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.07);opacity:.28}}
+.ivc{width:76px;height:76px;border-radius:22px;background:linear-gradient(135deg,rgba(78,180,66,.22),rgba(78,180,66,.04));border:1px solid rgba(78,180,66,.3);display:flex;align-items:center;justify-content:center;animation:bob 4s ease-in-out infinite;box-shadow:0 0 40px rgba(78,180,66,.16)}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-10px) rotate(3deg)}}
+.chip{display:inline-flex;align-items:center;gap:6px;background:rgba(78,180,66,.1);border:1px solid rgba(78,180,66,.22);border-radius:100px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g);margin-bottom:16px}
+.cdot{width:5px;height:5px;background:var(--g);border-radius:50%;box-shadow:0 0 6px var(--g);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.2;transform:scale(.6)}}
+.ih{font-family:'Playfair Display',serif;font-size:clamp(26px,7.5vw,38px);font-weight:700;line-height:1.12;margin-bottom:13px}
+.ih em{color:var(--g);font-style:normal}
+.ip{color:var(--mu);font-size:14px;line-height:1.65;max-width:295px;margin:0 auto 26px}
+.btn-go{display:inline-flex;align-items:center;gap:10px;background:var(--g);color:#fff;font-size:16px;font-weight:700;padding:17px 42px;border-radius:100px;border:none;cursor:pointer;animation:sglow 2.5s ease-in-out infinite;transition:transform .15s;-webkit-appearance:none;position:relative;z-index:5}
+@keyframes sglow{0%,100%{box-shadow:0 0 28px var(--gg),0 4px 20px rgba(0,0,0,.4)}50%{box-shadow:0 0 54px var(--gg),0 8px 28px rgba(0,0,0,.5)}}
+.btn-go:hover{transform:scale(1.05) translateY(-2px)}.btn-go:active{transform:scale(.97)}
+.ipills{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap}
+.ipill{font-size:12px;color:var(--mu);display:flex;align-items:center;gap:5px;font-weight:500}
+#s-quiz{padding-top:50px;gap:0}
+.parea{width:100%;margin-bottom:11px}
+.prow{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.plbl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mu)}
+.pnum{font-size:12px;font-weight:800;color:var(--g)}
+.ptrack{width:100%;height:3px;background:rgba(255,255,255,.07);border-radius:100px;overflow:hidden}
+.pfill{height:100%;background:linear-gradient(90deg,var(--g),#7ce870);border-radius:100px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px var(--gg)}
+.bstrip{width:100%;display:flex;gap:6px;align-items:center;margin-bottom:10px;padding:8px 12px;background:rgba(78,180,66,.06);border:1px solid rgba(78,180,66,.14);border-radius:11px;min-height:38px;overflow:hidden}
+.blbl{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--g);flex-shrink:0;margin-right:3px;display:flex;align-items:center}
+.btags{display:flex;flex-wrap:wrap;gap:4px;flex:1}
+.btag{display:inline-block;padding:2px 8px;border-radius:100px;font-size:10px;font-weight:600;background:rgba(78,180,66,.15);color:var(--g);border:1px solid rgba(78,180,66,.22);animation:tagpop .3s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes tagpop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.bsec{font-size:10px;font-weight:600;color:var(--mu2);font-style:italic}
+.stack{position:relative;width:100%;height:388px;margin-bottom:12px;perspective:1200px}
+.qc{position:absolute;inset:0;border-radius:24px;padding:0;display:flex;flex-direction:column;cursor:grab;user-select:none;transform-origin:center 110%;will-change:transform;touch-action:none;overflow:hidden}
+.qc:active{cursor:grabbing}
+.qc.behind1{transform:scale(.94) translateY(13px);pointer-events:none;z-index:0}
+.qc.behind2{transform:scale(.88) translateY(26px);pointer-events:none;z-index:-1}
+.qc.active{z-index:10;box-shadow:0 24px 64px rgba(0,0,0,.55)}
+.ovy,.ovn{position:absolute;top:16px;padding:5px 12px;border-radius:7px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:0;pointer-events:none;z-index:30;transition:opacity .07s;border:2px solid rgba(255,255,255,.9)}
+.ovy{right:14px;background:var(--g);transform:rotate(12deg)}
+.ovn{left:14px;background:var(--red);transform:rotate(-12deg)}
+.cillus{width:100%;flex:0 0 200px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.cillus svg{width:100%;height:100%}
+.ctxt{padding:16px 20px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;flex:1}
+.cmeta{display:flex;gap:7px;align-items:center;justify-content:center;margin-bottom:7px}
+.cnum{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--g)}
+.cblk{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mu2);padding:2px 7px;border-radius:100px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
+.cq{font-size:17px;font-weight:700;line-height:1.3;margin-bottom:4px}
+.csub{font-size:11px;color:var(--mu);line-height:1.5}
+.sg{display:flex;align-items:center;justify-content:center;gap:18px;margin-bottom:10px;font-size:10px;font-weight:600;color:var(--mu2);letter-spacing:.04em}
+.sgl{color:#f87171;display:flex;align-items:center;gap:4px}
+.sgr{color:var(--g);display:flex;align-items:center;gap:4px}
+.arow{display:grid;grid-template-columns:1fr 1fr;gap:9px;width:100%}
+.ans{display:flex;flex-direction:column;align-items:center;gap:5px;padding:11px 8px;border-radius:14px;border:1.5px solid;font-size:11px;font-weight:600;line-height:1.3;cursor:pointer;text-align:center;min-height:68px;transition:all .18s cubic-bezier(.34,1.56,.64,1)}
+.aico{display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.al{background:rgba(239,68,68,.07);border-color:rgba(239,68,68,.18);color:rgba(255,255,255,.7)}
+.al:hover{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.42);color:#fff;transform:scale(1.04) translateY(-2px)}
+.al:active{transform:scale(.97)}
+.ar{background:rgba(78,180,66,.07);border-color:rgba(78,180,66,.18);color:rgba(255,255,255,.7)}
+.ar:hover{background:rgba(78,180,66,.16);border-color:rgba(78,180,66,.42);color:#fff;transform:scale(1.04) translateY(-2px);box-shadow:0 0 18px var(--gg)}
+.ar:active{transform:scale(.97)}
+#s-build{text-align:center;gap:0}
+.borb{width:110px;height:110px;margin:0 auto 24px;position:relative;display:flex;align-items:center;justify-content:center}
+.br{position:absolute;border-radius:50%;border:2px solid var(--g);animation:bspin linear infinite}
+.br.a{inset:-10px;opacity:.5}.br.b{inset:-22px;opacity:.22;animation-duration:3.2s;animation-direction:reverse}.br.c{inset:-36px;opacity:.1;animation-duration:4.6s}
+@keyframes bspin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.bsteps{display:flex;flex-direction:column;gap:9px;width:100%;max-width:295px;margin:18px auto 0}
+.bstep{display:flex;align-items:center;gap:11px;background:var(--card);border:1px solid var(--border);border-radius:11px;padding:11px 15px;font-size:13px;font-weight:500;color:var(--mu);animation:stepin .5s ease both}
+.bstep:nth-child(2){animation-delay:.35s}.bstep:nth-child(3){animation-delay:.7s}.bstep:nth-child(4){animation-delay:1.05s}
+@keyframes stepin{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:translateX(0)}}
+.bdot{width:7px;height:7px;background:var(--g);border-radius:50%;flex-shrink:0;animation:blink 1.2s ease-in-out infinite}
+.bstep:nth-child(2) .bdot{animation-delay:.35s}.bstep:nth-child(3) .bdot{animation-delay:.7s}.bstep:nth-child(4) .bdot{animation-delay:1.05s}
+#s-email{gap:0}
+.gate{width:100%;background:var(--card);border:1px solid var(--border);border-radius:22px;padding:28px 22px;text-align:center;animation:riseup .5s ease both}
+@keyframes riseup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.gico{display:flex;align-items:center;justify-content:center;margin-bottom:14px;animation:bob 3s ease-in-out infinite;color:var(--g)}
+.gchip{display:inline-block;background:rgba(78,180,66,.12);color:var(--g);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 12px;border-radius:100px;margin-bottom:12px}
+.gh{font-size:20px;font-weight:700;line-height:1.3;margin-bottom:7px}
+.gp{color:var(--mu);font-size:14px;line-height:1.6;margin-bottom:20px}
+.ginp{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:11px;padding:14px 16px;font-size:16px;color:#fff;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s,box-shadow .2s;margin-bottom:9px}
+.ginp::placeholder{color:rgba(255,255,255,.22)}.ginp:focus{border-color:var(--g);box-shadow:0 0 0 3px rgba(78,180,66,.13)}
+.btu{width:100%;background:linear-gradient(135deg,var(--g) 0%,var(--gdk) 100%);color:#fff;font-size:15px;font-weight:700;padding:15px;border-radius:11px;border:none;cursor:pointer;box-shadow:0 8px 26px rgba(78,180,66,.26);transition:all .18s;letter-spacing:.02em;-webkit-appearance:none}
+.btu:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(78,180,66,.38)}.btu:active{transform:translateY(0)}
+.gnote{font-size:11px;color:var(--mu2);margin-top:9px;text-align:center;display:flex;align-items:center;justify-content:center;gap:5px}
+#s-results{gap:0;overflow-y:auto;max-height:100vh;padding:52px 0 28px;-webkit-overflow-scrolling:touch}
+.btn-download{display:inline-flex;align-items:center;gap:8px;background:var(--g);color:#fff;font-size:13px;font-weight:700;padding:11px 22px;border-radius:100px;border:none;cursor:pointer;margin-bottom:14px;box-shadow:0 4px 18px rgba(78,180,66,.28);transition:all .18s;letter-spacing:.02em;-webkit-appearance:none}
+.btn-download:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(78,180,66,.38)}.btn-download:active{transform:scale(.97)}
+.rhero{width:100%;border-radius:22px;padding:24px 20px;text-align:center;margin-bottom:12px;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(78,180,66,.12),rgba(78,180,66,.04));border:1px solid rgba(78,180,66,.2)}
+.rhero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(78,180,66,.15),transparent 65%);pointer-events:none}
+.rchip{display:inline-block;background:rgba(78,180,66,.14);color:var(--g);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 12px;border-radius:100px;margin-bottom:12px;border:1px solid rgba(78,180,66,.28);position:relative;z-index:1}
+.rh{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;line-height:1.2;margin-bottom:7px;position:relative;z-index:1}
+.rsub{color:var(--mu);font-size:13px;line-height:1.6;max-width:290px;margin:0 auto 6px;position:relative;z-index:1}
+.remail{font-size:11px;color:rgba(78,180,66,.9);font-weight:700;position:relative;z-index:1;letter-spacing:.04em}
+.mbox{width:100%;background:rgba(78,180,66,.06);border:1px solid rgba(78,180,66,.17);border-radius:15px;padding:17px;margin-bottom:11px;position:relative;overflow:hidden}
+.mbox::before{content:'"';position:absolute;top:-12px;left:10px;font-family:'Playfair Display',serif;font-size:72px;color:rgba(78,180,66,.12);line-height:1}
+.mlbl{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--g);margin-bottom:9px}
+.mtxt{font-size:14px;font-style:italic;color:rgba(255,255,255,.83);line-height:1.65}
+.mfill{color:var(--g);font-style:normal;font-weight:700}
+.fws{width:100%;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px 16px;margin-bottom:10px}
+.fwh{display:flex;align-items:center;gap:9px;margin-bottom:14px;padding-bottom:11px;border-bottom:1px solid rgba(255,255,255,.05)}
+.fwi{width:34px;height:34px;border-radius:9px;background:rgba(78,180,66,.11);border:1px solid rgba(78,180,66,.18);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fwlbl{font-size:10px;font-weight:700;color:var(--g);letter-spacing:.08em;text-transform:uppercase}
+.fwtitle{font-size:15px;font-weight:700;color:#fff;margin-top:1px}
+.fwitem{display:flex;align-items:flex-start;gap:10px;margin-bottom:11px}
+.fwitem:last-child{margin-bottom:0}
+.fwbullet{width:5px;height:5px;background:var(--g);border-radius:50%;flex-shrink:0;margin-top:7px;box-shadow:0 0 4px var(--g)}
+.fwtxt{font-size:13px;color:rgba(255,255,255,.8);line-height:1.55}
+.fwtxt strong{color:#fff;display:block;font-size:12px;font-weight:700;margin-bottom:2px}
+.qlist{display:flex;flex-direction:column;gap:7px}
+.qli{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:rgba(255,255,255,.75);line-height:1.45}
+.qlic{width:20px;height:20px;border-radius:6px;background:rgba(78,180,66,.12);border:1px solid rgba(78,180,66,.22);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;color:var(--g);margin-top:1px}
+.rcta{width:100%;border-radius:18px;padding:24px 18px;text-align:center;background:linear-gradient(135deg,var(--gd) 0%,var(--gdk) 100%);box-shadow:0 14px 44px rgba(78,180,66,.2);margin-bottom:8px}
+.rcta h3{font-size:19px;font-weight:700;margin-bottom:6px}.rcta p{font-size:13px;opacity:.85;line-height:1.6;margin-bottom:18px}
+.btc{display:inline-block;background:#fff;color:#1a3d12;font-size:14px;font-weight:700;padding:13px 28px;border-radius:100px;text-decoration:none;transition:all .18s;box-shadow:0 4px 14px rgba(0,0,0,.14)}
+.btc:hover{transform:scale(1.04) translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.18)}
+/* ROI BADGES */
+.roi-badge{display:flex;align-items:center;gap:8px;margin-top:8px;padding:6px 12px;background:rgba(78,180,66,.08);border:1px solid rgba(78,180,66,.2);border-radius:8px}
+.roi-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#4EB442;white-space:nowrap}
+.roi-val{font-size:11.5px;color:rgba(255,255,255,.7)}
+/* PRINT CSS */
+@media print{
+  html,body{height:auto!important;overflow:visible!important;background:#fff!important;color:#1a1a1a!important}
+  .ambi,.specks,.topbar,.btn-download{display:none!important}
+  .app{display:block!important;height:auto!important;padding:0!important}
+  #s-intro,#s-quiz,#s-build,#s-email{display:none!important}
+  #s-results{display:block!important;overflow:visible!important;max-height:none!important;padding:20px!important;background:#fff!important}
+  .rhero{background:#f0faf0!important;border:2px solid #4EB442!important;page-break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .rchip{background:#4EB442!important;color:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .rh{color:#1a1a1a!important;font-size:26px!important}
+  .rsub,.remail{color:#444!important}
+  .mbox{background:#f0faf0!important;border:1px solid #4EB442!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;page-break-inside:avoid}
+  .mlbl{color:#4EB442!important}
+  .mtxt{color:#333!important}
+  .mfill{color:#2d7825!important;font-weight:700!important}
+  .fws{background:#fff!important;border:1.5px solid #ddd!important;page-break-inside:avoid;margin-bottom:16px!important}
+  .fwlbl{color:#4EB442!important}
+  .fwtitle{color:#1a1a1a!important}
+  .fwtxt{color:#333!important}
+  .fwtxt strong{color:#1a1a1a!important}
+  .fwbullet{background:#4EB442!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .fwi{background:#e8f8e5!important;border:1px solid #4EB442!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .roi-badge{background:#e8f8e5!important;border:1px solid #4EB442!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .roi-label{color:#4EB442!important}
+  .roi-val{color:#333!important}
+  .qlic{background:#e8f8e5!important;color:#4EB442!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .qli{color:#333!important}
+  .rcta{background:#4EB442!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;page-break-inside:avoid}
+  .rcta h3,.rcta p{color:#fff!important}
+  .btc{display:none!important}
+  #s-results::before{content:'Mission Audit Report';display:block;font-size:11px;font-weight:700;color:#4EB442;letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #s-results::after{content:'Generated by jaredpeno.com/mission-audit |  a9 Alliance Technologies';display:block;text-align:center;font-size:10px;color:#888;margin-top:24px;border-top:1px solid #eee;padding-top:12px}
+}
+</style>
+</head>
+<body>
+<div class="ambi"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+<div class="specks" id="specks"></div>
+<div class="topbar"><span>Mission Audit Builder &nbsp;&middot;&nbsp; Jared Peno</span></div>
+<div class="app">
+
+<!-- INTRO -->
+<div id="s-intro" class="screen">
+  <div class="iv"><div class="ivr a"></div><div class="ivr b"></div><div class="ivr c"></div>
+    <div class="ivc">
+      <svg width="42" height="42" viewBox="0 0 42 42" fill="none"><rect x="6" y="20" width="8" height="16" rx="2" fill="#4EB442" opacity=".9"/><rect x="17" y="12" width="8" height="24" rx="2" fill="#4EB442"/><rect x="28" y="5" width="8" height="31" rx="2" fill="#4EB442" opacity=".7"/><path d="M4 38h34" stroke="#4EB442" stroke-width="2" stroke-linecap="round" opacity=".5"/></svg>
+    </div>
+  </div>
+  <div class="chip"><div class="cdot"></div>Free Framework Builder</div>
+  <h1 class="ih">Build your custom<br><em>Mission Audit</em><br>in 2 minutes</h1>
+  <p class="ip">14 questions. Swipe to answer. Walk away with a personalized Technology Audit Framework built around your actual business &mdash; free.</p>
+  <button class="btn-go" id="startBtn">
+    Start Building
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+  <div class="ipills">
+    <span class="ipill"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>2 minutes</span>
+    <span class="ipill"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Personalized</span>
+    <span class="ipill"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>Free forever</span>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div id="s-quiz" class="screen gone">
+  <div class="parea">
+    <div class="prow"><span class="plbl">Building your framework</span><span class="pnum" id="pn">1 / 14</span></div>
+    <div class="ptrack"><div class="pfill" id="pf" style="width:0%"></div></div>
+  </div>
+  <div class="bstrip">
+    <span class="blbl"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M7.5 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75h-1.5m-6 0a.75.75 0 01.75-.75h3a.75.75 0 01.75.75m-4.5 0h4.5"/></svg></span>
+    <div class="btags" id="btags"><span class="bsec">Block 1 &mdash; Your Business</span></div>
+  </div>
+  <div class="stack" id="stack"></div>
+  <div class="sg">
+    <span class="sgl"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Swipe left</span>
+    <span style="color:rgba(255,255,255,.1)">or tap</span>
+    <span class="sgr">Swipe right<svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+  </div>
+  <div class="arow" id="arow">
+    <button class="ans al" id="btnl"><span class="aico" id="il"></span><span id="ll"></span></button>
+    <button class="ans ar" id="btnr"><span class="aico" id="ir"></span><span id="lr"></span></button>
+  </div>
+</div>
+
+<!-- BUILDING -->
+<div id="s-build" class="screen gone">
+  <div class="borb"><div class="br a"></div><div class="br b"></div><div class="br c"></div>
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="7" y="24" width="10" height="17" rx="2" fill="#4EB442" opacity=".9"/><rect x="19" y="16" width="10" height="25" rx="2" fill="#4EB442"/><rect x="31" y="7" width="10" height="34" rx="2" fill="#4EB442" opacity=".7"/><path d="M4 44h40" stroke="#4EB442" stroke-width="2.5" stroke-linecap="round" opacity=".5"/></svg>
+  </div>
+  <h2 style="font-size:21px;font-weight:700;margin-bottom:7px">Building your framework...</h2>
+  <p style="color:var(--mu);font-size:13px">Assembling your custom Mission Audit</p>
+  <div class="bsteps">
+    <div class="bstep"><div class="bdot"></div>Mapping your business model</div>
+    <div class="bstep"><div class="bdot"></div>Calibrating your risk profile</div>
+    <div class="bstep"><div class="bdot"></div>Defining your Mission Filters</div>
+    <div class="bstep"><div class="bdot"></div>Writing your audit questions</div>
+  </div>
+</div>
+
+<!-- EMAIL -->
+<div id="s-email" class="screen gone">
+  <div class="gate">
+    <div class="gico"><svg width="44" height="44" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M7.5 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75h-1.5m-6 0a.75.75 0 01.75-.75h3a.75.75 0 01.75.75m-4.5 0h4.5"/></svg></div>
+    <div class="gchip">Your Framework is Ready</div>
+    <h2 class="gh">Where should we send your Mission Audit Framework?</h2>
+    <p class="gp">Enter your email to unlock your personalized framework &mdash; plus a free subscription to <strong>Think Like A CIO</strong>.</p>
+    <input class="ginp" type="email" id="gemail" placeholder="your@email.com" autocomplete="email">
+    <button class="btu" id="unlockBtn">Unlock My Framework &rarr;</button>
+  </div>
+  <p class="gnote"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>No spam. Unsubscribe any time.</p>
+</div>
+
+<!-- RESULTS -->
+<div id="s-results" class="screen gone">
+  <button class="btn-download" onclick="window.print()">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+    Download Your Report
+  </button>
+  <div class="rhero">
+    <div class="rchip">Your Mission Audit Framework</div>
+    <div class="rh" id="rh">&mdash;</div>
+    <p class="rsub" id="rsub">&mdash;</p>
+    <div class="remail" id="remail"></div>
+  </div>
+  <div class="mbox"><div class="mlbl">Your Mission Filter Statement</div><div class="mtxt" id="mstmt">&mdash;</div></div>
+  <div class="fws"><div class="fwh"><div class="fwi"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#4EB442"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="#4EB442"/></svg></div><div><div class="fwlbl">Filter 1</div><div class="fwtitle">Mission Fit</div></div></div><div id="fw1"></div></div>
+  <div class="fws"><div class="fwh"><div class="fwi"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#4EB442"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><div><div class="fwlbl">Filter 2</div><div class="fwtitle">Operational Reality</div></div></div><div id="fw2"></div></div>
+  <div class="fws"><div class="fwh"><div class="fwi"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#4EB442"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg></div><div><div class="fwlbl">Filter 3</div><div class="fwtitle">Measurable Return</div></div></div><div id="fw3"></div></div>
+  <div class="fws"><div class="fwh"><div class="fwi"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#4EB442"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg></div><div><div class="fwlbl">Week 1 Questions</div><div class="fwtitle">What to Ask First</div></div></div><div class="qlist" id="fwqs"></div></div>
+  <div class="fws"><div class="fwh"><div class="fwi"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#4EB442"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg></div><div><div class="fwlbl">Your 30-Day Roadmap</div><div class="fwtitle">Where to Start</div></div></div><div id="fw4"></div></div>
+  <div class="rcta"><h3 id="ctah">Ready to run this audit?</h3><p id="ctap">&mdash;</p><a href="https://calendly.com/jaredpeno/mission-audit-session" class="btc" id="ctabtn">Schedule My Mission Audit &rarr;</a></div>
+</div>
+
+</div>
+<script>
+(function(){var w=document.getElementById('specks');for(var i=0;i<20;i++){var p=document.createElement('div');p.className='speck';var s=1.5+Math.random()*3.5;p.style.cssText='width:'+s+'px;height:'+s+'px;left:'+Math.random()*100+'%;bottom:'+Math.random()*12+'%;animation-duration:'+(9+Math.random()*14)+'s;animation-delay:'+Math.random()*12+'s';w.appendChild(p);}})();
+
+var ICONS={
+bolt:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>',
+lightbulb:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>',
+briefcase:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z"/></svg>',
+arrowpath:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>',
+handraised:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.05 4.575a1.575 1.575 0 10-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 013.15 0v1.5m-3.15 0l.075 5.925m3.075.75V4.575m0 0a1.575 1.575 0 013.15 0V15M6.9 7.575a1.575 1.575 0 10-3.15 0v8.175a6.75 6.75 0 006.75 6.75h2.018a5.25 5.25 0 003.712-1.538l1.732-1.732a5.25 5.25 0 001.538-3.712l-.001-5.925a1.575 1.575 0 10-3.15 0 .75.75 0 00-1.5 0 .75.75 0 00-1.5 0 .75.75 0 00-1.5 0z"/></svg>',
+beaker:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>',
+excltri:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>',
+caldays:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"/></svg>',
+qmark:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"/></svg>',
+checkcirc:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+dollar:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+fire:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"/></svg>',
+server:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 003 3h7.5a3 3 0 003-3m-13.5 0V9.75M18.75 14.25a3 3 0 003-3m-3 3V9.75m0 0a3 3 0 00-3-3H8.25a3 3 0 00-3 3m13.5 0H5.25"/></svg>',
+lockopen:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 119 0v3.75M3.75 21.75h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H3.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>',
+exclcirc:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>',
+doccheck:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M7.5 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75h-1.5m-6 0a.75.75 0 01.75-.75h3a.75.75 0 01.75.75m-4.5 0h4.5"/></svg>',
+xcircle:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+shield:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>',
+megaphone:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535m0 0A23.74 23.74 0 0018.795 3m.38 1.125a23.91 23.91 0 011.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 001.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 010 3.46"/></svg>',
+sparkles:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/></svg>',
+eye:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>',
+clock:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+magnify:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>',
+clipboard:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75"/></svg>',
+trophy:'<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0"/></svg>'
+};
+
+var SVGS=[
+'<svg viewBox="0 0 320 200" fill="none"><rect width="320" height="200" fill="#0a1c0a"/><circle cx="160" cy="100" r="90" fill="rgba(78,180,66,0.06)"/><path d="M120 140 L160 60 L200 140 Z" stroke="#4EB442" stroke-width="2" fill="rgba(78,180,66,0.12)" stroke-linejoin="round"/><path d="M137 140 L160 90 L183 140" stroke="#4EB442" stroke-width="1.5" fill="rgba(78,180,66,0.2)" stroke-linejoin="round"/><circle cx="160" cy="60" r="8" fill="#4EB442"/><circle cx="160" cy="60" r="14" stroke="#4EB442" stroke-width="1" opacity="0.4"><animate attributeName="r" values="14;20;14" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/></circle><line x1="100" y1="140" x2="220" y2="140" stroke="#4EB442" stroke-width="2" stroke-linecap="round" opacity="0.6"/></svg>',
+'<svg viewBox="0 0 320 200" fill="none"><rect width="320" height="200" fill="#08101a"/><circle cx="160" cy="100" r="55" stroke="#4EB442" stroke-width="2" stroke-dasharray="8 6" opacity="0.5"><animateTransform attributeName="transform" type="rotate" from="0 160 100" to="360 160 100" dur="12s" repeatCount="indefinite"/></circle><circle cx="160" cy="100" r="35" stroke="#4EB442" stroke-width="1.5" fill="rgba(78,180,66,0.08)"/><rect x="140" y="85" width="40" height="30" rx="4" fill="rgba(78,180,66,0.15)" stroke="#4EB442" stroke-width="1.5"/><text x="160" y="106" text-anchor="middle" fill="#4EB442" font-size="16" font-weight="bold">$</text></svg>',
+'<svg viewBox="0 0 320 200" fill="none"><rect width="320" height="200" fill="#0f0818"/><circle cx="160" cy="78" r="22" fill="rgba(78,180,66,0.2)" stroke="#4EB442" stroke-width="2"/><path d="M138 140 Q160 122 182 140" stroke="#4EB442" stroke-width="2" fill="rgba(78,180,66,0.1)" stroke-linecap="round"/><circle cx="100" cy="90" r="16" fill="rgba(78,180,66,0.12)" stroke="#4EB442" stroke-width="1.5" opacity="0.7"/><circle cx="220" cy="90" r="16" fill="rgba(78,180,66,0.12)" stroke="#4EB442" stroke-width="1.5" opacity="0.7"/><circle cx="160" cy="78" r="8" fill="#4EB442"/></svg>',
+'<svg viewBox="0 0 320 200" fill="none"><rect width="320" height="200" fill="#091508"/><circle cx="160" cy="100" r="28" fill="rgba(78,180,66,0.15)" stroke="#4EB442" stroke-width="2"/><line x1="160" y1="40" x2="160" y2="72" stroke="#4EB442" stroke-width="2" stroke-linecap="round"/><line x1="160" y1="128" x2="120" y2="165" stroke="#4EB442" stroke-width="2" stroke-linecap="round"/><line x1="160" y1="128" x2="200" y2="165" stroke="#4EB442" stroke-width="2" stroke-linecap="round"/><circle cx="160" cy="35" r="8" fill="#4EB442"/><text x="160" y="104" text-anchor="middle" fill="#4EB442" font-size="13" font-weight="bold">?</text></svg>',
+'<svg viewBox="0 0 320 200" fill="none"><rect width="320" height="200" fill="#081510"/><rect x="70" y="50" width="180" height="110" rx="10" fill="rgba(78,180,66,0.06)" stroke="#4EB442" stroke-width="1.5"/><rect x="82" y="62" width="80" height="8" rx="3" fill="rgba(78,180,66,0.3)"/><rect x="176" y="88" width="62" height="6" rx="2" fill="rgba(78,180,66,0.5)"/><rect x="176" y="100" width="52" height="6" rx="2" fill="rgba(78,180,66,0.4)"/><rect x="176" y="134" width="62" height="8" rx="2" fill="rgba(78,180,66,0.7)"/><circle cx="220" cy="50" r="18" fill="#0b1929" stroke="#4EB442" stroke-width="2"/><text x="220" y="55" text-anchor="middle" fill="#4EB442" font-size="14" font-weight="bold">$</text></svg>',
+'<svg viewBox="0 0 320 200" fill="none"><rect width="320" height="200" fill="#080e18"/><circle cx="140" cy="95" r="45" stroke="#4EB442" stroke-width="3" fill="rgba(78,180,66,0.06)"/><line x1="175" y1="130" x2="210" y2="162" stroke="#4EB442" stroke-width="5" stroke-linecap="round"/><line x1="125" y1="88" x2="155" y2="88" stroke="#4EB442" stroke-width="2" stroke-linecap="round"/><line x1="125" y1="98" x2="150" y2="98" stroke="#4EB442" stroke-width="2" stroke-linecap="round"/><circle cx="120" cy="88" r="3" fill="#4EB442"/><circle cx="120" cy="98" r="3" fill="#4EB442"/></svg>',
+'<svg viewBox="0 0 320 200" fill="none"><rect width="320" height="200" fill="#120808"/><path d="M160 30 L210 55 L210 120 Q210 155 160 175 Q110 155 110 120 L110 55 Z" fill="rgba(239,68,68,0.08)" stroke="rgba(239,68,68,0.5)" stroke-width="2"/><path d="M175 80 L148 115 L165 115 L145 148 L172 108 L156 108 Z" fill="#4EB442" opacity="0.9"/></svg>',
+'<svg viewBox="0 0 320 200" fill="none"><rect width="320" height="200" fill="#100808"/><rect x="105" y="40" width="90" height="130" rx="6" fill="rgba(78,180,66,0.06)" stroke="#4EB442" stroke-width="2"/><rect x="165" y="93" width="10" height="15" rx="3" fill="#4EB442" opacity="0.7"/><circle cx="210" cy="80" r="20" fill="rgba(78,180,66,0.15)" stroke="#4EB442" stroke-width="1.5"/><circle cx="210" cy="80" r="8" fill="rgba(78,180,66,0.3)" stroke="#4EB442" stroke-width="1.5"/><line x1="218" y1="80" x2="235" y2="80" stroke="#4EB442" stroke-width="2" stroke-linecap="round"/></svg>',
+'<svg viewBox="0 0 320 200" fill="none"><rect width="320" height="200" fill="#120608"/><rect x="82" y="82" width="50" height="35" rx="17" fill="rgba(239,68,68,0.1)" stroke="rgba(239,68,68,0.5)" stroke-width="2"/><rect x="188" y="82" width="50" height="35" rx="17" fill="rgba(78,180,66,0.1)" stroke="#4EB442" stroke-width="2"/><circle cx="160" cy="100" r="14" fill="rgba(239,68,68,0.2)" stroke="rgba(239,68,68,0.6)" stroke-width="2"/><text x="160" y="105" text-anchor="middle" fill="#ef4444" font-size="14" font-weight="bold">!</text></svg>',
+'<svg viewBox="0 0 320 200" fill="none"><rect width="320" height="200" fill="#08101a"/><path d="M70 160 Q100 140 120 130 Q150 115 175 90 Q195 70 230 45" stroke="#4EB442" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="230" cy="45" r="8" fill="#4EB442"/><rect x="60" y="155" width="200" height="1.5" fill="rgba(78,180,66,0.2)" rx="1"/><rect x="60" y="40" width="1.5" height="120" fill="rgba(78,180,66,0.2)" rx="1"/></svg>',
+'<svg viewBox="0 0 320 200" fill="none"><rect width="320" height="200" fill="#08101a"/><path d="M80 80 L80 30 L140 55 L80 80 Z" fill="rgba(239,68,68,0.15)" stroke="rgba(239,68,68,0.5)" stroke-width="1.5"/><path d="M240 50 L240 30 L180 45 L240 50 Z" fill="rgba(78,180,66,0.2)" stroke="#4EB442" stroke-width="2"/><circle cx="240" cy="100" r="16" fill="rgba(78,180,66,0.2)" stroke="#4EB442" stroke-width="2"/><text x="240" y="105" text-anchor="middle" fill="#4EB442" font-size="13" font-weight="bold">1</text></svg>',
+'<svg viewBox="0 0 320 200" fill="none"><rect width="320" height="200" fill="#0e0818"/><circle cx="160" cy="100" r="28" fill="rgba(78,180,66,0.15)" stroke="#4EB442" stroke-width="2"/><circle cx="90" cy="70" r="14" fill="rgba(78,180,66,0.1)" stroke="#4EB442" stroke-width="1.5" opacity="0.8"/><circle cx="230" cy="70" r="14" fill="rgba(78,180,66,0.1)" stroke="#4EB442" stroke-width="1.5" opacity="0.8"/><circle cx="90" cy="130" r="14" fill="rgba(78,180,66,0.1)" stroke="#4EB442" stroke-width="1.5" opacity="0.8"/><circle cx="230" cy="130" r="14" fill="rgba(78,180,66,0.1)" stroke="#4EB442" stroke-width="1.5" opacity="0.8"/><circle cx="160" cy="100" r="10" fill="#4EB442"><animate attributeName="r" values="10;14;10" dur="2s" repeatCount="indefinite"/></circle></svg>',
+'<svg viewBox="0 0 320 200" fill="none"><rect width="320" height="200" fill="#071518"/><rect x="85" y="45" width="150" height="120" rx="10" fill="rgba(78,180,66,0.06)" stroke="#4EB442" stroke-width="1.5"/><rect x="85" y="45" width="150" height="28" rx="10" fill="rgba(78,180,66,0.2)"/><rect x="100" y="103" width="30" height="5" rx="2" fill="rgba(78,180,66,0.5)"/><rect x="100" y="123" width="50" height="5" rx="2" fill="rgba(78,180,66,0.4)"/><rect x="100" y="143" width="80" height="5" rx="2" fill="rgba(78,180,66,0.6)"/></svg>',
+'<svg viewBox="0 0 320 200" fill="none"><rect width="320" height="200" fill="#0a1c0a"/><circle cx="160" cy="100" r="70" stroke="rgba(78,180,66,0.15)" stroke-width="1.5" fill="none"/><circle cx="160" cy="100" r="50" stroke="rgba(78,180,66,0.25)" stroke-width="1.5" fill="none"/><circle cx="160" cy="100" r="30" stroke="rgba(78,180,66,0.4)" stroke-width="2" fill="rgba(78,180,66,0.06)"/><circle cx="160" cy="100" r="12" fill="#4EB442"/><line x1="220" y1="40" x2="164" y2="97" stroke="#4EB442" stroke-width="2.5" stroke-linecap="round"/><circle cx="160" cy="100" r="4" fill="white"/></svg>'
+];
+
+var Q=[
+{bg:'#0a1c0a',block:'Your Business',num:'1 of 14',q:'Your business wins deals primarily because of...',sub:'Think about your last 3 wins — what was the real reason they chose you?',l:{icon:'bolt',lbl:'Speed & reliable execution',tag:'Execution-led'},r:{icon:'lightbulb',lbl:'Expertise & relationships',tag:'Expertise-led'}},
+{bg:'#08101a',block:'Your Business',num:'2 of 14',q:'Your revenue model is primarily...',sub:'Not what you aspire to — what actually drives income today',l:{icon:'briefcase',lbl:'Project-based — one job at a time',tag:'Project model'},r:{icon:'arrowpath',lbl:'Ongoing recurring retainers or contracts',tag:'Recurring model'}},
+{bg:'#0f0818',block:'Your Business',num:'3 of 14',q:"Your team's relationship with technology is...",sub:'How your people actually respond when new tools are introduced',l:{icon:'handraised',lbl:'They tolerate it — tech is just a means to an end',tag:'Tech-tolerant team'},r:{icon:'beaker',lbl:'They lean in and embrace new tools',tag:'Tech-forward team'}},
+{bg:'#091508',block:'How You Operate',num:'4 of 14',q:'Technology decisions at your company get made...',sub:'Think about your last 3 technology purchases — how did they actually happen?',l:{icon:'excltri',lbl:'When something breaks or someone asks',tag:'Reactive decisions'},r:{icon:'caldays',lbl:'On a regular cadence with clear criteria',tag:'Proactive decisions'}},
+{bg:'#081510',block:'How You Operate',num:'5 of 14',q:'Your technology spend visibility is...',sub:'Could you name your total monthly tech spend right now?',l:{icon:'qmark',lbl:'Rough estimate — within 20% maybe',tag:'Limited spend visibility'},r:{icon:'checkcirc',lbl:'Down to the dollar — I can name it right now',tag:'Full spend visibility'}},
+{bg:'#080e18',block:'How You Operate',num:'6 of 14',q:'When evaluating a new technology tool, your first question is...',sub:'Your honest default instinct — before anything else',l:{icon:'dollar',lbl:'"What does it cost?"',tag:'Cost-first evaluation'},r:{icon:'fire',lbl:'"How does this serve our mission?"',tag:'Mission-first evaluation'}},
+{bg:'#120808',block:'Your Risk Profile',num:'7 of 14',q:'Your biggest technology risk right now is...',sub:'The one that, if it happened tomorrow, would hurt the most',l:{icon:'server',lbl:'Downtime — systems failing at the wrong moment',tag:'Reliability risk'},r:{icon:'lockopen',lbl:'Security — data breach or unauthorized access',tag:'Security risk'}},
+{bg:'#100808',block:'Your Risk Profile',num:'8 of 14',q:'If your top IT person left tomorrow...',sub:'Institutional knowledge is a hidden single point of failure',l:{icon:'exclcirc',lbl:"We'd be in serious trouble",tag:'High key-person risk'},r:{icon:'doccheck',lbl:"We'd be fine — it's all documented",tag:'Low key-person risk'}},
+{bg:'#120608',block:'Your Risk Profile',num:'9 of 14',q:'Has a technology failure ever cost you a client or deal?',sub:'Not "could it" — has it actually happened to your business?',l:{icon:'xcircle',lbl:'Yes — and it was painful',tag:'Past tech failure'},r:{icon:'shield',lbl:'Not that I know of',tag:'No recorded failures'}},
+{bg:'#08101a',block:'Growth & Clients',num:'10 of 14',q:'Your primary growth focus right now is...',sub:'Where does new revenue actually come from for your business?',l:{icon:'megaphone',lbl:'More volume — more clients, more projects',tag:'Volume growth'},r:{icon:'sparkles',lbl:'Better clients — higher value, longer relationships',tag:'Quality growth'}},
+{bg:'#08101a',block:'Growth & Clients',num:'11 of 14',q:"Your competitors' technology compared to yours is...",sub:'Be honest — what you actually observe from the outside',l:{icon:'eye',lbl:'Behind or similar to ours',tag:'Technology advantage'},r:{icon:'fire',lbl:'Ahead of us in some ways',tag:'Catch-up needed'}},
+{bg:'#0e0818',block:'AI & Innovation',num:'12 of 14',q:'Your AI stance right now is...',sub:'Real talk — not what you plan to do eventually',l:{icon:'clock',lbl:'Protect what works — watch and wait',tag:'Conservative AI'},r:{icon:'magnify',lbl:'Find the edge — build and test',tag:'Proactive AI'}},
+{bg:'#071518',block:'How You Decide',num:'13 of 14',q:'Your technology budget has...',sub:'How formal is the actual process when money gets spent on tech?',l:{icon:'qmark',lbl:'No formal process — we spend as needed',tag:'No formal budget'},r:{icon:'clipboard',lbl:'An annual review with clear criteria and approval',tag:'Structured budget'}},
+{bg:'#0a1c0a',block:'How You Decide',num:'14 of 14',q:'A year from now, technology success looks like...',sub:'Your North Star — the result that would make all of this worth it',l:{icon:'clock',lbl:'Zero firefighting — everything just runs clean',tag:'Stability success'},r:{icon:'trophy',lbl:"Technology helps us win deals we couldn't win before",tag:'Competitive success'}}
+];
+
+var cur=0,answers=[],tags=[],dragging=false,startX=0,curX=0,activeCard=null,userEmail='';
+
+document.getElementById('startBtn').addEventListener('click',function(){showScreen('s-quiz');initQuiz();});
+document.getElementById('btnl').addEventListener('click',function(){answer(0);});
+document.getElementById('btnr').addEventListener('click',function(){answer(1);});
+document.getElementById('unlockBtn').addEventListener('click',unlock);
+
+function showScreen(id){var s=document.querySelectorAll('.screen');for(var i=0;i<s.length;i++)s[i].classList.add('gone');document.getElementById(id).classList.remove('gone');}
+function initQuiz(){cur=0;answers=[];tags=[];document.getElementById('btags').innerHTML='<span class="bsec">Block 1 — Your Business</span>';renderStack();updateProg();}
+function renderStack(){var stack=document.getElementById('stack');stack.innerHTML='';for(var i=0;i<=2;i++){var qi=cur+i;if(qi>=Q.length)continue;var c=buildCard(qi,i);if(i===0)attachDrag(c);stack.appendChild(c);}setButtons(Q[cur]);}
+function buildCard(qi,layer){var q=Q[qi];var c=document.createElement('div');c.className='qc '+(layer===0?'active':layer===1?'behind1':'behind2');c.id='qc'+qi;c.style.background=q.bg;c.style.boxShadow='inset 0 1px 0 rgba(255,255,255,0.06)';c.innerHTML='<div class="ovy"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg> YES</div><div class="ovn"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg> NO</div><div class="cillus">'+SVGS[qi]+'</div><div class="ctxt"><div class="cmeta"><span class="cnum">'+q.num+'</span><span class="cblk">'+q.block+'</span></div><div class="cq">'+q.q+'</div><div class="csub">'+q.sub+'</div></div>';return c;}
+function setButtons(q){document.getElementById('il').innerHTML=ICONS[q.l.icon]||'';document.getElementById('ll').textContent=q.l.lbl;document.getElementById('ir').innerHTML=ICONS[q.r.icon]||'';document.getElementById('lr').textContent=q.r.lbl;}
+function updateProg(){document.getElementById('pf').style.width=(cur/Q.length*100)+'%';document.getElementById('pn').textContent=(cur+1)+' / '+Q.length;if(cur<Q.length){var strip=document.getElementById('btags');var sec=strip.querySelector('.bsec');if(sec)sec.textContent='Block: '+Q[cur].block;}}
+function answer(val){if(cur>=Q.length)return;var q=Q[cur];answers.push(val);var tag=val===1?q.r.tag:q.l.tag;tags.push(tag);addTag(tag);animateCard(val===1?'right':'left');}
+function addTag(tag){var strip=document.getElementById('btags');var sec=strip.querySelector('.bsec');if(sec)sec.remove();var t=document.createElement('span');t.className='btag';t.textContent=tag;strip.appendChild(t);}
+function animateCard(dir){var card=document.querySelector('.qc.active');if(!card)return;document.getElementById('btnl').style.pointerEvents='none';document.getElementById('btnr').style.pointerEvents='none';var rot=dir==='right'?22:-22;var tx=dir==='right'?'145%':'-145%';card.style.transition='transform .35s cubic-bezier(.4,0,.2,1),opacity .35s';card.style.transform='translateX('+tx+') rotate('+rot+'deg)';card.style.opacity='0';var b1=document.querySelector('.qc.behind1');var b2=document.querySelector('.qc.behind2');if(b1){b1.style.transition='transform .4s cubic-bezier(.4,0,.2,1)';b1.className='qc active';attachDrag(b1);}if(b2){b2.style.transition='transform .4s cubic-bezier(.4,0,.2,1)';b2.className='qc behind1';}cur++;updateProg();setTimeout(function(){card.remove();if(cur>=Q.length){showScreen('s-build');setTimeout(function(){showScreen('s-email');},3000);}else{var ni=cur+2;if(ni<Q.length){var nc=buildCard(ni,2);document.getElementById('stack').appendChild(nc);}setButtons(Q[cur]);document.getElementById('btnl').style.pointerEvents='';document.getElementById('btnr').style.pointerEvents='';}},350);}
+
+function attachDrag(card){
+  function onStart(e){dragging=true;activeCard=card;var t=e.touches?e.touches[0]:e;startX=t.clientX;card.style.transition='none';}
+  function onMove(e){if(!dragging||activeCard!==card)return;e.preventDefault();var t=e.touches?e.touches[0]:e;curX=t.clientX-startX;card.style.transform='translateX('+curX+'px) rotate('+(curX*.07)+'deg)';var r=Math.min(Math.abs(curX)/70,1);var ovy=card.querySelector('.ovy'),ovn=card.querySelector('.ovn');if(curX>15){ovy.style.opacity=r;ovn.style.opacity=0;}else if(curX<-15){ovn.style.opacity=r;ovy.style.opacity=0;}else{ovy.style.opacity=0;ovn.style.opacity=0;}}
+  function onEnd(){if(!dragging)return;dragging=false;if(curX>80){answer(1);}else if(curX<-80){answer(0);}else{card.style.transition='transform .4s cubic-bezier(.34,1.56,.64,1)';card.style.transform='translateX(0) rotate(0deg)';card.querySelector('.ovy').style.opacity=0;card.querySelector('.ovn').style.opacity=0;}curX=0;}
+  card.addEventListener('touchstart',onStart,{passive:true});
+  card.addEventListener('touchmove',onMove,{passive:false});
+  card.addEventListener('touchend',onEnd);
+  card.addEventListener('mousedown',onStart);
+  document.addEventListener('mousemove',onMove);
+  document.addEventListener('mouseup',onEnd);
+}
+
+function unlock(){
+  var em=document.getElementById('gemail').value.trim();
+  if(!em||em.indexOf('@')<0){var inp=document.getElementById('gemail');inp.style.borderColor='#ef4444';inp.focus();setTimeout(function(){inp.style.borderColor='';},1500);return;}
+  userEmail=em;
+  fetch('https://api.beehiiv.com/v2/publications/pub_6c43a73f-5802-437f-8f7c-3d0465c803a6/subscriptions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer G79KtqIcRKhx7Yjnai3GAGMPxkcJfBrxjXERcpvhnl64O12WPXGEAX0zZwwMOsLG'},body:JSON.stringify({email:em,reactivate_existing:true,send_welcome_email:false,custom_fields:[{name:'audit_tags',value:tags.join(', ')}]})}).catch(function(){});
+  showScreen('s-results');
+  buildReport();
+}
+
+function roi(label,val){return '<div class="roi-badge"><span class="roi-label">'+label+'</span><span class="roi-val">'+val+'</span></div>';}
+
+function buildReport(){
+  var a=answers;
+  var competitive=a[0]===1?'expertise and deep relationships':'speed and reliable execution';
+  var clientModel=a[1]===1?'recurring relationships':'project-based work';
+  var teamTech=a[2]===1?'tech-forward':'tech-tolerant';
+  var decStyle=a[3]===1?'proactive':'reactive';
+  var spendVis=a[4]===1?'full':'limited';
+  var evalFirst=a[5]===1?'mission alignment':'cost';
+  var riskType=a[6]===1?'security and data exposure':'reliability and downtime';
+  var keyPerson=a[7]===0?'high key-person risk':'low key-person risk';
+  var pastFail=a[8]===0?'has experienced tech-related revenue loss':'no recorded failures';
+  var compPos=a[10]===0?'technology advantage':'technology catch-up needed';
+  var aiStance=a[11]===1?'proactive AI':'conservative AI';
+  var successDef=a[13]===1?'technology wins deals':'zero firefighting';
+
+  var strategic=(a[5]+a[11]+a[13])>=2;
+  var structured=(a[3]+a[4]+a[12])>=2;
+  var pname,psub;
+  if(strategic&&structured){pname='The Strategic Operator';psub='You run a deliberate, mission-driven operation. Your framework prioritizes leverage, measurement, and staying ahead of the curve.';}
+  else if(strategic&&!structured){pname='The Growth Builder';psub='You have the strategic instincts — now you need the systems. Your framework closes the gap between vision and execution.';}
+  else if(!strategic&&structured){pname='The Reliable Practitioner';psub='Your systems are sound. Your framework focuses on unlocking value from what you already have — without adding chaos.';}
+  else{pname='The Pragmatic Operator';psub='You run lean and decide fast. Your framework cuts noise, fixes your biggest exposure, and focuses on clear ROI.';}
+
+  document.getElementById('rh').textContent=pname;
+  document.getElementById('rsub').textContent=psub;
+  document.getElementById('remail').textContent=userEmail?('→ '+userEmail):'';
+  document.getElementById('mstmt').innerHTML='Before approving any technology, we ask three questions: Does this directly support our ability to win through <span class="mfill">'+competitive+'</span>? Do we have the people and capacity to run it? And can we measure the outcome in <span class="mfill">'+(successDef==='technology wins deals'?'deals influenced or revenue enabled':'incidents reduced or hours recovered')+'</span> within 90 days? If any answer is no — we wait.';
+
+  items('fw1',[
+    {t:'Your competitive anchor',b:'You win on <strong>'+competitive+'</strong>. Every technology request must answer: does this make us measurably better at that? If a vendor can't connect their product to your competitive advantage in one sentence — it fails this filter.',r:roi('Avg. Impact','15–25% win rate improvement')},
+    {t:'Your client model filter',b:'With a <strong>'+clientModel+'</strong> model, technology that serves '+(clientModel==='recurring relationships'?'retention, visibility, and proactive delivery':'fast onboarding, clean handoffs, and repeatable execution')+' earns its place. Everything else needs a higher justification bar.',r:roi('Avg. Impact','$8–15K saved annually on misaligned tools')},
+    {t:'Your team adoption reality',b:'Your team is <strong>'+teamTech+'</strong>. '+(teamTech==='tech-forward'?'Leverage this — your team can absorb more complexity than average. New tools have a real chance of being used.':'Factor this into every purchase. A tool your team won't use has zero ROI regardless of its feature set.'),r:roi('Avg. Impact','2–3x tool ROI when adoption exceeds 80%')}
+  ]);
+
+  items('fw2',[
+    {t:'Your decision pattern',b:'Your decisions currently happen <strong>'+(decStyle==='proactive'?'on a planned cadence with clear criteria':'reactively — when something breaks or gets requested')+'</strong>. '+(decStyle==='proactive'?'Protect this discipline — it's rare and it's worth real money.':'Build a 90-day review cadence before your next purchase. Reactive decisions cost 2-3x more over time.'),r:roi('Avg. Impact','Reactive orgs spend 2–3x more on tech over 3 years')},
+    {t:'Your spend visibility rule',b:'Your spend visibility is <strong>'+spendVis+'</strong>. '+(spendVis==='full'?'Maintain this. Every new tool gets logged immediately with its owner, cost, and the business outcome it's supposed to drive.':'Start here: list every subscription in one place within 30 days. You will find tools you're paying for and not using.'),r:roi('Avg. Impact','Companies with full visibility cut waste by 22% on avg')},
+    {t:'Your capacity gate',b:'Before any technology purchase, answer: who owns implementation? Who maintains it in month 6? If the answer is "we'll figure it out" — the answer is no. Build this gate into your formal evaluation process.',r:roi('Avg. Impact','Prevents $25–75K in failed implementations')}
+  ]);
+
+  items('fw3',[
+    {t:'Your success definition',b:'You've defined success as <strong>'+successDef+'</strong>. Every technology investment gets mapped to this within 90 days. Not eventually. Not "improved efficiency." '+(successDef==='technology wins deals'?'Name a specific deal, a proposal cycle, or a client retention number.':'Name a specific incident rate, response time, or hours-per-week recovered.'),r:roi('Avg. Impact','Measured outcomes improve budget renewal rates by 40%')},
+    {t:'Your evaluation anchor',b:'Your first evaluation question is <strong>'+evalFirst+'</strong>. '+(evalFirst==='mission alignment'?'This is the right instinct — keep it. Cost is the second question, not the first.':'Reorder this. Cost before mission alignment means you're optimizing for the wrong variable. Lead with "does this serve us?" before asking what it costs.'),r:roi('Avg. Impact','Mission-first orgs report 31% higher tech satisfaction')},
+    {t:'Your AI measurement posture',b:'Your current stance is <strong>'+aiStance+'</strong>. '+(aiStance==='proactive AI'?'Define your measurement criteria before building: what does success look like in 90 days? Hours saved? Revenue influenced? Name it now.':'When you're ready to move: one workflow, one measurable outcome, 60-day window. That's the right scope for a first AI project.'),r:roi('Avg. Impact','First AI wins avg $18–35K in recovered capacity annually')}
+  ]);
+
+  var qlist=document.getElementById('fwqs');qlist.innerHTML='';
+  var auditQs=[
+    'For every tool we currently use: what business outcome is it directly connected to?',
+    riskType.indexOf('security')>=0?'Who has access to our most sensitive data — and do they still need it?':'What is our single biggest uptime risk, and what is the response plan if it fails today?',
+    keyPerson.indexOf('high')>=0?'If our key IT person left tomorrow, could we reconstruct what they know from documentation alone?':'Is our documentation current enough that a new person could own any system within one week?',
+    pastFail.indexOf('has experienced')>=0?'What technology failure cost us business, and has the root cause been formally addressed?':'What is the closest we've come to a tech-related client issue — and what stopped it from getting worse?',
+    spendVis==='limited'?'Can we list every technology subscription, its monthly cost, and its named owner — right now?':'When did we last audit our technology spend against actual business outcomes?',
+    decStyle==='reactive'?'What criteria should we use to evaluate a technology request before we approve any budget?':'Are our evaluation criteria still aligned with where the business is going this year?',
+    compPos.indexOf('catch-up')>=0?'What specific technology capabilities do competitors have that we don't — and does it matter for our clients?':'What technology advantage do we have that competitors don't, and are we actively using it in our sales process?'
+  ];
+  auditQs.forEach(function(q){var d=document.createElement('div');d.className='qli';d.innerHTML='<div class="qlic"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div><span>'+q+'</span>';qlist.appendChild(d);});
+
+  items('fw4',[
+    {t:'Week 1 — Exposure audit',b:'Map your <strong>'+riskType+'</strong>. List every system, every person with access, and what breaks if each one fails. This is your baseline — everything else builds from here.',r:roi('Risk Reduction','Avg breach cost for SMB: $120K–$1.2M. Prevention cost: ~$5K.')},
+    {t:'Week 2–3 — Spend to outcome map',b:'For every technology expense: name the business outcome it's supposed to drive. '+(spendVis==='limited'?'Start by building the complete list first.':'You have visibility — now connect each line to a specific result.')+' Anything that can't be mapped is a candidate for elimination or renegotiation.',r:roi('Avg Savings','Mid-market companies eliminate 18–30% of tech spend in first audit')},
+    {t:'Week 4 — First Mission Filter Review',b:'Take your top 5 technology tools. Run each through your three filters. Document what passes and what doesn't. This becomes your roadmap — '+(keyPerson.indexOf('high')>=0?'starting with knowledge documentation for your key person.':'starting with the tool that scored lowest on mission alignment.'),r:roi('Time to Value','Clients report clarity within 2 weeks and first cuts within 30 days')}
+  ]);
+
+  document.getElementById('ctah').textContent=strategic?'Your framework is built. Now run the audit.':'Let's apply this to your actual technology stack.';
+  document.getElementById('ctap').textContent='A 45-minute Mission Audit Session takes your custom framework and runs it against everything you're currently using — so you know exactly what to keep, cut, and prioritize first.';
+}
+
+function items(id,arr){
+  var el=document.getElementById(id);el.innerHTML='';
+  arr.forEach(function(item){
+    var d=document.createElement('div');d.className='fwitem';
+    d.innerHTML='<div class="fwbullet"></div><div class="fwtxt"><strong>'+item.t+'</strong>'+item.b+(item.r||'')+'</div>';
+    el.appendChild(d);
+  });
+}
+</script>
+</body>
+</html>
